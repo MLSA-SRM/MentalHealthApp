@@ -1,6 +1,6 @@
-# mental_health_app
+# Mental Health App
 
-A new Flutter project.
+Work In Progress
 
 ## Getting Started
 
