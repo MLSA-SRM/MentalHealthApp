@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'Showup.dart';
 import 'quiz.dart';
 
-//import 'delayed_animation.dart';
-
 void main() {
   runApp(MaterialApp(
     title: 'Navigation Basics',
@@ -30,7 +28,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
           Center(
               child: Column(children: <Widget>[
             SizedBox(
-              height: 50,
+              height: MediaQuery.of(context).size.height/20,
             ),
             ShowUp(
               child: AvatarGlow(
@@ -52,7 +50,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: MediaQuery.of(context).size.height/50,
             ),
             ShowUp(
               child: Text(
@@ -75,7 +73,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
               delay: delayedAmount,
             ),
             SizedBox(
-              height: 60,
+              height: MediaQuery.of(context).size.height/20,
             ),
             ShowUp(
               child: Column(
@@ -103,7 +101,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
               delay: delayedAmount,
             ),
             SizedBox(
-              height: 50,
+              height: MediaQuery.of(context).size.height/5,
             ),
             ShowUp(
               child: Container(
@@ -132,7 +130,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
               delay: 1100,
             ),
             SizedBox(
-              height: 20,
+              height: MediaQuery.of(context).size.height/50,
             ),
             ShowUp(
               child: Text("Instructions: Swipe Up after every question\n",
