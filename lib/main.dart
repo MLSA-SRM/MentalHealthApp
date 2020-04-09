@@ -1,5 +1,6 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
+import 'package:mental_health_app/test.dart';
 import 'Showup.dart';
 import 'quiz.dart';
 
@@ -111,7 +112,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                   elevation: 10,
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Quiz()));
+                        MaterialPageRoute(builder: (context) => QuizTest()));
                   },
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(
