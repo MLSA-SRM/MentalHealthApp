@@ -14,7 +14,7 @@ import 'Showup.dart';
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: new ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blue
       ),
       home: new Questionaire(),
     );
