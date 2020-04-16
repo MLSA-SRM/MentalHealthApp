@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:mental_health_app/DASS21_Page.dart';
 
 import 'Showup.dart';
 import 'questionaire.dart';
@@ -351,7 +352,7 @@ class QuizState extends State<Quiz> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Questionaire()));
+                                    builder: (context) => Dass21Page()));
                           },
                           child: Card(
                             elevation: 8,

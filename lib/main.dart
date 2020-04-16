@@ -113,7 +113,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                   elevation: 10,
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Dass21Page()));
+                        MaterialPageRoute(builder: (context) => Quiz()));
                   },
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(
