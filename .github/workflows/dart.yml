@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     name: build for ios
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     container:
       image:  google/dart:latest
