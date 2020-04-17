@@ -3,6 +3,8 @@ import 'package:mental_health_app/SDRS_Page.dart';
 import 'package:mental_health_app/question.dart';
 import 'package:flutter/material.dart';
 
+import 'Showup.dart';
+
 class BACEPage extends StatefulWidget {
   @override
   _BACEPageState createState() => _BACEPageState();
@@ -33,7 +35,7 @@ class _BACEPageState extends State<BACEPage> {
   
 
   List<int> qType = [2,4,7,8,11,15,17,19,23,25];
-
+  List<Color> randomizecolor = [Colors.blue,Colors.green,Colors.red,Colors.purple,Colors.pink,Colors.orange];
   int total_a =0,total_d =0,total_s =0;
   String result_a,result_d,result_s;
 
@@ -43,7 +45,7 @@ class _BACEPageState extends State<BACEPage> {
     for(int i =0;i<27;i++){
       BACE_Questions[i].getQues(questions[i], 'assets/bace-DrManik_${(i+1)}.png');
       BACE_Questions[i].getOptions("Not at all", "A little", "Quite a lot", "A lot");
-      BACE_Questions[i].getColor(Colors.green, Colors.red, Colors.yellow, Colors.blue);
+      BACE_Questions[i].getColor(randomizecolor[i%6], randomizecolor[i%6], randomizecolor[i%6], randomizecolor[i%6]);
       BACE_Questions[i].type = 1;
     }
     qType.forEach((index){
@@ -88,11 +90,14 @@ class _BACEPageState extends State<BACEPage> {
         //height: 800,
         child: Column(
           children: <Widget>[
-            Container(
-                child: Image(
-                  image: AssetImage(question.imgURL),
-                  height: 250,
-                )),
+            ShowUp(
+              delay: 500,
+                          child: Container(
+                  child: Image(
+                    image: AssetImage(question.imgURL),
+                    height: 250,
+                  )),
+            ),
             SizedBox(height: 20),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),

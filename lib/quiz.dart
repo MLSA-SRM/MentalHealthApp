@@ -278,10 +278,6 @@ class QuizState extends State<Quiz> {
                             setState(() {
                               answers[3] = 0;
                             });
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Questionaire()));
                           },
                           child: Card(
                             elevation: 8,

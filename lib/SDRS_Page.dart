@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mental_health_app/question.dart';
 
+import 'Showup.dart';
+
 
 class SDRSPage extends StatefulWidget {
   @override
@@ -12,7 +14,7 @@ class _SDRSPageState extends State<SDRSPage> {
 
   SwiperController _controller = SwiperController();
   List<Question> SDRS_Questions = [Question(),Question(),Question(),Question(),Question()];
-
+  List<Color> randomizecolor = [Colors.blue,Colors.green,Colors.red,Colors.purple,Colors.pink,Colors.orange];
   List<String> questions = ["I am always courteous even to people who are disagreeable.",
                             "There have been occasions when I took advantage of someone.",
                             "I sometimes try to get even rather than forgive and forget.",
@@ -25,7 +27,7 @@ class _SDRSPageState extends State<SDRSPage> {
     for(int i =0;i<5;i++){
       SDRS_Questions[i].getQues(questions[i], "assets/sdrs_${(i+1)}.png");
       SDRS_Questions[i].getOptions("Definitely True", "Mostly True", "Don't Know", "Mostly False","Definitely False");
-      SDRS_Questions[i].getColor(Colors.green, Colors.red, Colors.yellow, Colors.blue,Colors.purple);
+      SDRS_Questions[i].getColor(randomizecolor[i%6], randomizecolor[i%6], randomizecolor[i%6],randomizecolor[i%6], randomizecolor[i%6]);
       SDRS_Questions[i].type = 1;
     }
     qtype.forEach((i){
@@ -72,11 +74,14 @@ class _SDRSPageState extends State<SDRSPage> {
         //height: 800,
         child: Column(
           children: <Widget>[
-            Container(
-                child: Image(
-                  image: AssetImage(question.imgURL),
-                  height: 250,
-                )),
+            ShowUp(
+              delay : 500,
+                          child: Container(
+                  child: Image(
+                    image: AssetImage(question.imgURL),
+                    height: 250,
+                  )),
+            ),
             SizedBox(height: 20),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),

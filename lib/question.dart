@@ -9,11 +9,14 @@ class Question {
     this.imgURL = url;
   }
 
-  void getColor(Color c1,Color c2,Color c3,Color c4,[Color c5]){
-   this.opt1Color = c1;
-   this.opt2Color = c2;
-   this.opt3Color = c3;
-   this.opt4Color = c4;
+  void getColor(ColorSwatch c1,ColorSwatch c2,ColorSwatch c3,ColorSwatch c4,[ColorSwatch c5]){
+   this.opt1Color = c1[400];
+   this.opt2Color = c2[500];
+   this.opt3Color = c3[600];
+   this.opt4Color = c4[700];
+   if(c5!=null)
+   this.opt5Color = c5[800];
+   else
    this.opt5Color = c5;
   }
 
