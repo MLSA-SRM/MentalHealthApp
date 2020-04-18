@@ -59,7 +59,7 @@ class _Dass21PageState extends State<Dass21Page> {
     "I felt scared without any good reason",
     "I felt that life was meaningless"
   ];
-
+  List<List<bool>> isselected = new List.generate(21, (j) => [false,false,false,false]);
   List<int> anxietyIndex = [1, 3, 6, 8, 14, 17, 18];
   List<int> stressIndex = [0, 5, 7, 10, 11, 13, 17];
   List<int> depressionIndex = [2, 4, 9, 12, 15, 16, 19];
@@ -189,6 +189,10 @@ class _Dass21PageState extends State<Dass21Page> {
                 setState(() {
                   DASS21_Questions[index].answer = question.opt1;
                   DASS21_Questions[index].points = 0;
+                  isselected[index][0] = true;
+                  isselected[index][1] = false;
+                  isselected[index][2] = false;
+                  isselected[index][3] = false;
                 });
               },
               child: Card(
@@ -197,6 +201,7 @@ class _Dass21PageState extends State<Dass21Page> {
                 child: ListTile(
                   leading:
                       Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                      trailing: isselected[index][0]? Icon(Icons.spellcheck, color: Colors.white) : null,
                   title: Text(
                     question.opt1,
                     style: TextStyle(fontSize: 16, color: Colors.white),
@@ -216,6 +221,10 @@ class _Dass21PageState extends State<Dass21Page> {
                 setState(() {
                   DASS21_Questions[index].answer = question.opt2;
                   DASS21_Questions[index].points = 1;
+                  isselected[index][0] = false;
+                  isselected[index][1] = true;
+                  isselected[index][2] = false;
+                  isselected[index][3] = false;
                 });
               },
               child: Card(
@@ -224,6 +233,7 @@ class _Dass21PageState extends State<Dass21Page> {
                 child: ListTile(
                   leading:
                       Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                      trailing: isselected[index][1]? Icon(Icons.spellcheck, color: Colors.white) : null,
                   title: Text(
                     question.opt2,
                     style: TextStyle(fontSize: 16, color: Colors.white),
@@ -243,6 +253,10 @@ class _Dass21PageState extends State<Dass21Page> {
                 setState(() {
                   DASS21_Questions[index].answer = question.opt3;
                   DASS21_Questions[index].points = 2;
+                  isselected[index][0] = false;
+                  isselected[index][1] = false;
+                  isselected[index][2] = true;
+                  isselected[index][3] = false;
                 });
               },
               child: Card(
@@ -251,6 +265,7 @@ class _Dass21PageState extends State<Dass21Page> {
                 child: ListTile(
                   leading:
                       Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                      trailing: isselected[index][2]? Icon(Icons.spellcheck, color: Colors.white) : null,
                   title: Text(
                     question.opt3,
                     style: TextStyle(fontSize: 16, color: Colors.white),
@@ -270,6 +285,10 @@ class _Dass21PageState extends State<Dass21Page> {
                 setState(() {
                   DASS21_Questions[index].answer = question.opt4;
                   DASS21_Questions[index].points = 3;
+                  isselected[index][0] = false;
+                  isselected[index][1] = false;
+                  isselected[index][2] = false;
+                  isselected[index][3] = true;
                 });
               },
               child: Card(
@@ -278,10 +297,21 @@ class _Dass21PageState extends State<Dass21Page> {
                 child: ListTile(
                   leading:
                       Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                      trailing: isselected[index][3]? Icon(Icons.spellcheck, color: Colors.white) : null,
                   title: Text(
                     question.opt4,
                     style: TextStyle(fontSize: 16, color: Colors.white),
                   ),
+                ),
+              ),
+            ),
+            Container(
+              height: 30,
+              width: 100,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: LinearProgressIndicator(
+                  value: index/20,
                 ),
               ),
             ),

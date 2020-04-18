@@ -36,6 +36,7 @@ class _BACEPageState extends State<BACEPage> {
 
   List<int> qType = [2,4,7,8,11,15,17,19,23,25];
   List<Color> randomizecolor = [Colors.blue,Colors.green,Colors.red,Colors.purple,Colors.pink,Colors.orange];
+  List<List<bool>> isselected = new List.generate(27, (j) => [false,false,false,false]);
   int total_a =0,total_d =0,total_s =0;
   String result_a,result_d,result_s;
 
@@ -119,6 +120,10 @@ class _BACEPageState extends State<BACEPage> {
                 setState(() {
                   BACE_Questions[index].answer = question.opt1;
                   BACE_Questions[index].points = 0;
+                  isselected[index][0] = true;
+                  isselected[index][1] = false;
+                  isselected[index][2] = false;
+                  isselected[index][3] = false;
                 });
               },
               child: Card(
@@ -127,6 +132,7 @@ class _BACEPageState extends State<BACEPage> {
                 child: ListTile(
                   leading:
                   Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                  trailing: isselected[index][0]? Icon(Icons.spellcheck, color: Colors.white) : null,
                   title: Text(
                     question.opt1,
                     style: TextStyle(fontSize: 16, color: Colors.white),
@@ -142,6 +148,10 @@ class _BACEPageState extends State<BACEPage> {
                 setState(() {
                   BACE_Questions[index].answer = question.opt2;
                   BACE_Questions[index].points = 1;
+                  isselected[index][0] = false;
+                  isselected[index][1] = true;
+                  isselected[index][2] = false;
+                  isselected[index][3] = false;
                 });
               },
               child: Card(
@@ -150,6 +160,7 @@ class _BACEPageState extends State<BACEPage> {
                 child: ListTile(
                   leading:
                   Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                  trailing: isselected[index][1]? Icon(Icons.spellcheck, color: Colors.white) : null,
                   title: Text(
                     question.opt2,
                     style: TextStyle(fontSize: 16, color: Colors.white),
@@ -165,6 +176,10 @@ class _BACEPageState extends State<BACEPage> {
                 setState(() {
                   BACE_Questions[index].answer = question.opt3;
                   BACE_Questions[index].points = 2;
+                  isselected[index][0] = false;
+                  isselected[index][1] = false;
+                  isselected[index][2] = true;
+                  isselected[index][3] = false;
                 });
               },
               child: Card(
@@ -173,6 +188,7 @@ class _BACEPageState extends State<BACEPage> {
                 child: ListTile(
                   leading:
                   Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                  trailing: isselected[index][2]? Icon(Icons.spellcheck, color: Colors.white) : null,
                   title: Text(
                     question.opt3,
                     style: TextStyle(fontSize: 16, color: Colors.white),
@@ -188,6 +204,10 @@ class _BACEPageState extends State<BACEPage> {
                 setState(() {
                   BACE_Questions[index].answer = question.opt4;
                   BACE_Questions[index].points = 3;
+                  isselected[index][0] = false;
+                  isselected[index][1] = false;
+                  isselected[index][2] = false;
+                  isselected[index][3] = true;
                 });
               },
               child: Card(
@@ -196,10 +216,21 @@ class _BACEPageState extends State<BACEPage> {
                 child: ListTile(
                   leading:
                   Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                  trailing: isselected[index][3]? Icon(Icons.spellcheck, color: Colors.white) : null,
                   title: Text(
                     question.opt4,
                     style: TextStyle(fontSize: 16, color: Colors.white),
                   ),
+                ),
+              ),
+            ),
+            Container(
+              height: 30,
+              width: 100,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: LinearProgressIndicator(
+                  value: index/26,
                 ),
               ),
             ),

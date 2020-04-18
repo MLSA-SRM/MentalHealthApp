@@ -15,6 +15,7 @@ class _SDRSPageState extends State<SDRSPage> {
   SwiperController _controller = SwiperController();
   List<Question> SDRS_Questions = [Question(),Question(),Question(),Question(),Question()];
   List<Color> randomizecolor = [Colors.blue,Colors.green,Colors.red,Colors.purple,Colors.pink,Colors.orange];
+  List<List<bool>> isselected = new List.generate(27, (j) => [false,false,false,false,false]);
   List<String> questions = ["I am always courteous even to people who are disagreeable.",
                             "There have been occasions when I took advantage of someone.",
                             "I sometimes try to get even rather than forgive and forget.",
@@ -102,6 +103,12 @@ class _SDRSPageState extends State<SDRSPage> {
                 else {total += 0;SDRS_Questions[index].points = 0;}
                 setState(() {
                   SDRS_Questions[index].answer = question.opt1;
+                  isselected[index][0] = true;
+                  isselected[index][1] = false;
+                  isselected[index][2] = false;
+                  isselected[index][3] = false;
+                  isselected[index][4] = false;
+
                 });
               },
               child: Card(
@@ -110,6 +117,7 @@ class _SDRSPageState extends State<SDRSPage> {
                 child: ListTile(
                   leading:
                   Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                  trailing: isselected[index][0]? Icon(Icons.spellcheck, color: Colors.white) : null,
                   title: Text(
                     question.opt1,
                     style: TextStyle(fontSize: 16, color: Colors.white),
@@ -124,6 +132,11 @@ class _SDRSPageState extends State<SDRSPage> {
                 else {total += 0;SDRS_Questions[index].points = 0;}
                 setState(() {
                   SDRS_Questions[index].answer = question.opt2;
+                  isselected[index][0] = false;
+                  isselected[index][1] = true;
+                  isselected[index][2] = false;
+                  isselected[index][3] = false;
+                  isselected[index][4] = false;
                 });
               },
               child: Card(
@@ -132,6 +145,7 @@ class _SDRSPageState extends State<SDRSPage> {
                 child: ListTile(
                   leading:
                   Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                  trailing: isselected[index][1]? Icon(Icons.spellcheck, color: Colors.white) : null,
                   title: Text(
                     question.opt2,
                     style: TextStyle(fontSize: 16, color: Colors.white),
@@ -146,6 +160,11 @@ class _SDRSPageState extends State<SDRSPage> {
                 else {total += 0;SDRS_Questions[index].points = 0;}
                 setState(() {
                   SDRS_Questions[index].answer = question.opt3;
+                  isselected[index][0] = false;
+                  isselected[index][1] = false;
+                  isselected[index][2] = true;
+                  isselected[index][3] = false;
+                  isselected[index][4] = false;
                 });
               },
               child: Card(
@@ -154,6 +173,7 @@ class _SDRSPageState extends State<SDRSPage> {
                 child: ListTile(
                   leading:
                   Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                  trailing: isselected[index][2]? Icon(Icons.spellcheck, color: Colors.white) : null,
                   title: Text(
                     question.opt3,
                     style: TextStyle(fontSize: 16, color: Colors.white),
@@ -168,6 +188,11 @@ class _SDRSPageState extends State<SDRSPage> {
                 else {total += 0;SDRS_Questions[index].points = 0;}
                 setState(() {
                   SDRS_Questions[index].answer = question.opt4;
+                  isselected[index][0] = false;
+                  isselected[index][1] = false;
+                  isselected[index][2] = false;
+                  isselected[index][3] = true;
+                  isselected[index][4] = false;
                 });
               },
               child: Card(
@@ -176,6 +201,7 @@ class _SDRSPageState extends State<SDRSPage> {
                 child: ListTile(
                   leading:
                   Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                  trailing: isselected[index][3]? Icon(Icons.spellcheck, color: Colors.white) : null,
                   title: Text(
                     question.opt4,
                     style: TextStyle(fontSize: 16, color: Colors.white),
@@ -190,6 +216,11 @@ class _SDRSPageState extends State<SDRSPage> {
                 else {total += 0;SDRS_Questions[index].points = 0;}
                 setState(() {
                   SDRS_Questions[index].answer = question.opt5;
+                  isselected[index][0] = false;
+                  isselected[index][1] = false;
+                  isselected[index][2] = false;
+                  isselected[index][3] = false;
+                  isselected[index][4] = true;
                 });
               },
               child: Card(
@@ -198,10 +229,21 @@ class _SDRSPageState extends State<SDRSPage> {
                 child: ListTile(
                   leading:
                   Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                  trailing: isselected[index][4]? Icon(Icons.spellcheck, color: Colors.white) : null,
                   title: Text(
                     question.opt5,
                     style: TextStyle(fontSize: 16, color: Colors.white),
                   ),
+                ),
+              ),
+            ),
+            Container(
+              height: 30,
+              width: 100,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: LinearProgressIndicator(
+                  value: index/4,
                 ),
               ),
             ),
