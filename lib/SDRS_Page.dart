@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mental_health_app/question.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import 'Showup.dart';
 
@@ -15,6 +16,8 @@ class _SDRSPageState extends State<SDRSPage> {
   SwiperController _controller = SwiperController();
   List<Question> SDRS_Questions = [Question(),Question(),Question(),Question(),Question()];
   List<Color> randomizecolor = [Colors.blue,Colors.green,Colors.red,Colors.purple,Colors.pink,Colors.orange];
+  List<Color> randomizecolorlight = [Colors.blue[100],Colors.green[100],Colors.red[100],Colors.purple[100],Colors.pink[100],Colors.orange[100]];
+
   List<List<bool>> isselected = new List.generate(27, (j) => [false,false,false,false,false]);
   List<String> questions = ["I am always courteous even to people who are disagreeable.",
                             "There have been occasions when I took advantage of someone.",
@@ -238,13 +241,30 @@ class _SDRSPageState extends State<SDRSPage> {
               ),
             ),
             Container(
-              height: 30,
-              width: 100,
+              height: 80,
+              width: MediaQuery.of(context).size.width,
               child: Padding(
                 padding: const EdgeInsets.all(10),
-                child: LinearProgressIndicator(
-                  value: index/4,
-                ),
+                child: StepProgressIndicator(
+            totalSteps: 21,
+            height: 10,
+            currentStep: index,
+            selectedColor: randomizecolor[index%6],
+            unselectedColor: randomizecolorlight[index%6],
+            //padding: 5,
+            customStep: (index,color){
+              return Icon(
+                    Icons.check_box_outline_blank,
+                    color: color,
+                    size: 15,
+                  );
+            },
+            onTap: (index) {
+              return () {
+                  _controller.move(index);
+                  //print('$index step pressed');
+              };}
+          ),
               ),
             ),
           ],

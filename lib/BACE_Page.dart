@@ -2,6 +2,8 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mental_health_app/SDRS_Page.dart';
 import 'package:mental_health_app/question.dart';
 import 'package:flutter/material.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
+
 
 import 'Showup.dart';
 
@@ -36,6 +38,8 @@ class _BACEPageState extends State<BACEPage> {
 
   List<int> qType = [2,4,7,8,11,15,17,19,23,25];
   List<Color> randomizecolor = [Colors.blue,Colors.green,Colors.red,Colors.purple,Colors.pink,Colors.orange];
+  List<Color> randomizecolorlight = [Colors.blue[100],Colors.green[100],Colors.red[100],Colors.purple[100],Colors.pink[100],Colors.orange[100]];
+
   List<List<bool>> isselected = new List.generate(27, (j) => [false,false,false,false]);
   int total_a =0,total_d =0,total_s =0;
   String result_a,result_d,result_s;
@@ -225,13 +229,30 @@ class _BACEPageState extends State<BACEPage> {
               ),
             ),
             Container(
-              height: 30,
-              width: 100,
+              height: 80,
+              width: MediaQuery.of(context).size.width,
               child: Padding(
                 padding: const EdgeInsets.all(10),
-                child: LinearProgressIndicator(
-                  value: index/26,
-                ),
+                child: StepProgressIndicator(
+            totalSteps: 21,
+            height: 10,
+            currentStep: index,
+            selectedColor: randomizecolor[index%6],
+            unselectedColor: randomizecolorlight[index%6],
+            //padding: 5,
+            customStep: (index,color){
+              return Icon(
+                    Icons.check_box_outline_blank,
+                    color: color,
+                    size: 15,
+                  );
+            },
+            onTap: (index) {
+              return () {
+                  _controller.move(index);
+                  //print('$index step pressed');
+              };}
+          ),
               ),
             ),
           ],

@@ -40,6 +40,7 @@ class Quiz extends StatefulWidget {
 class QuizState extends State<Quiz> {
   SwiperController _controller = SwiperController();
   List<int> answers = [-1, -1, -1, -1, -1, -1, -1, -1];
+  DateTime _dateTime,date;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -56,7 +57,10 @@ class QuizState extends State<Quiz> {
             scale: 0.2,
             controller: _controller,
             itemBuilder: (BuildContext context, int index) {
-              //return Image(image: AssetImage('assets/google-developers-logo.png'));
+              if(index==0)
+              {
+                return null;
+              }
               if (index == 0) {
                 return Center(
                   child: SizedBox(
@@ -147,7 +151,7 @@ class QuizState extends State<Quiz> {
                   ),
                 );
               }
-              if (index == 1) {
+              if (index == 12) {
                 return Center(
                   child: SizedBox(
                     //height: 800,
@@ -171,22 +175,38 @@ class QuizState extends State<Quiz> {
                         ),
                         InkWell(
                           onTap: () {
-                            _controller.next();
-                            setState(() {
-                              answers[3] = 1;
+                            //_controller.next();
+                            showDatePicker(context: context,
+                             initialDate: DateTime.now(),
+                            firstDate: DateTime(1930), 
+                            lastDate: DateTime(2021)).then((date){
+                                  setState(() {
+                                    _dateTime = date;
+                                  });
                             });
                           },
                           child: Card(
                               elevation: 8,
-                              color: Colors.white,
-                              child: TextField(
+                              color: Colors.blue,
+                              child: ListTile(
+                              leading: Icon(Icons.keyboard_arrow_right,
+                                  color: Colors.white),
+                              title: Text(
+                                _dateTime==null? "Please enter Date of Birth":_dateTime.day.toString()+"/"+_dateTime.month.toString()+"/"+_dateTime.year.toString(),
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.white),
+                              ),
+                            ),
+                              //child: Text(_dateTime==null? "Please select a date":_dateTime.toString()),
+                              /*TextField(
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
                                   labelText: 'DOB',
                                   hintText: 'Date of Birth',
                                 ),
                                 autofocus: false,
-                              )),
+                              )*/
+                              ),
                         ),
                         InkWell(
                           onTap: () {
@@ -372,12 +392,8 @@ class QuizState extends State<Quiz> {
               else
                 return null;
             },
-            itemCount: 4,
-            pagination: new SwiperPagination(
-                alignment: Alignment.topRight,
-                builder: SwiperPagination.fraction,
-                margin: EdgeInsets.all(40)),
-            //control: new SwiperControl(color: Colors.red),
+            itemCount: 5,
+            //control: new SwiperControl(color: Colors.red,disableColor: Colors.blue[100]),
           ),
         ),
       ),

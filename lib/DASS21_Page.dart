@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mental_health_app/BACE_Page.dart';
 import 'package:mental_health_app/question.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import 'Showup.dart';
 
@@ -64,6 +65,7 @@ class _Dass21PageState extends State<Dass21Page> {
   List<int> stressIndex = [0, 5, 7, 10, 11, 13, 17];
   List<int> depressionIndex = [2, 4, 9, 12, 15, 16, 19];
   List<Color> randomizecolor = [Colors.blue,Colors.green,Colors.red,Colors.purple,Colors.pink,Colors.orange];
+  List<Color> randomizecolorlight = [Colors.blue[100],Colors.green[100],Colors.red[100],Colors.purple[100],Colors.pink[100],Colors.orange[100]];
   _getQuestions() {
     for (int i = 0; i < 21; i++) {
       DASS21_Questions[i].getQues(questions[i], 'assets/dass_${(i + 1)}.png');
@@ -306,13 +308,30 @@ class _Dass21PageState extends State<Dass21Page> {
               ),
             ),
             Container(
-              height: 30,
-              width: 100,
+              height: 80,
+              width: MediaQuery.of(context).size.width,
               child: Padding(
                 padding: const EdgeInsets.all(10),
-                child: LinearProgressIndicator(
-                  value: index/20,
-                ),
+                child: StepProgressIndicator(
+            totalSteps: 21,
+            height: 10,
+            currentStep: index,
+            selectedColor: randomizecolor[index%6],
+            unselectedColor: randomizecolorlight[index%6],
+            //padding: 5,
+            customStep: (index,color){
+              return Icon(
+                    Icons.check_box_outline_blank,
+                    color: color,
+                    size: 15,
+                  );
+            },
+            onTap: (index) {
+              return () {
+                  _controller.move(index);
+                  //print('$index step pressed');
+              };}
+          ),
               ),
             ),
           ],
