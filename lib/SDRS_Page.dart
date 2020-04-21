@@ -246,7 +246,7 @@ class _SDRSPageState extends State<SDRSPage> {
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: StepProgressIndicator(
-            totalSteps: 21,
+            totalSteps: 5,
             height: 10,
             currentStep: index,
             selectedColor: randomizecolor[index%6],

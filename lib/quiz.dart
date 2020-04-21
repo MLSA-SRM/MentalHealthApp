@@ -57,10 +57,6 @@ class QuizState extends State<Quiz> {
             scale: 0.2,
             controller: _controller,
             itemBuilder: (BuildContext context, int index) {
-              if(index==0)
-              {
-                return null;
-              }
               if (index == 0) {
                 return Center(
                   child: SizedBox(
@@ -151,7 +147,7 @@ class QuizState extends State<Quiz> {
                   ),
                 );
               }
-              if (index == 12) {
+              if (index == 1) {
                 return Center(
                   child: SizedBox(
                     //height: 800,
@@ -392,7 +388,7 @@ class QuizState extends State<Quiz> {
               else
                 return null;
             },
-            itemCount: 5,
+            itemCount: 4,
             //control: new SwiperControl(color: Colors.red,disableColor: Colors.blue[100]),
           ),
         ),

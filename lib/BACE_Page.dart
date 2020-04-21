@@ -234,7 +234,7 @@ class _BACEPageState extends State<BACEPage> {
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: StepProgressIndicator(
-            totalSteps: 21,
+            totalSteps: 27,
             height: 10,
             currentStep: index,
             selectedColor: randomizecolor[index%6],
