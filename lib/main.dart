@@ -114,7 +114,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                   elevation: 10,
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Quiz()));
+                        MaterialPageRoute(builder: (context) => Onboarding()));
                   },
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(
