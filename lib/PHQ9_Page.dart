@@ -1,43 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:mental_health_app/GAD7_Page.dart';
 import 'package:mental_health_app/question.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import 'Showup.dart';
 
 
-class SDRSPage extends StatefulWidget {
+class PHQ9Page extends StatefulWidget {
   @override
-  _SDRSPageState createState() => _SDRSPageState();
+  _PHQ9PageState createState() => _PHQ9PageState();
 }
 
-class _SDRSPageState extends State<SDRSPage> {
+class _PHQ9PageState extends State<PHQ9Page> {
 
   SwiperController _controller = SwiperController();
-  List<Question> SDRS_Questions = [Question(),Question(),Question(),Question(),Question()];
+  List<Question> PHQ9_Questions = [Question(),Question(),Question(),Question(),Question(),Question(),Question(),Question(),Question()];
   List<Color> randomizecolor = [Colors.blue,Colors.green,Colors.red,Colors.purple,Colors.pink,Colors.orange];
   List<Color> randomizecolorlight = [Colors.blue[100],Colors.green[100],Colors.red[100],Colors.purple[100],Colors.pink[100],Colors.orange[100]];
 
-  List<List<bool>> isselected = new List.generate(27, (j) => [false,false,false,false,false]);
-  List<String> questions = ["I am always courteous even to people who are disagreeable.",
-                            "There have been occasions when I took advantage of someone.",
-                            "I sometimes try to get even rather than forgive and forget.",
-                            "I sometimes feel resentful when I don’t get my way",
-                            "No matter who I’m talking to, I’m always a good listener."];
+  List<List<bool>> isselected = new List.generate(9, (j) => [false,false,false,false]);
+  List<String> questions = ["Little interest or pleasure in doing things",
+    "Feeling down, depressed, or hopeless",
+    "Trouble falling or staying asleep, or sleeping too much",
+    "Feeling tired or having little energy",
+    "Poor appetite or overeating",
+    "Feeling bad about yourself — or that you are a failure or have let yourself or your family down",
+    "Trouble concentrating on things, such as reading the newspaper or watching television",
+    "Moving or speaking so slowly that other people could "
+        "have noticed? Or the opposite — being so fidgety"
+        " or restless that you have been moving .around a lot more than usual",
+    "Thoughts that you would be better off dead or of hurting yourself in some way"];
 
-  List<int> qtype = [1,2,3];
 
   _getQuestions(){
-    for(int i =0;i<5;i++){
-      SDRS_Questions[i].getQues(questions[i], "assets/sdrs_${(i+1)}.png");
-      SDRS_Questions[i].getOptions("Definitely True", "Mostly True", "Don't Know", "Mostly False","Definitely False");
-      SDRS_Questions[i].getColor(randomizecolor[i%6], randomizecolor[i%6], randomizecolor[i%6],randomizecolor[i%6], randomizecolor[i%6]);
-      SDRS_Questions[i].type = 1;
+    for(int i =0;i<9;i++){
+      PHQ9_Questions[i].getQues(questions[i], "assets/dass_${(i+1)}.png");
+      PHQ9_Questions[i].getOptions("Not at all", "Several days", "More than half the days", "Nearly every day");
+      PHQ9_Questions[i].getColor(randomizecolor[i%6],randomizecolor[i%6],randomizecolor[i%6], randomizecolor[i%6]);
+      PHQ9_Questions[i].type = 1;
     }
-    qtype.forEach((i){
-      SDRS_Questions[i].type = 2;
-    });
   }
 
   int total_a =0,total_d =0,total_s =0;
@@ -56,7 +57,7 @@ class _SDRSPageState extends State<SDRSPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Swiper(
-        itemCount: 6,
+        itemCount: 10,
         curve: Curves.easeInOutCubic,
         scrollDirection:Axis.horizontal,
         loop: false,
@@ -64,10 +65,10 @@ class _SDRSPageState extends State<SDRSPage> {
         scale: 0.5,
         controller: _controller,
         itemBuilder: (BuildContext context, int index) {
-            if(index<5){
-              return page(SDRS_Questions[index],index);
-            }
-            else return summary();
+          if(index<9){
+            return page(PHQ9_Questions[index],index);
+          }
+          else return summary();
         },
       ),
     );
@@ -81,7 +82,7 @@ class _SDRSPageState extends State<SDRSPage> {
           children: <Widget>[
             ShowUp(
               delay : 500,
-                          child: Container(
+              child: Container(
                   child: Image(
                     image: AssetImage(question.imgURL),
                     height: 250,
@@ -103,10 +104,9 @@ class _SDRSPageState extends State<SDRSPage> {
             InkWell(
               onTap: () {
                 _controller.next();
-                if(SDRS_Questions[index].type == 1){total +=1;SDRS_Questions[index].points = 1;}
-                else {total += 0;SDRS_Questions[index].points = 0;}
+                total +=0;PHQ9_Questions[index].points = 0;
                 setState(() {
-                  SDRS_Questions[index].answer = question.opt1;
+                  PHQ9_Questions[index].answer = question.opt1;
                   isselected[index][0] = true;
                   isselected[index][1] = false;
                   isselected[index][2] = false;
@@ -132,10 +132,9 @@ class _SDRSPageState extends State<SDRSPage> {
             InkWell(
               onTap: () {
                 _controller.next();
-                if(SDRS_Questions[index].type == 1){total +=1;SDRS_Questions[index].points = 1;}
-                else {total += 0;SDRS_Questions[index].points = 0;}
+                total +=1;PHQ9_Questions[index].points = 1;
                 setState(() {
-                  SDRS_Questions[index].answer = question.opt2;
+                  PHQ9_Questions[index].answer = question.opt2;
                   isselected[index][0] = false;
                   isselected[index][1] = true;
                   isselected[index][2] = false;
@@ -160,10 +159,9 @@ class _SDRSPageState extends State<SDRSPage> {
             InkWell(
               onTap: () {
                 _controller.next();
-                if(SDRS_Questions[index].type == 1){total +=1;SDRS_Questions[index].points = 1;}
-                else {total += 0;SDRS_Questions[index].points = 0;}
+                total +=2;PHQ9_Questions[index].points = 2;
                 setState(() {
-                  SDRS_Questions[index].answer = question.opt3;
+                  PHQ9_Questions[index].answer = question.opt3;
                   isselected[index][0] = false;
                   isselected[index][1] = false;
                   isselected[index][2] = true;
@@ -188,10 +186,9 @@ class _SDRSPageState extends State<SDRSPage> {
             InkWell(
               onTap: () {
                 _controller.next();
-                if(SDRS_Questions[index].type == 1){total +=1;SDRS_Questions[index].points = 1;}
-                else {total += 0;SDRS_Questions[index].points = 0;}
+                total +=3;PHQ9_Questions[index].points = 3;
                 setState(() {
-                  SDRS_Questions[index].answer = question.opt4;
+                  PHQ9_Questions[index].answer = question.opt4;
                   isselected[index][0] = false;
                   isselected[index][1] = false;
                   isselected[index][2] = false;
@@ -213,65 +210,44 @@ class _SDRSPageState extends State<SDRSPage> {
                 ),
               ),
             ),
-            InkWell(
-              onTap: () {
-                _controller.next();
-                if(SDRS_Questions[index].type == 2){total +=1;SDRS_Questions[index].points = 1;}
-                else {total += 0;SDRS_Questions[index].points = 0;}
-                setState(() {
-                  SDRS_Questions[index].answer = question.opt5;
-                  isselected[index][0] = false;
-                  isselected[index][1] = false;
-                  isselected[index][2] = false;
-                  isselected[index][3] = false;
-                  isselected[index][4] = true;
-                });
-              },
-              child: Card(
-                elevation: 8,
-                color: question.opt5Color,
-                child: ListTile(
-                  leading:
-                  Icon(Icons.keyboard_arrow_right, color: Colors.white),
-                  trailing: isselected[index][4]? Icon(Icons.spellcheck, color: Colors.white) : null,
-                  title: Text(
-                    question.opt5,
-                    style: TextStyle(fontSize: 16, color: Colors.white),
-                  ),
-                ),
-              ),
-            ),
             Container(
               height: 80,
               width: MediaQuery.of(context).size.width,
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: StepProgressIndicator(
-            totalSteps: 5,
-            height: 10,
-            currentStep: index,
-            selectedColor: randomizecolor[index%6],
-            unselectedColor: randomizecolorlight[index%6],
-            //padding: 5,
-            customStep: (index,color){
-              return Icon(
-                    Icons.check_box_outline_blank,
-                    color: color,
-                    size: 15,
-                  );
-            },
-            onTap: (index) {
-              return () {
-                  _controller.move(index);
-                  //print('$index step pressed');
-              };}
-          ),
+                    totalSteps: 9,
+                    height: 10,
+                    currentStep: index,
+                    selectedColor: randomizecolor[index%6],
+                    unselectedColor: randomizecolorlight[index%6],
+                    //padding: 5,
+                    customStep: (index,color){
+                      return Icon(
+                        Icons.check_box_outline_blank,
+                        color: color,
+                        size: 15,
+                      );
+                    },
+                    onTap: (index) {
+                      return () {
+                        _controller.move(index);
+                        //print('$index step pressed');
+                      };}
+                ),
               ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  String _getresult(){
+    if(total >=0 && total <= 5) return "Mild";
+    else if(total >=6 && total <= 10) return "Moderate";
+    else if(total >=11 && total <= 15) return "Moderately severe";
+    else return "Severe";
   }
 
   Widget summary(){
@@ -282,12 +258,10 @@ class _SDRSPageState extends State<SDRSPage> {
           child: Column(
             children: <Widget>[
               Text("Result",style: TextStyle(fontSize: 30)),
-              Text("Total = " + total.toString(),style: TextStyle(fontSize: 20),),
-              RaisedButton(onPressed: (){
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => GAD7Page()));
-              },
+              Text("Depression = " + _getresult() ,style: TextStyle(fontSize: 20),),
+              RaisedButton(onPressed: (){},
                 color: Colors.teal,
-                child: Text("Next",style: TextStyle(fontSize: 20,color: Colors.white),),)
+                child: Text("Done For Now",style: TextStyle(fontSize: 20,color: Colors.white),),)
             ],
           ),
         ),
