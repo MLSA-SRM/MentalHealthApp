@@ -111,7 +111,7 @@ class QuizState extends State<Quiz> {
                           },
                           child: Card(
                             elevation: 8,
-                            color: Colors.pink,
+                            color: Colors.pink[400],
                             child: ListTile(
                               leading: Icon(Icons.keyboard_arrow_right,
                                   color: Colors.white),
@@ -258,7 +258,7 @@ class QuizState extends State<Quiz> {
                           height: 130,
                         ),
                         Text(
-                          "\nAny previous medical history? If yes, please specify.",
+                          "\nDo you have any physical illness?\nIf yes, Have you consulted a",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 24,
@@ -272,32 +272,46 @@ class QuizState extends State<Quiz> {
                         InkWell(
                           onTap: () {
                             _controller.next();
-                            setState(() {
-                              answers[3] = 1;
-                            });
                           },
                           child: Card(
-                              elevation: 8,
-                              color: Colors.white,
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  labelText: 'Yes',
-                                  hintText: 'Please Specify',
-                                ),
-                                autofocus: false,
-                              )),
+                            elevation: 8,
+                            color: Colors.pink[400],
+                            child: ListTile(
+                              leading: Icon(Icons.keyboard_arrow_right,
+                                  color: Colors.white),
+                              title: Text(
+                                'Medical Doctor',
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.white),
+                              ),
+                            ),
+                          ),
                         ),
                         InkWell(
                           onTap: () {
                             _controller.next();
-                            setState(() {
-                              answers[3] = 0;
-                            });
                           },
                           child: Card(
                             elevation: 8,
-                            color: Color(0xffDB4437),
+                            color: Colors.orange[400],
+                            child: ListTile(
+                              leading: Icon(Icons.keyboard_arrow_right,
+                                  color: Colors.white),
+                              title: Text(
+                                'AYUSH doctor',
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            _controller.next();
+                          },
+                          child: Card(
+                            elevation: 8,
+                            color: Colors.amber[800],
                             child: ListTile(
                               leading: Icon(Icons.keyboard_arrow_right,
                                   color: Colors.white),
@@ -325,7 +339,7 @@ class QuizState extends State<Quiz> {
                           height: 130,
                         ),
                         Text(
-                          "\nAny previous psychiatric consultation? If yes, please specify.",
+                          "\nHave you ever consulted a mental health professional?",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 24,
@@ -336,7 +350,7 @@ class QuizState extends State<Quiz> {
                           "",
                           style: TextStyle(fontSize: 18, color: Colors.black),
                         ),
-                        InkWell(
+                        /*InkWell(
                           onTap: () {
                             _controller.next();
                             setState(() {
@@ -354,6 +368,31 @@ class QuizState extends State<Quiz> {
                                 ),
                                 autofocus: false,
                               )),
+                        ),*/
+                        InkWell(
+                          onTap: () {
+                            _controller.next();
+                            setState(() {
+                              answers[3] = 0;
+                            });
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Dass21Page()));
+                          },
+                          child: Card(
+                            elevation: 8,
+                            color: Colors.blue[400],
+                            child: ListTile(
+                              leading: Icon(Icons.keyboard_arrow_right,
+                                  color: Colors.white),
+                              title: Text(
+                                'Psychiatrist',
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.white),
+                              ),
+                            ),
+                          ),
                         ),
                         InkWell(
                           onTap: () {
@@ -368,7 +407,32 @@ class QuizState extends State<Quiz> {
                           },
                           child: Card(
                             elevation: 8,
-                            color: Color(0xffDB4437),
+                            color: Colors.deepPurple[400],
+                            child: ListTile(
+                              leading: Icon(Icons.keyboard_arrow_right,
+                                  color: Colors.white),
+                              title: Text(
+                                'Psychologist',
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            _controller.next();
+                            setState(() {
+                              answers[3] = 0;
+                            });
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Dass21Page()));
+                          },
+                          child: Card(
+                            elevation: 8,
+                            color: Colors.pink[400],
                             child: ListTile(
                               leading: Icon(Icons.keyboard_arrow_right,
                                   color: Colors.white),

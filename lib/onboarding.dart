@@ -116,6 +116,33 @@ class _OnboardingState extends State<Onboarding> {
                         ),
                       ),
                     ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    RaisedButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30),
+                        ),
+                      ),
+                      color: Colors.blue[100],
+                      disabledColor: Colors.blue[100],
+                      disabledElevation: 5,
+                      elevation: 5,
+                      child: Link(
+                        child: Text(
+                          "Know the Team",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 16,
+                              //fontWeight: FontWeight.bold,
+                              decoration: TextDecoration.underline,
+                              color: Colors.blue[700]),
+                        ),
+                        url: 'https://athensdazzle.wixsite.com/mysite',
+                      ),
+                      onPressed: () {},
+                    ),
                     Container(
                       height: 80,
                       width: MediaQuery.of(context).size.width,
@@ -190,16 +217,43 @@ class _OnboardingState extends State<Onboarding> {
                       },
                       child: Card(
                         elevation: 8,
-                        color: randomizecolor[index % 6],
+                        color: Colors.pink[400],
                         child: ListTile(
                           leading: Icon(Icons.keyboard_arrow_right,
                               color: Colors.white),
                           title: Text(
-                            "I understand",
+                            "Next",
                             style: TextStyle(fontSize: 16, color: Colors.white),
                           ),
                         ),
                       ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    RaisedButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30),
+                        ),
+                      ),
+                      color: Colors.red[100],
+                      disabledColor: Colors.blue[100],
+                      disabledElevation: 5,
+                      elevation: 5,
+                      child: Link(
+                        child: Text(
+                          "I want help now!",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 16,
+                              //fontWeight: FontWeight.bold,
+                              decoration: TextDecoration.underline,
+                              color: Colors.red[700]),
+                        ),
+                        url: 'https://athensdazzle.wixsite.com/mysite',
+                      ),
+                      onPressed: () {},
                     ),
                     Container(
                       height: 80,
@@ -272,14 +326,14 @@ class _OnboardingState extends State<Onboarding> {
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Link(
                         child: Text(
-                        "Consent Form",
-                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 20,
-                            //fontWeight: FontWeight.bold,
-                            decoration: TextDecoration.underline,
-                            color: Colors.blue[700]),
-                      ),
+                          "Consent Form",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 20,
+                              //fontWeight: FontWeight.bold,
+                              decoration: TextDecoration.underline,
+                              color: Colors.blue[700]),
+                        ),
                         url: 'https://athensdazzle.wixsite.com/mysite',
                       ),
                     ),
@@ -288,7 +342,7 @@ class _OnboardingState extends State<Onboarding> {
                       onTap: () {
                         //_controller.next();
                         Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Quiz()));
+                            MaterialPageRoute(builder: (context) => Quiz()));
                       },
                       child: Card(
                         elevation: 8,
@@ -302,7 +356,6 @@ class _OnboardingState extends State<Onboarding> {
                           ),
                         ),
                       ),
-                      
                     ),
                     Container(
                       height: 80,
