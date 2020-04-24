@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mental_health_app/GAD7_Page.dart';
+import 'package:mental_health_app/PHQ9_Page.dart';
 import 'package:mental_health_app/question.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import 'Showup.dart';
@@ -27,6 +29,7 @@ class _SDRSPageState extends State<SDRSPage> {
                             "No matter who I’m talking to, I’m always a good listener."];
 
   List<int> qtype = [1,2,3];
+  bool isSevere = false;
 
   _getQuestions(){
     for(int i =0;i<5;i++){
@@ -274,7 +277,17 @@ class _SDRSPageState extends State<SDRSPage> {
     );
   }
 
+  _calcResult() async {
+    SharedPreferences saveTotal = await SharedPreferences.getInstance();
+    total_a = int.parse(saveTotal.getString('totalAnxiety'));
+    total_d = int.parse(saveTotal.getString('totalDepression'));
+    total_s = int.parse(saveTotal.getString('totalStress'));
+    if(total_a >=6 || total_d >=7 )isSevere = true;
+    else isSevere = false;
+  }
+
   Widget summary(){
+    _calcResult();
     return Center(
       child: Container(
         color: Colors.white,
@@ -283,11 +296,27 @@ class _SDRSPageState extends State<SDRSPage> {
             children: <Widget>[
               Text("Result",style: TextStyle(fontSize: 30)),
               Text("Total = " + total.toString(),style: TextStyle(fontSize: 20),),
-              RaisedButton(onPressed: (){
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => GAD7Page()));
-              },
+              RaisedButton(onPressed: () async {
+                if(total_a  >=6 && total_d >= 7){
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => GAD7Page(true)));
+                isSevere = true;
+                }
+                else if(total_a >=6) {
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => GAD7Page(false)));
+                  isSevere = true;
+                }
+                else if(total_d >= 7){
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PHQ9Page()));
+                  isSevere = true;
+                }
+                else{
+                  isSevere = false;
+                }
+                },
                 color: Colors.teal,
-                child: Text("Next",style: TextStyle(fontSize: 20,color: Colors.white),),)
+                child: Text(
+                  (isSevere)? "Next" : "Done",
+                  style: TextStyle(fontSize: 20,color: Colors.white),),)
             ],
           ),
         ),

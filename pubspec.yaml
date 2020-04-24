@@ -27,6 +27,7 @@ dependencies:
   step_progress_indicator: ^0.1.0+1
   link: ^1.1.0
   avatar_glow:
+  shared_preferences:
 
 dev_dependencies:
   flutter_test:

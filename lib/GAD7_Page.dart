@@ -8,12 +8,15 @@ import 'Showup.dart';
 
 
 class GAD7Page extends StatefulWidget {
+  bool hasBoth;
+  GAD7Page(this.hasBoth);
   @override
-  _GAD7PageState createState() => _GAD7PageState();
+  _GAD7PageState createState() => _GAD7PageState(hasBoth);
 }
 
 class _GAD7PageState extends State<GAD7Page> {
-
+  bool hasBoth;
+  _GAD7PageState(this.hasBoth);
   SwiperController _controller = SwiperController();
   List<Question> GAD7_Questions = [Question(),Question(),Question(),Question(),Question(),Question(),Question()];
   List<Color> randomizecolor = [Colors.blue,Colors.green,Colors.red,Colors.purple,Colors.pink,Colors.orange];
@@ -257,10 +260,14 @@ class _GAD7PageState extends State<GAD7Page> {
               Text("Result",style: TextStyle(fontSize: 30)),
               Text("Anxiety = " + _getresult() ,style: TextStyle(fontSize: 20),),
               RaisedButton(onPressed: (){
+                if(hasBoth){
                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PHQ9Page()));
+                }
               },
                 color: Colors.teal,
-                child: Text("Next",style: TextStyle(fontSize: 20,color: Colors.white),),)
+                child: Text(
+                  (hasBoth)? "Next" : "Done",
+                  style: TextStyle(fontSize: 20,color: Colors.white),),)
             ],
           ),
         ),

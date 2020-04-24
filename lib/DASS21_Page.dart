@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mental_health_app/BACE_Page.dart';
 import 'package:mental_health_app/question.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import 'Showup.dart';
@@ -357,7 +358,11 @@ class _Dass21PageState extends State<Dass21Page> {
               Text("Anxiety = " + result_a, style: TextStyle(fontSize: 20)),
               Text("Stress = " + result_s, style: TextStyle(fontSize: 20)),
               RaisedButton(
-                onPressed: () {
+                onPressed: () async {
+                  SharedPreferences saveTotal = await SharedPreferences.getInstance();
+                  saveTotal.setString("totalAnxiety", total_a.toString());
+                  saveTotal.setString("totalDepression", total_d.toString());
+                  saveTotal.setString("totalStress", total_s.toString());
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => BACEPage()));
                 },
