@@ -22,7 +22,7 @@ class _GAD7PageState extends State<GAD7Page> {
   List<Color> randomizecolor = [Colors.blue,Colors.green,Colors.red,Colors.purple,Colors.pink,Colors.orange];
   List<Color> randomizecolorlight = [Colors.blue[100],Colors.green[100],Colors.red[100],Colors.purple[100],Colors.pink[100],Colors.orange[100]];
 
-  List<List<bool>> isselected = new List.generate(7, (j) => [false,false,false,false]);
+  List<List<bool>> isselected = new List.generate(7, (j) => [false,false,false,false,false]);
   List<String> questions = ["Feeling nervous, anxious or on edge",
     " Not being able to stop or control worrying",
     "Worrying too much about different things",
@@ -34,7 +34,7 @@ class _GAD7PageState extends State<GAD7Page> {
 
   _getQuestions(){
     for(int i =0;i<7;i++){
-      GAD7_Questions[i].getQues(questions[i], "assets/dass_${(i+1)}.png");
+      GAD7_Questions[i].getQues(questions[i], "assets/PHQ-9icons_${(i+1)}.png");
       GAD7_Questions[i].getOptions("Not at all", "Several days", "More than half the days", "Nearly every day");
       GAD7_Questions[i].getColor(randomizecolor[i%6],randomizecolor[i%6],randomizecolor[i%6], randomizecolor[i%6]);
       GAD7_Questions[i].type = 1;

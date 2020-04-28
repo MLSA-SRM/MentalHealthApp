@@ -5,6 +5,8 @@ import 'package:mental_health_app/question.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
+import 'GAD7_Page.dart';
+import 'PHQ9_Page.dart';
 import 'Showup.dart';
 
 class Dass21Page extends StatefulWidget {
@@ -67,6 +69,7 @@ class _Dass21PageState extends State<Dass21Page> {
   List<int> depressionIndex = [2, 4, 9, 12, 15, 16, 19];
   List<Color> randomizecolor = [Colors.blue,Colors.green,Colors.red,Colors.purple,Colors.pink,Colors.orange];
   List<Color> randomizecolorlight = [Colors.blue[100],Colors.green[100],Colors.red[100],Colors.purple[100],Colors.pink[100],Colors.orange[100]];
+  bool isSevere = false;
   _getQuestions() {
     for (int i = 0; i < 21; i++) {
       DASS21_Questions[i].getQues(questions[i], 'assets/dass_${(i + 1)}.png');
@@ -357,21 +360,27 @@ class _Dass21PageState extends State<Dass21Page> {
               ),
               Text("Anxiety = " + result_a, style: TextStyle(fontSize: 20)),
               Text("Stress = " + result_s, style: TextStyle(fontSize: 20)),
-              RaisedButton(
-                onPressed: () async {
-                  SharedPreferences saveTotal = await SharedPreferences.getInstance();
-                  saveTotal.setString("totalAnxiety", total_a.toString());
-                  saveTotal.setString("totalDepression", total_d.toString());
-                  saveTotal.setString("totalStress", total_s.toString());
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => BACEPage()));
+              RaisedButton(onPressed: () async {
+                if(total_a  >=6 && total_d >= 7){
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => GAD7Page(true)));
+                isSevere = true;
+                }
+                else if(total_a >=6) {
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => GAD7Page(false)));
+                  isSevere = true;
+                }
+                else if(total_d >= 7){
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PHQ9Page()));
+                  isSevere = true;
+                }
+                else{
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BACEPage()));
+                  isSevere = false;
+                }
                 },
                 color: Colors.teal,
-                child: Text(
-                  "Next",
-                  style: TextStyle(fontSize: 20, color: Colors.white),
-                ),
-              )
+                child: Text("Next")
+                )
             ],
           ),
         ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mental_health_app/question.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
-
+import 'BACE_Page.dart';
 import 'Showup.dart';
 
 
@@ -18,7 +18,7 @@ class _PHQ9PageState extends State<PHQ9Page> {
   List<Color> randomizecolor = [Colors.blue,Colors.green,Colors.red,Colors.purple,Colors.pink,Colors.orange];
   List<Color> randomizecolorlight = [Colors.blue[100],Colors.green[100],Colors.red[100],Colors.purple[100],Colors.pink[100],Colors.orange[100]];
 
-  List<List<bool>> isselected = new List.generate(9, (j) => [false,false,false,false]);
+  List<List<bool>> isselected = new List.generate(9, (j) => [false,false,false,false,false]);
   List<String> questions = ["Little interest or pleasure in doing things",
     "Feeling down, depressed, or hopeless",
     "Trouble falling or staying asleep, or sleeping too much",
@@ -34,7 +34,7 @@ class _PHQ9PageState extends State<PHQ9Page> {
 
   _getQuestions(){
     for(int i =0;i<9;i++){
-      PHQ9_Questions[i].getQues(questions[i], "assets/dass_${(i+1)}.png");
+      PHQ9_Questions[i].getQues(questions[i], "assets/PHQ-9icons_${(i+1)}.png");
       PHQ9_Questions[i].getOptions("Not at all", "Several days", "More than half the days", "Nearly every day");
       PHQ9_Questions[i].getColor(randomizecolor[i%6],randomizecolor[i%6],randomizecolor[i%6], randomizecolor[i%6]);
       PHQ9_Questions[i].type = 1;
@@ -86,7 +86,8 @@ class _PHQ9PageState extends State<PHQ9Page> {
                   child: Image(
                     image: AssetImage(question.imgURL),
                     height: 250,
-                  )),
+                  )
+                  ),
             ),
             SizedBox(height: 20),
             Padding(
@@ -259,9 +260,11 @@ class _PHQ9PageState extends State<PHQ9Page> {
             children: <Widget>[
               Text("Result",style: TextStyle(fontSize: 30)),
               Text("Depression = " + _getresult() ,style: TextStyle(fontSize: 20),),
-              RaisedButton(onPressed: (){},
+              RaisedButton(onPressed: (){
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BACEPage()));
+              },
                 color: Colors.teal,
-                child: Text("Done For Now",style: TextStyle(fontSize: 20,color: Colors.white),),)
+                child: Text("Next",style: TextStyle(fontSize: 20,color: Colors.white),),)
             ],
           ),
         ),

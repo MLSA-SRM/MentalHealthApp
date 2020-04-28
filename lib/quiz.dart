@@ -254,11 +254,11 @@ class QuizState extends State<Quiz> {
                     child: Column(
                       children: <Widget>[
                         Container(
-                          child: Image(image: AssetImage('assets/previosmedical.png')),
+                          child: Image(image: AssetImage('assets/heart.png')),
                           height: 130,
                         ),
                         Text(
-                          "\nDo you have any physical illness?\nIf yes, Have you consulted a",
+                          "\nDo you have any physical illness?\nIf yes, have you consulted a",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 24,
@@ -275,7 +275,7 @@ class QuizState extends State<Quiz> {
                           },
                           child: Card(
                             elevation: 8,
-                            color: Colors.pink[400],
+                            color: Colors.orange[300],
                             child: ListTile(
                               leading: Icon(Icons.keyboard_arrow_right,
                                   color: Colors.white),
@@ -311,12 +311,12 @@ class QuizState extends State<Quiz> {
                           },
                           child: Card(
                             elevation: 8,
-                            color: Colors.amber[800],
+                            color: Colors.amber[700],
                             child: ListTile(
                               leading: Icon(Icons.keyboard_arrow_right,
                                   color: Colors.white),
                               title: Text(
-                                'No',
+                                'No physical illness',
                                 style: TextStyle(
                                     fontSize: 16, color: Colors.white),
                               ),
@@ -339,7 +339,7 @@ class QuizState extends State<Quiz> {
                           height: 130,
                         ),
                         Text(
-                          "\nHave you ever consulted a mental health professional?",
+                          "\nHave you ever consulted a",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 24,
@@ -407,7 +407,7 @@ class QuizState extends State<Quiz> {
                           },
                           child: Card(
                             elevation: 8,
-                            color: Colors.deepPurple[400],
+                            color: Colors.blue,
                             child: ListTile(
                               leading: Icon(Icons.keyboard_arrow_right,
                                   color: Colors.white),
@@ -432,12 +432,37 @@ class QuizState extends State<Quiz> {
                           },
                           child: Card(
                             elevation: 8,
-                            color: Colors.pink[400],
+                            color: Colors.blue[600],
                             child: ListTile(
                               leading: Icon(Icons.keyboard_arrow_right,
                                   color: Colors.white),
                               title: Text(
-                                'No',
+                                'Counsellor',
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            _controller.next();
+                            setState(() {
+                              answers[3] = 0;
+                            });
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Dass21Page()));
+                          },
+                          child: Card(
+                            elevation: 8,
+                            color: Colors.blue[700],
+                            child: ListTile(
+                              leading: Icon(Icons.keyboard_arrow_right,
+                                  color: Colors.white),
+                              title: Text(
+                                'None',
                                 style: TextStyle(
                                     fontSize: 16, color: Colors.white),
                               ),

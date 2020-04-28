@@ -90,7 +90,7 @@ class _OnboardingState extends State<Onboarding> {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
-                        "This app has been developed by Mental health Professionals and is based on Scientific evidence and research. There is a team of eminent mental health professionals in the University who is available to help you.",
+                        "This app has been developed by Mental Health Professionals and is based on Scientific evidence and research. There is a team of eminent mental health professionals in the University who are available to help you.",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 18,
@@ -190,7 +190,7 @@ class _OnboardingState extends State<Onboarding> {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
-                        "It's OK to ask for help",
+                        "It's OK to ask for Help!",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 22,
@@ -202,7 +202,7 @@ class _OnboardingState extends State<Onboarding> {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
-                        "Going out and asking for help is a good thing; don’t let others tell you otherwise. If you can’t seem to get help then you might be looking in the wrong place. Let professionals lend you a hand.",
+                        "Going out and asking for help is a good thing. Don’t let others tell you otherwise. If you can’t seem to get help then you might be looking in the wrong place. Let professionals lend you a hand.",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 18,
@@ -307,6 +307,7 @@ class _OnboardingState extends State<Onboarding> {
                         style: TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline,
                             color: Colors.black),
                       ),
                     ),
@@ -314,7 +315,7 @@ class _OnboardingState extends State<Onboarding> {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
-                        "This is not an alternative to seeking professional help for any acute mental health condition, If you’re currently feeling extremely anxious, suicidal or depressed kindly visit the Emergency of SRM Medical College & Hospital help will be provided to you promptly for the same. Please go through the Consent form below \n",
+                        "This is not an alternative to seeking professional help for any acute mental health condition, If you’re currently feeling extremely anxious, suicidal or depressed kindly visit the Emergency of SRM Medical College & Hospital help will be provided to you promptly for the same. Please go through the Consent form below.\n",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 18,

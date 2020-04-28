@@ -277,13 +277,13 @@ class _SDRSPageState extends State<SDRSPage> {
     );
   }
 
-  _calcResult() async {
+  _calcResult() async {/*
     SharedPreferences saveTotal = await SharedPreferences.getInstance();
     total_a = int.parse(saveTotal.getString('totalAnxiety'));
     total_d = int.parse(saveTotal.getString('totalDepression'));
     total_s = int.parse(saveTotal.getString('totalStress'));
     if(total_a >=6 || total_d >=7 )isSevere = true;
-    else isSevere = false;
+    else isSevere = false;*/
   }
 
   Widget summary(){
@@ -296,7 +296,8 @@ class _SDRSPageState extends State<SDRSPage> {
             children: <Widget>[
               Text("Result",style: TextStyle(fontSize: 30)),
               Text("Total = " + total.toString(),style: TextStyle(fontSize: 20),),
-              RaisedButton(onPressed: () async {
+              RaisedButton(
+                /*onPressed: () async {
                 if(total_a  >=6 && total_d >= 7){
                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => GAD7Page(true)));
                 isSevere = true;
@@ -312,10 +313,10 @@ class _SDRSPageState extends State<SDRSPage> {
                 else{
                   isSevere = false;
                 }
-                },
+                },*/
                 color: Colors.teal,
                 child: Text(
-                  (isSevere)? "Next" : "Done",
+                  "Done",
                   style: TextStyle(fontSize: 20,color: Colors.white),),)
             ],
           ),
