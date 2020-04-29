@@ -63,19 +63,35 @@ class _Dass21PageState extends State<Dass21Page> {
     "I felt scared without any good reason",
     "I felt that life was meaningless"
   ];
-  List<List<bool>> isselected = new List.generate(21, (j) => [false,false,false,false]);
+  List<List<bool>> isselected =
+      new List.generate(21, (j) => [false, false, false, false]);
   List<int> anxietyIndex = [1, 3, 6, 8, 14, 17, 18];
   List<int> stressIndex = [0, 5, 7, 10, 11, 13, 17];
   List<int> depressionIndex = [2, 4, 9, 12, 15, 16, 19];
-  List<Color> randomizecolor = [Colors.blue,Colors.green,Colors.red,Colors.purple,Colors.pink,Colors.orange];
-  List<Color> randomizecolorlight = [Colors.blue[100],Colors.green[100],Colors.red[100],Colors.purple[100],Colors.pink[100],Colors.orange[100]];
-  bool isSevere = false;
+  List<Color> randomizecolor = [
+    Colors.blue,
+    Colors.green,
+    Colors.red,
+    Colors.purple,
+    Colors.pink,
+    Colors.orange
+  ];
+  List<Color> randomizecolorlight = [
+    Colors.blue[100],
+    Colors.green[100],
+    Colors.red[100],
+    Colors.purple[100],
+    Colors.pink[100],
+    Colors.orange[100]
+  ];
+  bool isSevere = false,allanswered=false;
+  int count = 0;
   _getQuestions() {
     for (int i = 0; i < 21; i++) {
       DASS21_Questions[i].getQues(questions[i], 'assets/dass_${(i + 1)}.png');
       DASS21_Questions[i].getOptions("Never", "Sometimes", "Often", "Always");
-      DASS21_Questions[i]
-          .getColor(randomizecolor[i%6], randomizecolor[i%6], randomizecolor[i%6], randomizecolor[i%6]);
+      DASS21_Questions[i].getColor(randomizecolor[i % 6], randomizecolor[i % 6],
+          randomizecolor[i % 6], randomizecolor[i % 6]);
     }
     anxietyIndex.forEach((index) {
       DASS21_Questions[index].type = 2;
@@ -186,12 +202,21 @@ class _Dass21PageState extends State<Dass21Page> {
             InkWell(
               onTap: () {
                 _controller.next();
-                if (DASS21_Questions[index].type == 1) {
-                  total_d += 0;
-                } else if (DASS21_Questions[index].type == 2) {
-                  total_a += 0;
-                } else
-                  total_s += 0;
+                if (DASS21_Questions[index].points != null) {
+                  if (DASS21_Questions[index].type == 1) {
+                    total_d += 0 - DASS21_Questions[index].points;
+                  } else if (DASS21_Questions[index].type == 2) {
+                    total_a += 0 - DASS21_Questions[index].points;
+                  } else
+                    total_s += 0 - DASS21_Questions[index].points;
+                } else {
+                  if (DASS21_Questions[index].type == 1) {
+                    total_d += 0;
+                  } else if (DASS21_Questions[index].type == 2) {
+                    total_a += 0;
+                  } else
+                    total_s += 0;
+                }
                 setState(() {
                   DASS21_Questions[index].answer = question.opt1;
                   DASS21_Questions[index].points = 0;
@@ -207,7 +232,9 @@ class _Dass21PageState extends State<Dass21Page> {
                 child: ListTile(
                   leading:
                       Icon(Icons.keyboard_arrow_right, color: Colors.white),
-                      trailing: isselected[index][0]? Icon(Icons.spellcheck, color: Colors.white) : null,
+                  trailing: isselected[index][0]
+                      ? Icon(Icons.spellcheck, color: Colors.white)
+                      : null,
                   title: Text(
                     question.opt1,
                     style: TextStyle(fontSize: 16, color: Colors.white),
@@ -218,12 +245,21 @@ class _Dass21PageState extends State<Dass21Page> {
             InkWell(
               onTap: () {
                 _controller.next();
-                if (DASS21_Questions[index].type == 1) {
-                  total_d += 1;
-                } else if (DASS21_Questions[index].type == 2) {
-                  total_a += 1;
-                } else
-                  total_s += 1;
+                if (DASS21_Questions[index].points != null) {
+                  if (DASS21_Questions[index].type == 1) {
+                    total_d += 1 - DASS21_Questions[index].points;
+                  } else if (DASS21_Questions[index].type == 2) {
+                    total_a += 1 - DASS21_Questions[index].points;
+                  } else
+                    total_s += 1 - DASS21_Questions[index].points;
+                } else {
+                  if (DASS21_Questions[index].type == 1) {
+                    total_d += 1;
+                  } else if (DASS21_Questions[index].type == 2) {
+                    total_a += 1;
+                  } else
+                    total_s += 1;
+                }
                 setState(() {
                   DASS21_Questions[index].answer = question.opt2;
                   DASS21_Questions[index].points = 1;
@@ -239,7 +275,9 @@ class _Dass21PageState extends State<Dass21Page> {
                 child: ListTile(
                   leading:
                       Icon(Icons.keyboard_arrow_right, color: Colors.white),
-                      trailing: isselected[index][1]? Icon(Icons.spellcheck, color: Colors.white) : null,
+                  trailing: isselected[index][1]
+                      ? Icon(Icons.spellcheck, color: Colors.white)
+                      : null,
                   title: Text(
                     question.opt2,
                     style: TextStyle(fontSize: 16, color: Colors.white),
@@ -250,12 +288,21 @@ class _Dass21PageState extends State<Dass21Page> {
             InkWell(
               onTap: () {
                 _controller.next();
-                if (DASS21_Questions[index].type == 1) {
-                  total_d += 2;
-                } else if (DASS21_Questions[index].type == 2) {
-                  total_a += 2;
-                } else
-                  total_s += 2;
+                if (DASS21_Questions[index].points != null) {
+                  if (DASS21_Questions[index].type == 1) {
+                    total_d += 2 - DASS21_Questions[index].points;
+                  } else if (DASS21_Questions[index].type == 2) {
+                    total_a += 2 - DASS21_Questions[index].points;
+                  } else
+                    total_s += 2 - DASS21_Questions[index].points;
+                } else {
+                  if (DASS21_Questions[index].type == 1) {
+                    total_d += 2;
+                  } else if (DASS21_Questions[index].type == 2) {
+                    total_a += 2;
+                  } else
+                    total_s += 2;
+                }
                 setState(() {
                   DASS21_Questions[index].answer = question.opt3;
                   DASS21_Questions[index].points = 2;
@@ -271,7 +318,9 @@ class _Dass21PageState extends State<Dass21Page> {
                 child: ListTile(
                   leading:
                       Icon(Icons.keyboard_arrow_right, color: Colors.white),
-                      trailing: isselected[index][2]? Icon(Icons.spellcheck, color: Colors.white) : null,
+                  trailing: isselected[index][2]
+                      ? Icon(Icons.spellcheck, color: Colors.white)
+                      : null,
                   title: Text(
                     question.opt3,
                     style: TextStyle(fontSize: 16, color: Colors.white),
@@ -282,12 +331,21 @@ class _Dass21PageState extends State<Dass21Page> {
             InkWell(
               onTap: () {
                 _controller.next();
-                if (DASS21_Questions[index].type == 1) {
-                  total_d += 3;
-                } else if (DASS21_Questions[index].type == 2) {
-                  total_a += 3;
-                } else
-                  total_s += 3;
+                if (DASS21_Questions[index].points != null) {
+                  if (DASS21_Questions[index].type == 1) {
+                    total_d += 3 - DASS21_Questions[index].points;
+                  } else if (DASS21_Questions[index].type == 2) {
+                    total_a += 3 - DASS21_Questions[index].points;
+                  } else
+                    total_s += 3 - DASS21_Questions[index].points;
+                } else {
+                  if (DASS21_Questions[index].type == 1) {
+                    total_d += 3;
+                  } else if (DASS21_Questions[index].type == 2) {
+                    total_a += 3;
+                  } else
+                    total_s += 3;
+                }
                 setState(() {
                   DASS21_Questions[index].answer = question.opt4;
                   DASS21_Questions[index].points = 3;
@@ -303,7 +361,9 @@ class _Dass21PageState extends State<Dass21Page> {
                 child: ListTile(
                   leading:
                       Icon(Icons.keyboard_arrow_right, color: Colors.white),
-                      trailing: isselected[index][3]? Icon(Icons.spellcheck, color: Colors.white) : null,
+                  trailing: isselected[index][3]
+                      ? Icon(Icons.spellcheck, color: Colors.white)
+                      : null,
                   title: Text(
                     question.opt4,
                     style: TextStyle(fontSize: 16, color: Colors.white),
@@ -317,25 +377,30 @@ class _Dass21PageState extends State<Dass21Page> {
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: StepProgressIndicator(
-            totalSteps: 21,
-            height: 10,
-            currentStep: index,
-            selectedColor: randomizecolor[index%6],
-            unselectedColor: randomizecolorlight[index%6],
-            //padding: 5,
-            customStep: (index,color){
-              return Icon(
-                    Icons.check_box_outline_blank,
-                    color: color,
-                    size: 15,
-                  );
-            },
-            onTap: (index) {
-              return () {
-                  _controller.move(index);
-                  //print('$index step pressed');
-              };}
-          ),
+                    totalSteps: 21,
+                    height: 10,
+                    //currentStep: index,
+                    //selectedColor: randomizecolor[index % 6],
+                    //unselectedColor: randomizecolorlight[index % 6],
+                    customColor: (index) => isselected[index - 1][0] ||
+                            isselected[index - 1][1] ||
+                            isselected[index - 1][2] ||
+                            isselected[index - 1][3]
+                        ? Colors.green
+                        : Colors.red,
+                    customStep: (index, color) {
+                      return Icon(
+                        Icons.check_box_outline_blank,
+                        color: color,
+                        size: 15,
+                      );
+                    },
+                    onTap: (index) {
+                      return () {
+                        _controller.move(index);
+                        //print('$index step pressed');
+                      };
+                    }),
               ),
             ),
           ],
@@ -360,27 +425,48 @@ class _Dass21PageState extends State<Dass21Page> {
               ),
               Text("Anxiety = " + result_a, style: TextStyle(fontSize: 20)),
               Text("Stress = " + result_s, style: TextStyle(fontSize: 20)),
-              RaisedButton(onPressed: () async {
-                if(total_a  >=6 && total_d >= 7){
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => GAD7Page(true)));
-                isSevere = true;
-                }
-                else if(total_a >=6) {
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => GAD7Page(false)));
-                  isSevere = true;
-                }
-                else if(total_d >= 7){
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PHQ9Page()));
-                  isSevere = true;
-                }
-                else{
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BACEPage()));
-                  isSevere = false;
-                }
-                },
-                color: Colors.teal,
-                child: Text("Next")
-                )
+              RaisedButton(
+                  onPressed: () async {
+                    setState(() {
+                      count=0;
+                      for (int i = 0; i < 21; i++) {
+                      if (isselected[i][0] == true ||
+                          isselected[i][1] == true ||
+                          isselected[i][2] == true ||
+                          isselected[i][3] == true) {
+                            count+=1;
+                      }
+                    }
+                    });
+                    
+                    if(count==21)
+                    {
+                    if (total_a >= 6 && total_d >= 7) {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => GAD7Page(true)));
+                      isSevere = true;
+                    } else if (total_a >= 6) {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => GAD7Page(false)));
+                      isSevere = true;
+                    } else if (total_d >= 7) {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => PHQ9Page()));
+                      isSevere = true;
+                    } else {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => BACEPage()));
+                      isSevere = false;
+                    }
+                    }
+                  },
+                  color: Colors.teal,
+                  child: Text("Next")
+                  )
             ],
           ),
         ),
