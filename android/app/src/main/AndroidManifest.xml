@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mental_health_app">
+    package="com.envisionmspc.mentalHealthApp">
 
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
          calls FlutterMain.startInitialization(this); in its onCreate method.
@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="mental_health_app"
+        android:label="Here for You"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

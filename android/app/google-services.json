@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "912352641790",
+    "firebase_url": "https://mental-health-app-c259a.firebaseio.com",
+    "project_id": "mental-health-app-c259a",
+    "storage_bucket": "mental-health-app-c259a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912352641790:android:d13e87d3f860bdd2a8dbaf",
+        "android_client_info": {
+          "package_name": "com.envisionmspc.mentalHealthApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "912352641790-95gdduc5v7d40d1a1rtgnennklbrl1mu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3hrxcy8VmC1WLx-iu6mjIMACJIXRH7kY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "912352641790-95gdduc5v7d40d1a1rtgnennklbrl1mu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

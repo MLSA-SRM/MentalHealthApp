@@ -1,4 +1,4 @@
-package com.example.mental_health_app
+package com.envisionmspc.mentalHealthApp
 
 import android.os.Bundle
 
