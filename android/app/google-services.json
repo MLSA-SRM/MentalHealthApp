@@ -8,7 +8,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:912352641790:android:d13e87d3f860bdd2a8dbaf",
+        "mobilesdk_app_id": "1:912352641790:android:a02858c5ea882a7ba8dbaf",
         "android_client_info": {
           "package_name": "com.envisionmspc.mentalHealthApp"
         }
@@ -30,6 +30,13 @@
             {
               "client_id": "912352641790-95gdduc5v7d40d1a1rtgnennklbrl1mu.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "912352641790-n82hjcpv4t08jlp4pd65buqq5mfhd14r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.envisionmspc.mentalHealthApp"
+              }
             }
           ]
         }

@@ -27,9 +27,10 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   SharedPreferences prefs;
 
   @override
-  void initState() { 
+  void initState() {
     super.initState();
     checkId();
+    print('done');
   }
 
   void checkId() async {
@@ -45,6 +46,16 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
       print('key is already set');
       print(prefs.getString('key'));
     }
+
+    FirebaseDatabase.instance
+        .reference()
+        .child("somePath")
+        .set({'chala kya?': "haan"});
+    print('done again');
+
+    setState(() {
+      
+    });
   }
 
   @override
@@ -61,132 +72,131 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              
-              Column(children: <Widget>[
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 20,
-              ),
-              ShowUp(
-                child: AvatarGlow(
-                  //curve: Curves.easeOut,
-                  endRadius: 110,
-                  duration: Duration(seconds: 2),
-                  glowColor: Colors.blueAccent,
-                  repeat: true,
-                  repeatPauseDuration: Duration(seconds: 2),
-                  startDelay: Duration(seconds: 1),
-                  child: Material(
-                      elevation: 8.0,
-                      shape: CircleBorder(),
-                      child: CircleAvatar(
-                        backgroundColor: Colors.grey[100],
-                        child: Image(image: AssetImage('assets/mainlogo.png')),
-                        radius: 80.0,
-                      )),
-                ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 50,
-              ),
-              ShowUp(
-                child: Text(
-                  "Awareness",
-                  style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                ),
-                delay: delayedAmount - 500,
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              ShowUp(
-                child: Text(
-                  "Invest in your mental health\n",
-                  style: TextStyle(fontSize: 20, color: Colors.black),
-                ),
-                delay: delayedAmount,
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 20,
-              ),
-              ShowUp(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(12,10,12,0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                          "\"Great Mental Health is not a destination.",
-                          style: TextStyle(fontSize: 16, color: Colors.black),
-                        ),
-                      Text(
-                          "It's about how you drive not where you're going.\"\n",
-                          style: TextStyle(fontSize: 16, color: Colors.black),
-                        ),
-                      
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Column(children: <Widget>[
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 20,
+                  ),
+                  ShowUp(
+                    child: AvatarGlow(
+                      //curve: Curves.easeOut,
+                      endRadius: 110,
+                      duration: Duration(seconds: 2),
+                      glowColor: Colors.blueAccent,
+                      repeat: true,
+                      repeatPauseDuration: Duration(seconds: 2),
+                      startDelay: Duration(seconds: 1),
+                      child: Material(
+                          elevation: 8.0,
+                          shape: CircleBorder(),
+                          child: CircleAvatar(
+                            backgroundColor: Colors.grey[100],
+                            child:
+                                Image(image: AssetImage('assets/mainlogo.png')),
+                            radius: 80.0,
+                          )),
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 50,
+                  ),
+                  ShowUp(
+                    child: Text(
+                      "Awareness",
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
+                    ),
+                    delay: delayedAmount - 500,
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  ShowUp(
+                    child: Text(
+                      "Invest in your mental health\n",
+                      style: TextStyle(fontSize: 20, color: Colors.black),
+                    ),
+                    delay: delayedAmount,
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 20,
+                  ),
+                  ShowUp(
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 10, 12, 0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Column(
+                          Text(
+                            "\"Great Mental Health is not a destination.",
+                            style: TextStyle(fontSize: 16, color: Colors.black),
+                          ),
+                          Text(
+                            "It's about how you drive not where you're going.\"\n",
+                            style: TextStyle(fontSize: 16, color: Colors.black),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
-                              Text(
-                                  "-Andrea Balt",
-                                  style: TextStyle(fontSize: 16, color: Colors.black),
-                                ),
+                              Column(
+                                children: <Widget>[
+                                  Text(
+                                    "-Andrea Balt",
+                                    style: TextStyle(
+                                        fontSize: 16, color: Colors.black),
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
                         ],
                       ),
-                      
-                    ],
+                    ),
+                    delay: delayedAmount,
                   ),
-                ),
-                delay: delayedAmount,
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 7,
-              ),
-              ShowUp(
-                child: Container(
-                  height: 50,
-                  width: 150,
-                  child: RaisedButton(
-                    elevation: 10,
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Onboarding()));
-                    },
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(30),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 7,
+                  ),
+                  ShowUp(
+                    child: Container(
+                      height: 50,
+                      width: 150,
+                      child: RaisedButton(
+                        elevation: 10,
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Onboarding()));
+                        },
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(30),
+                          ),
+                        ),
+                        textColor: Colors.white,
+                        color: Colors.blue,
+                        padding: const EdgeInsets.all(8.0),
+                        child: new Text(
+                          "Get Started",
+                          style: TextStyle(fontSize: 16),
+                        ),
                       ),
                     ),
-                    textColor: Colors.white,
-                    color: Colors.blue,
-                    padding: const EdgeInsets.all(8.0),
-                    child: new Text(
-                      "Get Started",
-                      style: TextStyle(fontSize: 16),
-                    ),
+                    delay: 1100,
                   ),
-                ),
-                delay: 1100,
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 50,
-              ),
-              ShowUp(
-                child: Text("Instructions: Swipe Up after every question\n",
-                    style: TextStyle(color: Colors.grey)),
-              )
-            ]),
-          ]),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 50,
+                  ),
+                  ShowUp(
+                    child: Text("Instructions: Swipe Up after every question\n",
+                        style: TextStyle(color: Colors.grey)),
+                  )
+                ]),
+              ]),
         ),
       ),
     );
