@@ -314,8 +314,9 @@ class _OnboardingState extends State<Onboarding> {
                     SizedBox(height: 20),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Text(
-                        "This is not an alternative to seeking professional help for any acute mental health condition, If you’re currently feeling extremely anxious, suicidal or depressed kindly visit the Emergency of SRM Medical College & Hospital help will be provided to you promptly for the same. Please go through the Consent form below.\n",
+                      child: Text("hi",
+
+                        // "This is not an alternative to seeking professional help for any acute mental health condition, If you’re currently feeling extremely anxious, suicidal or depressed kindly visit the Emergency of SRM Medical College & Hospital help will be provided to you promptly for the same. Please go through the Consent form below.\n",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 18,

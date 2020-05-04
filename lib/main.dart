@@ -30,7 +30,6 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     checkId();
-    print('done');
   }
 
   void checkId() async {
@@ -47,11 +46,11 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
       print(prefs.getString('key'));
     }
 
-    FirebaseDatabase.instance
-        .reference()
-        .child("somePath")
-        .set({'chala kya?': "haan"});
-    print('done again');
+    // FirebaseDatabase.instance
+    //     .reference()
+    //     .child("somePath")
+    //     .set({'chala kya?': "haan"});
+    // print('done');
 
     setState(() {
       

@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mental_health_app/BACE_Page.dart';
@@ -84,7 +85,7 @@ class _Dass21PageState extends State<Dass21Page> {
     Colors.pink[100],
     Colors.orange[100]
   ];
-  bool isSevere = false,allanswered=false;
+  bool isSevere = false, allanswered = false;
   int count = 0;
   _getQuestions() {
     for (int i = 0; i < 21; i++) {
@@ -104,7 +105,7 @@ class _Dass21PageState extends State<Dass21Page> {
     });
   }
 
-  _getResult() {
+  _getResult() async {
     if (total_s >= 0 && total_s <= 7)
       result_s = "Normal";
     else if (total_s >= 8 && total_s <= 9)
@@ -137,6 +138,23 @@ class _Dass21PageState extends State<Dass21Page> {
       result_d = "Severe";
     else
       result_d = "Extremely Severe";
+
+    final Map<String, String> someMap = {};
+    print('map created');
+
+    for (int i = 0; i < 21; i++) {
+      someMap["Q${i + 1}"] = DASS21_Questions[i].answer;
+      print(DASS21_Questions[i].answer);
+    }
+    print('done');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String pushId = prefs.getString('key');
+    FirebaseDatabase.instance
+        .reference()
+        .child("Responses")
+        .child(pushId)
+        .child("dass21")
+        .set(someMap);
   }
 
   int total_a = 0, total_d = 0, total_s = 0;
@@ -428,45 +446,47 @@ class _Dass21PageState extends State<Dass21Page> {
               RaisedButton(
                   onPressed: () async {
                     setState(() {
-                      count=0;
+                      count = 0;
                       for (int i = 0; i < 21; i++) {
-                      if (isselected[i][0] == true ||
-                          isselected[i][1] == true ||
-                          isselected[i][2] == true ||
-                          isselected[i][3] == true) {
-                            count+=1;
+                        if (isselected[i][0] == true ||
+                            isselected[i][1] == true ||
+                            isselected[i][2] == true ||
+                            isselected[i][3] == true) {
+                          count += 1;
+                        }
                       }
-                    }
                     });
-                    
-                    if(count==21)
-                    {
-                    if (total_a >= 6 && total_d >= 7) {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => GAD7Page(true)));
-                      isSevere = true;
-                    } else if (total_a >= 6) {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => GAD7Page(false)));
-                      isSevere = true;
-                    } else if (total_d >= 7) {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => PHQ9Page()));
-                      isSevere = true;
-                    } else {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => BACEPage()));
-                      isSevere = false;
-                    }
+
+                    if (count == 21) {
+                      if (total_a >= 6 && total_d >= 7) {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => GAD7Page(true)));
+                        isSevere = true;
+                      } else if (total_a >= 6) {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => GAD7Page(false)));
+                        isSevere = true;
+                      } else if (total_d >= 7) {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PHQ9Page()));
+                        isSevere = true;
+                      } else {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BACEPage()));
+                        isSevere = false;
+                      }
                     }
                   },
                   color: Colors.teal,
-                  child: Text("Next")
-                  )
+                  child: Text("Next"))
             ],
           ),
         ),
