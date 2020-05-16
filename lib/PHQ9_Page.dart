@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mental_health_app/question.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'BACE_Page.dart';
 import 'Showup.dart';
 
@@ -27,8 +28,8 @@ class _PHQ9PageState extends State<PHQ9Page> {
     "Feeling bad about yourself — or that you are a failure or have let yourself or your family down",
     "Trouble concentrating on things, such as reading the newspaper or watching television",
     "Moving or speaking so slowly that other people could "
-        "have noticed? Or the opposite — being so fidgety"
-        " or restless that you have been moving .around a lot more than usual",
+        "have noticed? Or the opposite — being fidgety"
+        "",
     "Thoughts that you would be better off dead or of hurting yourself in some way"];
 
 
@@ -75,9 +76,11 @@ class _PHQ9PageState extends State<PHQ9Page> {
   }
 
   Widget page(Question question,int index) {
+    ScreenUtil.init(context, width: MediaQuery.of(context).size.width, height: MediaQuery.of(context).size.height, allowFontScaling: true);
+
     return Center(
       child: SizedBox(
-        //height: 800,
+        height: 650.h,
         child: Column(
           children: <Widget>[
             ShowUp(
@@ -85,11 +88,11 @@ class _PHQ9PageState extends State<PHQ9Page> {
               child: Container(
                   child: Image(
                     image: AssetImage(question.imgURL),
-                    height: 250,
+                    height: 150.h,
                   )
                   ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 20.h),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Text(
@@ -101,7 +104,7 @@ class _PHQ9PageState extends State<PHQ9Page> {
                     color: Colors.black),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 20.h),
             InkWell(
               onTap: () {
                 _controller.next();
@@ -212,18 +215,23 @@ class _PHQ9PageState extends State<PHQ9Page> {
               ),
             ),
             Container(
-              height: 80,
+              height: 80.h,
               width: MediaQuery.of(context).size.width,
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: StepProgressIndicator(
                     totalSteps: 9,
-                    height: 10,
-                    currentStep: index,
-                    selectedColor: randomizecolor[index%6],
-                    unselectedColor: randomizecolorlight[index%6],
-                    //padding: 5,
-                    customStep: (index,color){
+                    height: 10.h,
+                    //currentStep: index,
+                    //selectedColor: randomizecolor[index % 6],
+                    //unselectedColor: randomizecolorlight[index % 6],
+                    customColor: (index) => isselected[index - 1][0] ||
+                            isselected[index - 1][1] ||
+                            isselected[index - 1][2] ||
+                            isselected[index - 1][3]
+                        ? Colors.green
+                        : Colors.red,
+                    customStep: (index, color) {
                       return Icon(
                         Icons.check_box_outline_blank,
                         color: color,
@@ -234,8 +242,8 @@ class _PHQ9PageState extends State<PHQ9Page> {
                       return () {
                         _controller.move(index);
                         //print('$index step pressed');
-                      };}
-                ),
+                      };
+                    }),
               ),
             ),
           ],

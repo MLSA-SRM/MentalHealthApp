@@ -28,6 +28,7 @@ dependencies:
   flutter_swiper: ^1.1.6
   step_progress_indicator: ^0.1.0+1
   link: ^1.1.0
+  flutter_screenutil: ^1.1.0
   avatar_glow:
   shared_preferences:
 

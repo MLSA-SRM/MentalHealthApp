@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mental_health_app/DASS21_Page.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'Showup.dart';
 import 'questionaire.dart';
@@ -43,6 +44,7 @@ class QuizState extends State<Quiz> {
   DateTime _dateTime,date;
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, width: MediaQuery.of(context).size.width, height: MediaQuery.of(context).size.height, allowFontScaling: true);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -60,15 +62,15 @@ class QuizState extends State<Quiz> {
               if (index == 0) {
                 return Center(
                   child: SizedBox(
-                    //height: 800,
+                    height: 650.h,
                     child: Column(
                       children: <Widget>[
                         Container(
-                            height: 130,
+                            height: 130.h,
                             child: Image(image: AssetImage('assets/gendercomf.png'))
                             ),
                         SizedBox(
-                          height: 5,
+                          height: 5.h,
                         ),
                         Text(
                           "I identify as a",
@@ -150,12 +152,12 @@ class QuizState extends State<Quiz> {
               if (index == 1) {
                 return Center(
                   child: SizedBox(
-                    //height: 800,
+                    height: 650.h,
                     child: Column(
                       children: <Widget>[
                         Container(
                           child: Image(image: AssetImage('assets/dob-info.png')),
-                          height: 130,
+                          height: 130.h,
                         ),
                         Text(
                           "Please enter the following details.",
@@ -250,12 +252,12 @@ class QuizState extends State<Quiz> {
               if (index == 2) {
                 return Center(
                   child: SizedBox(
-                    //height: 10,
+                    height: 650.h,
                     child: Column(
                       children: <Widget>[
                         Container(
                           child: Image(image: AssetImage('assets/heart.png')),
-                          height: 130,
+                          height: 130.h,
                         ),
                         Text(
                           "\nDo you have any physical illness?\nIf yes, have you consulted a",
@@ -331,12 +333,12 @@ class QuizState extends State<Quiz> {
               if (index == 3) {
                 return Center(
                   child: SizedBox(
-                    //height: 10,
+                    height: 650.h,
                     child: Column(
                       children: <Widget>[
                         Container(
                           child: Image(image: AssetImage('assets/prevpsychhelp.png')),
-                          height: 130,
+                          height: 130.h,
                         ),
                         Text(
                           "\nHave you ever consulted a",

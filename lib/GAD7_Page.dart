@@ -3,6 +3,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mental_health_app/PHQ9_Page.dart';
 import 'package:mental_health_app/question.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'Showup.dart';
 
@@ -75,9 +76,10 @@ class _GAD7PageState extends State<GAD7Page> {
   }
 
   Widget page(Question question,int index) {
+    ScreenUtil.init(context, width: MediaQuery.of(context).size.width, height: MediaQuery.of(context).size.height, allowFontScaling: true);
     return Center(
       child: SizedBox(
-        //height: 800,
+        height: 650.h,
         child: Column(
           children: <Widget>[
             ShowUp(
@@ -85,10 +87,10 @@ class _GAD7PageState extends State<GAD7Page> {
               child: Container(
                   child: Image(
                     image: AssetImage(question.imgURL),
-                    height: 250,
+                    height: 200.h,
                   )),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 20.h),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Text(
@@ -100,7 +102,7 @@ class _GAD7PageState extends State<GAD7Page> {
                     color: Colors.black),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 20.h),
             InkWell(
               onTap: () {
                 _controller.next();
@@ -211,18 +213,23 @@ class _GAD7PageState extends State<GAD7Page> {
               ),
             ),
             Container(
-              height: 80,
+              height: 80.h,
               width: MediaQuery.of(context).size.width,
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: StepProgressIndicator(
                     totalSteps: 7,
-                    height: 10,
-                    currentStep: index,
-                    selectedColor: randomizecolor[index%6],
-                    unselectedColor: randomizecolorlight[index%6],
-                    //padding: 5,
-                    customStep: (index,color){
+                    height: 10.h,
+                    //currentStep: index,
+                    //selectedColor: randomizecolor[index % 6],
+                    //unselectedColor: randomizecolorlight[index % 6],
+                    customColor: (index) => isselected[index - 1][0] ||
+                            isselected[index - 1][1] ||
+                            isselected[index - 1][2] ||
+                            isselected[index - 1][3]
+                        ? Colors.green
+                        : Colors.red,
+                    customStep: (index, color) {
                       return Icon(
                         Icons.check_box_outline_blank,
                         color: color,
@@ -233,8 +240,8 @@ class _GAD7PageState extends State<GAD7Page> {
                       return () {
                         _controller.move(index);
                         //print('$index step pressed');
-                      };}
-                ),
+                      };
+                    }),
               ),
             ),
           ],

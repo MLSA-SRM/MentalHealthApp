@@ -5,6 +5,7 @@ import 'package:mental_health_app/BACE_Page.dart';
 import 'package:mental_health_app/question.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'GAD7_Page.dart';
 import 'PHQ9_Page.dart';
@@ -45,7 +46,7 @@ class _Dass21PageState extends State<Dass21Page> {
     "I found it hard to wind down",
     "I was aware of dryness of my mouth",
     "I couldn’t seem to experience any positive feeling at all",
-    "I experienced breathing difficulty (eg, excessively rapid breathing,breathlessness in the absence of physical exertion)",
+    "I experienced breathing difficulty",
     "I found it difficult to work up the initiative to do things",
     "I tended to over-react to situations",
     "I experienced trembling (eg, in the hands)",
@@ -60,7 +61,7 @@ class _Dass21PageState extends State<Dass21Page> {
     "I was unable to become enthusiastic about anything",
     "I felt I wasn’t worth much as a person",
     "I felt that I was rather touchy",
-    "I was aware of the action of my heart in the absence of physicalexertion (eg,sense of heart rate increase, heart missing a beat)",
+    "I was aware of the action of my heart in the absence of physicalexertion",
     "I felt scared without any good reason",
     "I felt that life was meaningless"
   ];
@@ -191,9 +192,10 @@ class _Dass21PageState extends State<Dass21Page> {
   }
 
   Widget page(Question question, int index) {
+    ScreenUtil.init(context, width: MediaQuery.of(context).size.width, height: MediaQuery.of(context).size.height, allowFontScaling: true);
     return Center(
       child: SizedBox(
-        //height: 800,
+        height: 650.h,
         child: Column(
           children: <Widget>[
             ShowUp(
@@ -201,10 +203,10 @@ class _Dass21PageState extends State<Dass21Page> {
               child: Container(
                   child: Image(
                 image: AssetImage(question.imgURL),
-                height: 260,
+                height: 200.h,
               )),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 10.h),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Text(
@@ -216,7 +218,7 @@ class _Dass21PageState extends State<Dass21Page> {
                     color: Colors.black),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 20.h),
             InkWell(
               onTap: () {
                 _controller.next();
@@ -390,13 +392,13 @@ class _Dass21PageState extends State<Dass21Page> {
               ),
             ),
             Container(
-              height: 80,
+              height: 80.h,
               width: MediaQuery.of(context).size.width,
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: StepProgressIndicator(
                     totalSteps: 21,
-                    height: 10,
+                    height: 10.h,
                     //currentStep: index,
                     //selectedColor: randomizecolor[index % 6],
                     //unselectedColor: randomizecolorlight[index % 6],

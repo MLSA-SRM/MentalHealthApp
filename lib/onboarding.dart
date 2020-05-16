@@ -3,6 +3,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mental_health_app/question.dart';
 import 'package:mental_health_app/quiz.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:link/link.dart';
 import 'Showup.dart';
 
@@ -46,6 +47,7 @@ class _OnboardingState extends State<Onboarding> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, width: MediaQuery.of(context).size.width, height: MediaQuery.of(context).size.height, allowFontScaling: true);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Swiper(
@@ -71,10 +73,10 @@ class _OnboardingState extends State<Onboarding> {
                       child: Container(
                           child: Image(
                         image: AssetImage('assets/Onboarding1.png'),
-                        height: 250,
+                        height: 250.h,
                       )),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 20.h),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
@@ -86,7 +88,7 @@ class _OnboardingState extends State<Onboarding> {
                             color: Colors.black),
                       ),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 30.h),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
@@ -98,7 +100,7 @@ class _OnboardingState extends State<Onboarding> {
                             color: Colors.black),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 20.h),
                     InkWell(
                       onTap: () {
                         _controller.next();
@@ -117,7 +119,7 @@ class _OnboardingState extends State<Onboarding> {
                       ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     RaisedButton(
                       shape: RoundedRectangleBorder(
@@ -144,13 +146,13 @@ class _OnboardingState extends State<Onboarding> {
                       onPressed: () {},
                     ),
                     Container(
-                      height: 80,
+                      height: 80.h,
                       width: MediaQuery.of(context).size.width,
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: StepProgressIndicator(
                           totalSteps: 3,
-                          height: 10,
+                          height: 10.h,
                           currentStep: index + 1,
                           selectedColor: randomizecolor[index % 6],
                           unselectedColor: randomizecolorlight[index % 6],
@@ -183,10 +185,10 @@ class _OnboardingState extends State<Onboarding> {
                       child: Container(
                           child: Image(
                         image: AssetImage('assets/Onboarding2.png'),
-                        height: 250,
+                        height: 250.h,
                       )),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 20.h),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
@@ -198,7 +200,7 @@ class _OnboardingState extends State<Onboarding> {
                             color: Colors.black),
                       ),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 30.h),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
@@ -210,7 +212,7 @@ class _OnboardingState extends State<Onboarding> {
                             color: Colors.black),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 20.h),
                     InkWell(
                       onTap: () {
                         _controller.next();
@@ -229,7 +231,7 @@ class _OnboardingState extends State<Onboarding> {
                       ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     RaisedButton(
                       shape: RoundedRectangleBorder(
@@ -256,13 +258,13 @@ class _OnboardingState extends State<Onboarding> {
                       onPressed: () {},
                     ),
                     Container(
-                      height: 80,
+                      height: 80.h,
                       width: MediaQuery.of(context).size.width,
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: StepProgressIndicator(
                           totalSteps: 3,
-                          height: 10,
+                          height: 10.h,
                           currentStep: index + 1,
                           selectedColor: randomizecolor[index % 6],
                           unselectedColor: randomizecolorlight[index % 6],
@@ -288,17 +290,16 @@ class _OnboardingState extends State<Onboarding> {
                 child: Column(
                   children: <Widget>[
                     SizedBox(
-                      height: MediaQuery.of(context).size.height / 7,
+                      height: MediaQuery.of(context).size.height / 6,
                     ),
                     ShowUp(
                       delay: 500,
                       child: Container(
                           child: Image(
                         image: AssetImage('assets/Onboarding3.png'),
-                        height: 250,
+                        height: 200.h,
                       )),
                     ),
-                    //SizedBox(height: 10),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
@@ -311,7 +312,7 @@ class _OnboardingState extends State<Onboarding> {
                             color: Colors.black),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 20.h),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
@@ -330,7 +331,7 @@ class _OnboardingState extends State<Onboarding> {
                           "Consent Form",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 20.h,
                               //fontWeight: FontWeight.bold,
                               decoration: TextDecoration.underline,
                               color: Colors.blue[700]),
@@ -338,7 +339,7 @@ class _OnboardingState extends State<Onboarding> {
                         url: 'https://athensdazzle.wixsite.com/mysite',
                       ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 20.h),
                     InkWell(
                       onTap: () {
                         //_controller.next();
@@ -359,13 +360,13 @@ class _OnboardingState extends State<Onboarding> {
                       ),
                     ),
                     Container(
-                      height: 80,
+                      height: 80.h,
                       width: MediaQuery.of(context).size.width,
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: StepProgressIndicator(
                           totalSteps: 3,
-                          height: 10,
+                          height: 10.h,
                           currentStep: index + 1,
                           selectedColor: randomizecolor[index % 6],
                           unselectedColor: randomizecolorlight[index % 6],
