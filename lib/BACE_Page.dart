@@ -256,7 +256,7 @@ class _BACEPageState extends State<BACEPage> {
                     },
                     onTap: (index) {
                       return () {
-                        _controller.move(index);
+                        _controller.move(index-1);
                         //print('$index step pressed');
                       };
                     }),

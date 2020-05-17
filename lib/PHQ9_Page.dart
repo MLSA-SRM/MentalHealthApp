@@ -240,7 +240,7 @@ class _PHQ9PageState extends State<PHQ9Page> {
                     },
                     onTap: (index) {
                       return () {
-                        _controller.move(index);
+                        _controller.move(index-1);
                         //print('$index step pressed');
                       };
                     }),

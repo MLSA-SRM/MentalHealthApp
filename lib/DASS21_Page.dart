@@ -183,7 +183,7 @@ class _Dass21PageState extends State<Dass21Page> {
           if (index < 21) {
             return page(DASS21_Questions[index], index);
           } else if (index == 21) {
-            return summary();
+            return summary(context);
           } else
             return null;
         },
@@ -417,7 +417,7 @@ class _Dass21PageState extends State<Dass21Page> {
                     },
                     onTap: (index) {
                       return () {
-                        _controller.move(index);
+                        _controller.move(index-1);
                         //print('$index step pressed');
                       };
                     }),
@@ -429,69 +429,74 @@ class _Dass21PageState extends State<Dass21Page> {
     );
   }
 
-  Widget summary() {
+  Widget summary(BuildContext context) {
     _getResult();
     return Center(
-      child: Container(
-        color: Colors.white,
-        child: Padding(
-          padding: EdgeInsets.only(top: 300),
-          child: Column(
-            children: <Widget>[
-              Text("Result", style: TextStyle(fontSize: 30)),
-              Text(
-                "Depression = " + result_d,
-                style: TextStyle(fontSize: 20),
-              ),
-              Text("Anxiety = " + result_a, style: TextStyle(fontSize: 20)),
-              Text("Stress = " + result_s, style: TextStyle(fontSize: 20)),
-              RaisedButton(
-                  onPressed: () async {
-                    setState(() {
-                      count = 0;
-                      for (int i = 0; i < 21; i++) {
-                        if (isselected[i][0] == true ||
-                            isselected[i][1] == true ||
-                            isselected[i][2] == true ||
-                            isselected[i][3] == true) {
-                          count += 1;
-                        }
-                      }
-                    });
-
-                    if (count == 21) {
-                      if (total_a >= 6 && total_d >= 7) {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => GAD7Page(true)));
-                        isSevere = true;
-                      } else if (total_a >= 6) {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => GAD7Page(false)));
-                        isSevere = true;
-                      } else if (total_d >= 7) {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => PHQ9Page()));
-                        isSevere = true;
-                      } else {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => BACEPage()));
-                        isSevere = false;
-                      }
+      child: Column(
+        children: <Widget>[
+          SizedBox(height: 250.h,),
+          Container(
+                  child: Image(
+                image: AssetImage('assets/Onboarding2.png'),
+                height: 200.h,
+              )),
+              SizedBox(height: 20.h,),
+          RaisedButton(
+              onPressed: () async {
+                setState(() {
+                  count = 0;
+                  for (int i = 0; i < 21; i++) {
+                    if (isselected[i][0] == true ||
+                        isselected[i][1] == true ||
+                        isselected[i][2] == true ||
+                        isselected[i][3] == true) {
+                      count += 1;
                     }
-                  },
-                  color: Colors.teal,
-                  child: Text("Next"))
-            ],
-          ),
-        ),
+                  }
+                });
+
+                if (count == 21) {
+                  if (total_a >= 6 && total_d >= 7) {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => GAD7Page(true)));
+                    isSevere = true;
+                  } else if (total_a >= 6) {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => GAD7Page(false)));
+                    isSevere = true;
+                  } else if (total_d >= 7) {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PHQ9Page()));
+                    isSevere = true;
+                  } else {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => BACEPage()));
+                    isSevere = false;
+                  }
+                }
+                else
+                {
+                  final snackBar = SnackBar(content: Text("Please complete the questionnaire"),duration: Duration(milliseconds:800),);
+                  Scaffold.of(context).showSnackBar(snackBar);
+                }
+              },
+              shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(30),
+                      ),
+                    ),
+              textColor: Colors.white,
+              color: Colors.blue,
+              child: Text("Proceed"))
+        ],
       ),
     );
   }
