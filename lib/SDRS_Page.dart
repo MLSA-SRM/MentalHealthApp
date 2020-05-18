@@ -32,6 +32,8 @@ class _SDRSPageState extends State<SDRSPage> {
   List<int> qtype = [1,2,3];
   bool isSevere = false;
 
+  int count = 0;
+
   _getQuestions(){
     for(int i =0;i<5;i++){
       SDRS_Questions[i].getQues(questions[i], "assets/sdrs_${(i+1)}.png");
@@ -71,7 +73,7 @@ class _SDRSPageState extends State<SDRSPage> {
             if(index<5){
               return page(SDRS_Questions[index],index);
             }
-            else return summary();
+            else return summary(context);
         },
       ),
     );
@@ -294,41 +296,62 @@ class _SDRSPageState extends State<SDRSPage> {
     else isSevere = false;*/
   }
 
-  Widget summary(){
+  Widget summary(BuildContext context){
     _calcResult();
     return Center(
-      child: Container(
-        color: Colors.white,
-        child: Padding(padding: EdgeInsets.only(top: 300),
-          child: Column(
-            children: <Widget>[
-              Text("Result",style: TextStyle(fontSize: 30)),
-              Text("Total = " + total.toString(),style: TextStyle(fontSize: 20),),
-              RaisedButton(
-                /*onPressed: () async {
-                if(total_a  >=6 && total_d >= 7){
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => GAD7Page(true)));
-                isSevere = true;
+      child: Column(
+        children: <Widget>[
+          
+          SizedBox(
+            height: 250.h,
+          ),
+          Container(
+              child: Image(
+            image: AssetImage('assets/checklist.png'),
+            height: 250.h,
+          )),
+          InkWell(
+            onTap: () {
+              setState(() {
+                count = 0;
+                for (int i = 0; i < 5; i++) {
+                  if (isselected[i][0] == true ||
+                      isselected[i][1] == true ||
+                      isselected[i][2] == true ||
+                      isselected[i][3] == true ||
+                      isselected[i][4] == true
+                      ) {
+                    count += 1;
+                  }
                 }
-                else if(total_a >=6) {
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => GAD7Page(false)));
-                  isSevere = true;
-                }
-                else if(total_d >= 7){
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PHQ9Page()));
-                  isSevere = true;
-                }
-                else{
-                  isSevere = false;
-                }
-                },*/
-                color: Colors.teal,
-                child: Text(
-                  "Done",
-                  style: TextStyle(fontSize: 20,color: Colors.white),),)
-            ],
+              });
+              if(count == 5)
+              {
+                //Done
+              }
+              else
+              {
+                final snackBar = SnackBar(
+                  content: Text("Please complete the questionnaire"),
+                  duration: Duration(milliseconds: 800),
+                );
+                Scaffold.of(context).showSnackBar(snackBar);
+              }
+              
+            },
+            child: Card(
+          elevation: 8,
+          color: Colors.teal[400],
+          child: ListTile(
+            leading: Icon(Icons.keyboard_arrow_right, color: Colors.white),
+            title: Text(
+              "Done",
+              style: TextStyle(fontSize: 16, color: Colors.white),
+            ),
           ),
         ),
+          )
+        ],
       ),
     );
   }

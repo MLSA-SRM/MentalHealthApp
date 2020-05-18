@@ -17,6 +17,8 @@ class GAD7Page extends StatefulWidget {
 
 class _GAD7PageState extends State<GAD7Page> {
   bool hasBoth;
+
+  int count=0;
   _GAD7PageState(this.hasBoth);
   SwiperController _controller = SwiperController();
   List<Question> GAD7_Questions = [Question(),Question(),Question(),Question(),Question(),Question(),Question()];
@@ -69,7 +71,7 @@ class _GAD7PageState extends State<GAD7Page> {
           if(index<7){
             return page(GAD7_Questions[index],index);
           }
-          else return summary();
+          else return summary(context);
         },
       ),
     );
@@ -257,27 +259,54 @@ class _GAD7PageState extends State<GAD7Page> {
     else return "Severe";
   }
 
-  Widget summary(){
+  Widget summary(BuildContext context){
     return Center(
-      child: Container(
-        color: Colors.white,
-        child: Padding(padding: EdgeInsets.only(top: 300),
-          child: Column(
-            children: <Widget>[
-              Text("Result",style: TextStyle(fontSize: 30)),
-              Text("Anxiety = " + _getresult() ,style: TextStyle(fontSize: 20),),
-              RaisedButton(onPressed: (){
-                if(hasBoth){
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PHQ9Page()));
+      child: Column(
+        children: <Widget>[
+          SizedBox(
+            height: 250.h,
+          ),
+          Container(
+              child: Image(
+            image: AssetImage('assets/checklist.png'),
+            height: 250.h,
+          )),
+          InkWell(onTap: (){
+            setState(() {
+                count = 0;
+                for (int i = 0; i < 7; i++) {
+                  if (isselected[i][0] == true ||
+                      isselected[i][1] == true ||
+                      isselected[i][2] == true ||
+                      isselected[i][3] == true) {
+                    count += 1;
+                  }
                 }
-              },
-                color: Colors.teal,
-                child: Text(
-                  (hasBoth)? "Next" : "Done",
-                  style: TextStyle(fontSize: 20,color: Colors.white),),)
-            ],
+              });
+            if(count==7)
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PHQ9Page()));
+            else{
+              final snackBar = SnackBar(
+                  content: Text("Please complete the questionnaire"),
+                  duration: Duration(milliseconds: 800),
+                );
+                Scaffold.of(context).showSnackBar(snackBar);
+            }
+            
+          },
+          child: Card(
+          elevation: 8,
+          color: Colors.teal[400],
+          child: ListTile(
+            leading: Icon(Icons.keyboard_arrow_right, color: Colors.white),
+            title: Text(
+              "Proceed",
+              style: TextStyle(fontSize: 16, color: Colors.white),
+            ),
           ),
         ),
+              )
+        ],
       ),
     );
   }

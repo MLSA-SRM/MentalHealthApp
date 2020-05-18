@@ -192,7 +192,10 @@ class _Dass21PageState extends State<Dass21Page> {
   }
 
   Widget page(Question question, int index) {
-    ScreenUtil.init(context, width: MediaQuery.of(context).size.width, height: MediaQuery.of(context).size.height, allowFontScaling: true);
+    ScreenUtil.init(context,
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        allowFontScaling: true);
     return Center(
       child: SizedBox(
         height: 650.h,
@@ -417,7 +420,7 @@ class _Dass21PageState extends State<Dass21Page> {
                     },
                     onTap: (index) {
                       return () {
-                        _controller.move(index-1);
+                        _controller.move(index - 1);
                         //print('$index step pressed');
                       };
                     }),
@@ -434,68 +437,69 @@ class _Dass21PageState extends State<Dass21Page> {
     return Center(
       child: Column(
         children: <Widget>[
-          SizedBox(height: 250.h,),
+          SizedBox(
+            height: 250.h,
+          ),
           Container(
-                  child: Image(
-                image: AssetImage('assets/Onboarding2.png'),
-                height: 200.h,
-              )),
-              SizedBox(height: 20.h,),
-          RaisedButton(
-              onPressed: () async {
-                setState(() {
-                  count = 0;
-                  for (int i = 0; i < 21; i++) {
-                    if (isselected[i][0] == true ||
-                        isselected[i][1] == true ||
-                        isselected[i][2] == true ||
-                        isselected[i][3] == true) {
-                      count += 1;
-                    }
+              child: Image(
+            image: AssetImage('assets/checklist.png'),
+            height: 250.h,
+          )),
+          SizedBox(
+            height: 20.h,
+          ),
+          InkWell(
+            onTap: () async {
+              setState(() {
+                count = 0;
+                for (int i = 0; i < 21; i++) {
+                  if (isselected[i][0] == true ||
+                      isselected[i][1] == true ||
+                      isselected[i][2] == true ||
+                      isselected[i][3] == true) {
+                    count += 1;
                   }
-                });
+                }
+              });
 
-                if (count == 21) {
-                  if (total_a >= 6 && total_d >= 7) {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => GAD7Page(true)));
-                    isSevere = true;
-                  } else if (total_a >= 6) {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => GAD7Page(false)));
-                    isSevere = true;
-                  } else if (total_d >= 7) {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => PHQ9Page()));
-                    isSevere = true;
-                  } else {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => BACEPage()));
-                    isSevere = false;
-                  }
+              if (count == 21) {
+                if (total_a >= 6 && total_d >= 7) {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => GAD7Page(true)));
+                  isSevere = true;
+                } else if (total_a >= 6) {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => GAD7Page(false)));
+                  isSevere = true;
+                } else if (total_d >= 7) {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => PHQ9Page()));
+                  isSevere = true;
+                } else {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => BACEPage()));
+                  isSevere = false;
                 }
-                else
-                {
-                  final snackBar = SnackBar(content: Text("Please complete the questionnaire"),duration: Duration(milliseconds:800),);
-                  Scaffold.of(context).showSnackBar(snackBar);
-                }
-              },
-              shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(30),
-                      ),
-                    ),
-              textColor: Colors.white,
-              color: Colors.blue,
-              child: Text("Proceed"))
+              } else {
+                final snackBar = SnackBar(
+                  content: Text("Please complete the questionnaire"),
+                  duration: Duration(milliseconds: 800),
+                );
+                Scaffold.of(context).showSnackBar(snackBar);
+              }
+            },
+            child: Card(
+              elevation: 8,
+              color: Colors.teal[400],
+              child: ListTile(
+                leading: Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                title: Text(
+                  "Proceed",
+                  style: TextStyle(fontSize: 16, color: Colors.white),
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );

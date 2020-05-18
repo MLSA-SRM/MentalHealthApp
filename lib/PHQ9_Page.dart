@@ -6,21 +6,45 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'BACE_Page.dart';
 import 'Showup.dart';
 
-
 class PHQ9Page extends StatefulWidget {
   @override
   _PHQ9PageState createState() => _PHQ9PageState();
 }
 
 class _PHQ9PageState extends State<PHQ9Page> {
-
   SwiperController _controller = SwiperController();
-  List<Question> PHQ9_Questions = [Question(),Question(),Question(),Question(),Question(),Question(),Question(),Question(),Question()];
-  List<Color> randomizecolor = [Colors.blue,Colors.green,Colors.red,Colors.purple,Colors.pink,Colors.orange];
-  List<Color> randomizecolorlight = [Colors.blue[100],Colors.green[100],Colors.red[100],Colors.purple[100],Colors.pink[100],Colors.orange[100]];
+  List<Question> PHQ9_Questions = [
+    Question(),
+    Question(),
+    Question(),
+    Question(),
+    Question(),
+    Question(),
+    Question(),
+    Question(),
+    Question()
+  ];
+  List<Color> randomizecolor = [
+    Colors.blue,
+    Colors.green,
+    Colors.red,
+    Colors.purple,
+    Colors.pink,
+    Colors.orange
+  ];
+  List<Color> randomizecolorlight = [
+    Colors.blue[100],
+    Colors.green[100],
+    Colors.red[100],
+    Colors.purple[100],
+    Colors.pink[100],
+    Colors.orange[100]
+  ];
 
-  List<List<bool>> isselected = new List.generate(9, (j) => [false,false,false,false,false]);
-  List<String> questions = ["Little interest or pleasure in doing things",
+  List<List<bool>> isselected =
+      new List.generate(9, (j) => [false, false, false, false, false]);
+  List<String> questions = [
+    "Little interest or pleasure in doing things",
     "Feeling down, depressed, or hopeless",
     "Trouble falling or staying asleep, or sleeping too much",
     "Feeling tired or having little energy",
@@ -30,22 +54,27 @@ class _PHQ9PageState extends State<PHQ9Page> {
     "Moving or speaking so slowly that other people could "
         "have noticed? Or the opposite — being fidgety"
         "",
-    "Thoughts that you would be better off dead or of hurting yourself in some way"];
+    "Thoughts that you would be better off dead or of hurting yourself in some way"
+  ];
 
+  int count = 0;
 
-  _getQuestions(){
-    for(int i =0;i<9;i++){
-      PHQ9_Questions[i].getQues(questions[i], "assets/PHQ-9icons_${(i+1)}.png");
-      PHQ9_Questions[i].getOptions("Not at all", "Several days", "More than half the days", "Nearly every day");
-      PHQ9_Questions[i].getColor(randomizecolor[i%6],randomizecolor[i%6],randomizecolor[i%6], randomizecolor[i%6]);
+  _getQuestions() {
+    for (int i = 0; i < 9; i++) {
+      PHQ9_Questions[i]
+          .getQues(questions[i], "assets/PHQ-9icons_${(i + 1)}.png");
+      PHQ9_Questions[i].getOptions("Not at all", "Several days",
+          "More than half the days", "Nearly every day");
+      PHQ9_Questions[i].getColor(randomizecolor[i % 6], randomizecolor[i % 6],
+          randomizecolor[i % 6], randomizecolor[i % 6]);
       PHQ9_Questions[i].type = 1;
     }
   }
 
-  int total_a =0,total_d =0,total_s =0;
-  String result_a,result_d,result_s;
+  int total_a = 0, total_d = 0, total_s = 0;
+  String result_a, result_d, result_s;
 
-  int total=0;
+  int total = 0;
 
   @override
   void initState() {
@@ -60,23 +89,26 @@ class _PHQ9PageState extends State<PHQ9Page> {
       body: Swiper(
         itemCount: 10,
         curve: Curves.easeInOutCubic,
-        scrollDirection:Axis.horizontal,
+        scrollDirection: Axis.horizontal,
         loop: false,
         viewportFraction: 0.95,
         scale: 0.5,
         controller: _controller,
         itemBuilder: (BuildContext context, int index) {
-          if(index<9){
-            return page(PHQ9_Questions[index],index);
-          }
-          else return summary();
+          if (index < 9) {
+            return page(PHQ9_Questions[index], index);
+          } else
+            return summary(context);
         },
       ),
     );
   }
 
-  Widget page(Question question,int index) {
-    ScreenUtil.init(context, width: MediaQuery.of(context).size.width, height: MediaQuery.of(context).size.height, allowFontScaling: true);
+  Widget page(Question question, int index) {
+    ScreenUtil.init(context,
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        allowFontScaling: true);
 
     return Center(
       child: SizedBox(
@@ -84,13 +116,12 @@ class _PHQ9PageState extends State<PHQ9Page> {
         child: Column(
           children: <Widget>[
             ShowUp(
-              delay : 500,
+              delay: 500,
               child: Container(
                   child: Image(
-                    image: AssetImage(question.imgURL),
-                    height: 150.h,
-                  )
-                  ),
+                image: AssetImage(question.imgURL),
+                height: 150.h,
+              )),
             ),
             SizedBox(height: 20.h),
             Padding(
@@ -108,7 +139,8 @@ class _PHQ9PageState extends State<PHQ9Page> {
             InkWell(
               onTap: () {
                 _controller.next();
-                total +=0;PHQ9_Questions[index].points = 0;
+                total += 0;
+                PHQ9_Questions[index].points = 0;
                 setState(() {
                   PHQ9_Questions[index].answer = question.opt1;
                   isselected[index][0] = true;
@@ -116,7 +148,6 @@ class _PHQ9PageState extends State<PHQ9Page> {
                   isselected[index][2] = false;
                   isselected[index][3] = false;
                   isselected[index][4] = false;
-
                 });
               },
               child: Card(
@@ -124,8 +155,10 @@ class _PHQ9PageState extends State<PHQ9Page> {
                 color: question.opt1Color,
                 child: ListTile(
                   leading:
-                  Icon(Icons.keyboard_arrow_right, color: Colors.white),
-                  trailing: isselected[index][0]? Icon(Icons.spellcheck, color: Colors.white) : null,
+                      Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                  trailing: isselected[index][0]
+                      ? Icon(Icons.spellcheck, color: Colors.white)
+                      : null,
                   title: Text(
                     question.opt1,
                     style: TextStyle(fontSize: 16, color: Colors.white),
@@ -136,7 +169,8 @@ class _PHQ9PageState extends State<PHQ9Page> {
             InkWell(
               onTap: () {
                 _controller.next();
-                total +=1;PHQ9_Questions[index].points = 1;
+                total += 1;
+                PHQ9_Questions[index].points = 1;
                 setState(() {
                   PHQ9_Questions[index].answer = question.opt2;
                   isselected[index][0] = false;
@@ -151,8 +185,10 @@ class _PHQ9PageState extends State<PHQ9Page> {
                 color: question.opt2Color,
                 child: ListTile(
                   leading:
-                  Icon(Icons.keyboard_arrow_right, color: Colors.white),
-                  trailing: isselected[index][1]? Icon(Icons.spellcheck, color: Colors.white) : null,
+                      Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                  trailing: isselected[index][1]
+                      ? Icon(Icons.spellcheck, color: Colors.white)
+                      : null,
                   title: Text(
                     question.opt2,
                     style: TextStyle(fontSize: 16, color: Colors.white),
@@ -163,7 +199,8 @@ class _PHQ9PageState extends State<PHQ9Page> {
             InkWell(
               onTap: () {
                 _controller.next();
-                total +=2;PHQ9_Questions[index].points = 2;
+                total += 2;
+                PHQ9_Questions[index].points = 2;
                 setState(() {
                   PHQ9_Questions[index].answer = question.opt3;
                   isselected[index][0] = false;
@@ -178,8 +215,10 @@ class _PHQ9PageState extends State<PHQ9Page> {
                 color: question.opt3Color,
                 child: ListTile(
                   leading:
-                  Icon(Icons.keyboard_arrow_right, color: Colors.white),
-                  trailing: isselected[index][2]? Icon(Icons.spellcheck, color: Colors.white) : null,
+                      Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                  trailing: isselected[index][2]
+                      ? Icon(Icons.spellcheck, color: Colors.white)
+                      : null,
                   title: Text(
                     question.opt3,
                     style: TextStyle(fontSize: 16, color: Colors.white),
@@ -190,7 +229,8 @@ class _PHQ9PageState extends State<PHQ9Page> {
             InkWell(
               onTap: () {
                 _controller.next();
-                total +=3;PHQ9_Questions[index].points = 3;
+                total += 3;
+                PHQ9_Questions[index].points = 3;
                 setState(() {
                   PHQ9_Questions[index].answer = question.opt4;
                   isselected[index][0] = false;
@@ -205,8 +245,10 @@ class _PHQ9PageState extends State<PHQ9Page> {
                 color: question.opt4Color,
                 child: ListTile(
                   leading:
-                  Icon(Icons.keyboard_arrow_right, color: Colors.white),
-                  trailing: isselected[index][3]? Icon(Icons.spellcheck, color: Colors.white) : null,
+                      Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                  trailing: isselected[index][3]
+                      ? Icon(Icons.spellcheck, color: Colors.white)
+                      : null,
                   title: Text(
                     question.opt4,
                     style: TextStyle(fontSize: 16, color: Colors.white),
@@ -240,7 +282,7 @@ class _PHQ9PageState extends State<PHQ9Page> {
                     },
                     onTap: (index) {
                       return () {
-                        _controller.move(index-1);
+                        _controller.move(index - 1);
                         //print('$index step pressed');
                       };
                     }),
@@ -252,32 +294,67 @@ class _PHQ9PageState extends State<PHQ9Page> {
     );
   }
 
-  String _getresult(){
-    if(total >=0 && total <= 5) return "Mild";
-    else if(total >=6 && total <= 10) return "Moderate";
-    else if(total >=11 && total <= 15) return "Moderately severe";
-    else return "Severe";
+  String _getresult() {
+    if (total >= 0 && total <= 5)
+      return "Mild";
+    else if (total >= 6 && total <= 10)
+      return "Moderate";
+    else if (total >= 11 && total <= 15)
+      return "Moderately severe";
+    else
+      return "Severe";
   }
 
-  Widget summary(){
+  Widget summary(BuildContext context) {
     return Center(
-      child: Container(
-        color: Colors.white,
-        child: Padding(padding: EdgeInsets.only(top: 300),
-          child: Column(
-            children: <Widget>[
-              Text("Result",style: TextStyle(fontSize: 30)),
-              Text("Depression = " + _getresult() ,style: TextStyle(fontSize: 20),),
-              RaisedButton(onPressed: (){
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BACEPage()));
-              },
-                color: Colors.teal,
-                child: Text("Next",style: TextStyle(fontSize: 20,color: Colors.white),),)
-            ],
+      child: Column(
+        children: <Widget>[
+          SizedBox(
+            height: 250.h,
           ),
-        ),
+          Container(
+              child: Image(
+            image: AssetImage('assets/checklist.png'),
+            height: 250.h,
+          )),
+          InkWell(
+            onTap: () {
+              setState(() {
+                count = 0;
+                for (int i = 0; i < 9; i++) {
+                  if (isselected[i][0] == true ||
+                      isselected[i][1] == true ||
+                      isselected[i][2] == true ||
+                      isselected[i][3] == true) {
+                    count += 1;
+                  }
+                }
+              });
+              if (count == 9)
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => BACEPage()));
+              else {
+                final snackBar = SnackBar(
+                  content: Text("Please complete the questionnaire"),
+                  duration: Duration(milliseconds: 800),
+                );
+                Scaffold.of(context).showSnackBar(snackBar);
+              }
+            },
+            child: Card(
+              elevation: 8,
+              color: Colors.teal[400],
+              child: ListTile(
+                leading: Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                title: Text(
+                  "Proceed",
+                  style: TextStyle(fontSize: 16, color: Colors.white),
+                ),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
-
 }
