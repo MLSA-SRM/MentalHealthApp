@@ -144,7 +144,7 @@ class _Dass21PageState extends State<Dass21Page> {
     print('map created');
 
     for (int i = 0; i < 21; i++) {
-      someMap["Q${i + 1}"] = DASS21_Questions[i].answer;
+      someMap["Q${i + 10}"] = DASS21_Questions[i].answer;
       print(DASS21_Questions[i].answer);
     }
     print('done');
@@ -166,27 +166,37 @@ class _Dass21PageState extends State<Dass21Page> {
     _getQuestions();
   }
 
+
+  Future<bool> _backPressed() {
+
+    // write ur snackbar code here
+  }
+
+
   bool change = false;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Swiper(
-        curve: Curves.easeInOutCubic,
-        scrollDirection: Axis.horizontal,
-        loop: false,
-        viewportFraction: 0.95,
-        scale: 0.5,
-        itemCount: 22,
-        controller: _controller,
-        itemBuilder: (BuildContext context, int index) {
-          if (index < 21) {
-            return page(DASS21_Questions[index], index);
-          } else if (index == 21) {
-            return summary(context);
-          } else
-            return null;
-        },
+    return WillPopScope(
+      onWillPop: _backPressed,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Swiper(
+          curve: Curves.easeInOutCubic,
+          scrollDirection: Axis.horizontal,
+          loop: false,
+          viewportFraction: 0.95,
+          scale: 0.5,
+          itemCount: 22,
+          controller: _controller,
+          itemBuilder: (BuildContext context, int index) {
+            if (index < 21) {
+              return page(DASS21_Questions[index], index);
+            } else if (index == 21) {
+              return summary(context);
+            } else
+              return null;
+          },
+        ),
       ),
     );
   }
