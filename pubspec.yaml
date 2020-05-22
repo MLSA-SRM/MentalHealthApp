@@ -31,6 +31,10 @@ dependencies:
   flutter_screenutil: ^1.1.0
   avatar_glow:
   shared_preferences:
+  firebase_messaging:
+  url_launcher:
+  flutter_webview_plugin: 0.3.11
+
 
 dev_dependencies:
   flutter_test:

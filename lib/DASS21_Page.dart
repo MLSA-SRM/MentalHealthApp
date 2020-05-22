@@ -144,7 +144,7 @@ class _Dass21PageState extends State<Dass21Page> {
     print('map created');
 
     for (int i = 0; i < 21; i++) {
-      someMap["Q${i + 1}"] = DASS21_Questions[i].answer;
+      someMap["Q${i + 10}"] = DASS21_Questions[i].answer;
       print(DASS21_Questions[i].answer);
     }
     print('done');
@@ -166,27 +166,72 @@ class _Dass21PageState extends State<Dass21Page> {
     _getQuestions();
   }
 
+
+  Future<bool> _backPressed() async {
+    print("code reached here");
+    return showDialog(
+      context: context,
+      builder: (context) => new AlertDialog(
+        title: new Text('Are you sure?'),
+        content: new Text('Do you want to exit an App'),
+        actions: <Widget>[
+          new FlatButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: new Text('No'),
+          ),
+          new FlatButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: new Text('Yes'),
+          ),
+        ],
+      ),
+    ) ?? false;
+
+    //Snackbar code if you manage to get it working.
+    // bool exit = false;
+    // final snackBarpop = SnackBar(
+    //               content: Text("All your saved progress will be lost"),
+    //               duration: Duration(milliseconds: 800),
+    //               action: SnackBarAction(
+    //           label: 'Exit',
+    //           onPressed: () {
+    //             exit = true;
+    //           },
+    //         ),
+    //             );
+    //             Scaffold.of(context).showSnackBar(snackBarpop);
+    //             if(exit==true)
+    //             return Future.value(true);
+    //             else
+    //             return Future.value(false);
+
+  }
+
+
   bool change = false;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Swiper(
-        curve: Curves.easeInOutCubic,
-        scrollDirection: Axis.horizontal,
-        loop: false,
-        viewportFraction: 0.95,
-        scale: 0.5,
-        itemCount: 22,
-        controller: _controller,
-        itemBuilder: (BuildContext context, int index) {
-          if (index < 21) {
-            return page(DASS21_Questions[index], index);
-          } else if (index == 21) {
-            return summary(context);
-          } else
-            return null;
-        },
+    return WillPopScope(
+      onWillPop: _backPressed,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Swiper(
+          curve: Curves.easeInOutCubic,
+          scrollDirection: Axis.horizontal,
+          loop: false,
+          viewportFraction: 0.95,
+          scale: 0.5,
+          itemCount: 22,
+          controller: _controller,
+          itemBuilder: (BuildContext context, int index) {
+            if (index < 21) {
+              return page(DASS21_Questions[index], index);
+            } else if (index == 21) {
+              return summary(context);
+            } else
+              return null;
+          },
+        ),
       ),
     );
   }

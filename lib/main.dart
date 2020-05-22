@@ -1,11 +1,14 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:mental_health_app/DASS21_Page.dart';
 import 'package:mental_health_app/GAD7_Page.dart';
 import 'package:mental_health_app/onboarding.dart';
 import 'package:mental_health_app/test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'Showup.dart';
 import 'quiz.dart';
 
@@ -25,11 +28,54 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   final int delayedAmount = 1000;
   SharedPreferences prefs;
+  FirebaseMessaging firebaseMessaging = FirebaseMessaging();
+  bool onCallback = false;
+  String url;
+
+  checkDeviceId() async{
+    prefs = await SharedPreferences.getInstance();
+    if (prefs.getString('deviceToken')?.isEmpty ?? true) {
+      String deviceToken = await firebaseMessaging.getToken();
+      await FirebaseDatabase.instance.reference().child("fcm-token").child(deviceToken).set({"token": deviceToken});
+      prefs.setString('deviceToken', deviceToken);
+    }
+  }
+
 
   @override
   void initState() {
     super.initState();
     checkId();
+    checkDeviceId();
+    firebaseMessaging.configure(
+      onMessage: (Map<String, dynamic> message) async {
+        print("onMessage: $message");
+        print(message['notification']['body'] + "message");
+        url = message['notification']['body'];
+        onCallback = true;
+        setState(() {
+
+        });
+      },
+      onLaunch: (Map<String, dynamic> message) async {
+        print("onLaunch: $message");
+        print(message['notification']['body'] + "launch");
+        url = message['notification']['body'];
+        onCallback = true;
+        setState(() {
+
+        });
+      },
+      onResume: (Map<String, dynamic> message) async {
+        print("onResume: $message");
+        print(message['notification']['body'] + "resume");
+        url = message['notification']['body'];
+        onCallback = true;
+        setState(() {
+
+        });
+      },
+    );
   }
 
   void checkId() async {
@@ -69,7 +115,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,
-        body: SingleChildScrollView(
+        body: (!onCallback) ?SingleChildScrollView(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -196,6 +242,10 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                   )
                 ]),
               ]),
+        )
+        : WebviewScaffold(
+          initialChild: Center(child: CircularProgressIndicator()),
+          url: url,
         ),
       ),
     );
