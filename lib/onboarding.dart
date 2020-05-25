@@ -66,7 +66,7 @@ class _OnboardingState extends State<Onboarding> {
                 child: Column(
                   children: <Widget>[
                     SizedBox(
-                      height: MediaQuery.of(context).size.height / 6,
+                      height: 100.h,
                     ),
                     ShowUp(
                       delay: 500,
@@ -178,7 +178,7 @@ class _OnboardingState extends State<Onboarding> {
                 child: Column(
                   children: <Widget>[
                     SizedBox(
-                      height: MediaQuery.of(context).size.height / 6,
+                      height: 100.h,
                     ),
                     ShowUp(
                       delay: 500,
@@ -290,7 +290,7 @@ class _OnboardingState extends State<Onboarding> {
                 child: Column(
                   children: <Widget>[
                     SizedBox(
-                      height: MediaQuery.of(context).size.height / 6,
+                      height: 100.h,
                     ),
                     ShowUp(
                       delay: 500,

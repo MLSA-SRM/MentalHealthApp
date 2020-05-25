@@ -62,7 +62,7 @@ class _PHQ9PageState extends State<PHQ9Page> {
   _getQuestions() {
     for (int i = 0; i < 9; i++) {
       PHQ9_Questions[i]
-          .getQues(questions[i], "assets/PHQ-9icons_${(i + 1)}.png");
+          .getQues(questions[i], "assets/PHQ-9iconsFINAL_${(i + 1)}.png");
       PHQ9_Questions[i].getOptions("Not at all", "Several days",
           "More than half the days", "Nearly every day");
       PHQ9_Questions[i].getColor(randomizecolor[i % 6], randomizecolor[i % 6],
