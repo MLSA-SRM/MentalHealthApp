@@ -1,7 +1,9 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mental_health_app/SDRS_Page.dart';
 import 'package:mental_health_app/question.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -349,6 +351,24 @@ int count = 0;
     );
   }
 
+Future pushToFirebase() async {
+    final Map<String, String> someMap = {};
+    print('map for BACE created');
+
+    for (int i = 0; i < 27; i++) {
+      someMap["Q${i + 10}"] = BACE_Questions[i].answer;
+      print(BACE_Questions[i].answer);
+    }
+    print('done');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String pushId = prefs.getString('key');
+    FirebaseDatabase.instance
+        .reference()
+        .child("Responses")
+        .child(pushId)
+        .child("bace")
+        .set(someMap);
+  }
   Widget summary(BuildContext context) {
     return Center(
       child: Column(
@@ -362,7 +382,7 @@ int count = 0;
             height: 250.h,
           )),
           InkWell(
-            onTap: () {
+            onTap: () async{
               setState(() {
                 count = 0;
                 for (int i = 0; i < 27; i++) {
@@ -376,6 +396,7 @@ int count = 0;
               });
               if(count == 27)
               {
+                await pushToFirebase();
                 Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) => SDRSPage()));
               }
