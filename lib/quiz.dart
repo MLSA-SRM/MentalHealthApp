@@ -23,28 +23,27 @@ import 'questionaire.dart';
   }
 }*/
 Future<bool> _backPressed() async {
-    print("code reached here quiz");
-    return Future.value(false);
-    // bool exit = false;
-    // final snackBarpop = SnackBar(
-    //               content: Text("All your saved progress will be lost"),
-    //               duration: Duration(milliseconds: 800),
-    //               action: SnackBarAction(
-    //           label: 'Exit',
-    //           onPressed: () {
-    //             exit = true;
-    //           },
-    //         ),
-    //             );
-    //             //Scaffold.of(context).showSnackBar(snackBarpop);
-    //             if(context==null)
-    //             print("its null bro");
-    //             if(exit==true)
-    //             return Future.value(true);
-    //             else
-    //             return Future.value(false);
-
-  }
+  print("code reached here quiz");
+  return Future.value(false);
+  // bool exit = false;
+  // final snackBarpop = SnackBar(
+  //               content: Text("All your saved progress will be lost"),
+  //               duration: Duration(milliseconds: 800),
+  //               action: SnackBarAction(
+  //           label: 'Exit',
+  //           onPressed: () {
+  //             exit = true;
+  //           },
+  //         ),
+  //             );
+  //             //Scaffold.of(context).showSnackBar(snackBarpop);
+  //             if(context==null)
+  //             print("its null bro");
+  //             if(exit==true)
+  //             return Future.value(true);
+  //             else
+  //             return Future.value(false);
+}
 
 class Quiz extends StatefulWidget {
   Quiz({Key key, this.title}) : super(key: key);
@@ -61,16 +60,28 @@ class Quiz extends StatefulWidget {
   }
 }
 
+List<String> answers = ["none", "none", "none"];
+final gender = TextEditingController();
+final course = TextEditingController();
+final year = TextEditingController();
+DateTime _dateTime, date;
+final snackBar = SnackBar(
+  content: Text("Please complete the questionnaire"),
+  duration: Duration(milliseconds: 800),
+);
+
 class QuizState extends State<Quiz> {
   SwiperController _controller = SwiperController();
-  List<int> answers = [-1, -1, -1, -1, -1, -1, -1, -1];
-  DateTime _dateTime,date;
+
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, width: MediaQuery.of(context).size.width, height: MediaQuery.of(context).size.height, allowFontScaling: true);
+    ScreenUtil.init(context,
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        allowFontScaling: true);
     return WillPopScope(
       onWillPop: _backPressed,
-          child: MaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           backgroundColor: Colors.white,
@@ -92,8 +103,8 @@ class QuizState extends State<Quiz> {
                         children: <Widget>[
                           Container(
                               height: 130.h,
-                              child: Image(image: AssetImage('assets/gendercomf.png'))
-                              ),
+                              child: Image(
+                                  image: AssetImage('assets/gendercomf.png'))),
                           SizedBox(
                             height: 5.h,
                           ),
@@ -112,7 +123,7 @@ class QuizState extends State<Quiz> {
                             onTap: () {
                               _controller.next();
                               setState(() {
-                                answers[1] = 0;
+                                answers[0] = "Male";
                               });
                             },
                             child: Card(
@@ -133,7 +144,7 @@ class QuizState extends State<Quiz> {
                             onTap: () {
                               _controller.next();
                               setState(() {
-                                answers[1] = 0;
+                                answers[0] = "Female";
                               });
                             },
                             child: Card(
@@ -154,13 +165,14 @@ class QuizState extends State<Quiz> {
                             onTap: () {
                               _controller.next();
                               setState(() {
-                                answers[3] = 1;
+                                //Taking input on the final question using mycontroller.text
                               });
                             },
                             child: Card(
                                 elevation: 8,
                                 color: Colors.white,
                                 child: TextField(
+                                  controller: gender,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(),
                                     labelText: 'Others',
@@ -181,7 +193,8 @@ class QuizState extends State<Quiz> {
                       child: Column(
                         children: <Widget>[
                           Container(
-                            child: Image(image: AssetImage('assets/dob-info.png')),
+                            child:
+                                Image(image: AssetImage('assets/dob-info.png')),
                             height: 130.h,
                           ),
                           Text(
@@ -199,29 +212,37 @@ class QuizState extends State<Quiz> {
                           InkWell(
                             onTap: () {
                               //_controller.next();
-                              showDatePicker(context: context,
-                               initialDate: DateTime.now(),
-                              firstDate: DateTime(1930), 
-                              lastDate: DateTime(2021)).then((date){
-                                    setState(() {
-                                      _dateTime = date;
-                                    });
+                              showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime(1930),
+                                      lastDate: DateTime(2021))
+                                  .then((date) {
+                                setState(() {
+                                  _dateTime = date;
+                                });
                               });
                             },
                             child: Card(
-                                elevation: 8,
-                                color: Colors.blue,
-                                child: ListTile(
+                              elevation: 8,
+                              color: Colors.blue,
+                              child: ListTile(
                                 leading: Icon(Icons.keyboard_arrow_right,
                                     color: Colors.white),
                                 title: Text(
-                                  _dateTime==null? "Please enter Date of Birth":_dateTime.day.toString()+"/"+_dateTime.month.toString()+"/"+_dateTime.year.toString(),
+                                  _dateTime == null
+                                      ? "Please enter Date of Birth"
+                                      : _dateTime.day.toString() +
+                                          "/" +
+                                          _dateTime.month.toString() +
+                                          "/" +
+                                          _dateTime.year.toString(),
                                   style: TextStyle(
                                       fontSize: 16, color: Colors.white),
                                 ),
                               ),
-                                //child: Text(_dateTime==null? "Please select a date":_dateTime.toString()),
-                                /*TextField(
+                              //child: Text(_dateTime==null? "Please select a date":_dateTime.toString()),
+                              /*TextField(
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(),
                                     labelText: 'DOB',
@@ -229,19 +250,20 @@ class QuizState extends State<Quiz> {
                                   ),
                                   autofocus: false,
                                 )*/
-                                ),
+                            ),
                           ),
                           InkWell(
                             onTap: () {
                               _controller.next();
                               setState(() {
-                                answers[3] = 1;
+                                //last ques
                               });
                             },
                             child: Card(
                                 elevation: 8,
                                 color: Colors.white,
                                 child: TextField(
+                                  controller: course,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(),
                                     labelText: 'Course',
@@ -254,13 +276,14 @@ class QuizState extends State<Quiz> {
                             onTap: () {
                               _controller.next();
                               setState(() {
-                                answers[3] = 1;
+                                //last ques
                               });
                             },
                             child: Card(
                                 elevation: 8,
                                 color: Colors.white,
                                 child: TextField(
+                                  controller: year,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(),
                                     labelText: 'Year',
@@ -299,6 +322,7 @@ class QuizState extends State<Quiz> {
                           InkWell(
                             onTap: () {
                               _controller.next();
+                              answers[1] = "Medical Doctor";
                             },
                             child: Card(
                               elevation: 8,
@@ -317,6 +341,7 @@ class QuizState extends State<Quiz> {
                           InkWell(
                             onTap: () {
                               _controller.next();
+                              answers[1] = "AYUSH doctor";
                             },
                             child: Card(
                               elevation: 8,
@@ -335,6 +360,7 @@ class QuizState extends State<Quiz> {
                           InkWell(
                             onTap: () {
                               _controller.next();
+                              answers[1] = "No physical illness";
                             },
                             child: Card(
                               elevation: 8,
@@ -354,7 +380,7 @@ class QuizState extends State<Quiz> {
                       ),
                     ),
                   );
-                } 
+                }
                 if (index == 3) {
                   return Center(
                     child: SizedBox(
@@ -362,7 +388,8 @@ class QuizState extends State<Quiz> {
                       child: Column(
                         children: <Widget>[
                           Container(
-                            child: Image(image: AssetImage('assets/prevpsychhelp.png')),
+                            child: Image(
+                                image: AssetImage('assets/prevpsychhelp.png')),
                             height: 130.h,
                           ),
                           Text(
@@ -398,14 +425,23 @@ class QuizState extends State<Quiz> {
                           ),*/
                           InkWell(
                             onTap: () {
-                              _controller.next();
                               setState(() {
-                                answers[3] = 0;
+                                answers[2] = "Psychiatrist";
                               });
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Dass21Page()));
+                              if (answers[0] == "none" && gender.text == "" ||
+                                  answers[1] == "none" ||
+                                  answers[2] == "none" ||
+                                  _dateTime == null ||
+                                  course.text == "" ||
+                                  year.text == "")
+                                Scaffold.of(context).showSnackBar(snackBar);
+                              else {
+                                _getanswers();
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Dass21Page()));
+                              }
                             },
                             child: Card(
                               elevation: 8,
@@ -423,14 +459,23 @@ class QuizState extends State<Quiz> {
                           ),
                           InkWell(
                             onTap: () {
-                              _controller.next();
                               setState(() {
-                                answers[3] = 0;
+                                answers[2] = "Psychologist";
                               });
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Dass21Page()));
+                              if (answers[0] == "none" && gender.text == "" ||
+                                  answers[1] == "none" ||
+                                  answers[2] == "none" ||
+                                  _dateTime == null ||
+                                  course.text == "" ||
+                                  year.text == "")
+                                Scaffold.of(context).showSnackBar(snackBar);
+                              else {
+                                _getanswers();
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Dass21Page()));
+                              }
                             },
                             child: Card(
                               elevation: 8,
@@ -448,14 +493,23 @@ class QuizState extends State<Quiz> {
                           ),
                           InkWell(
                             onTap: () {
-                              _controller.next();
                               setState(() {
-                                answers[3] = 0;
+                                answers[2] = "Counsellor";
                               });
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Dass21Page()));
+                              if (answers[0] == "none" && gender.text == "" ||
+                                  answers[1] == "none" ||
+                                  answers[2] == "none" ||
+                                  _dateTime == null ||
+                                  course.text == "" ||
+                                  year.text == "")
+                                Scaffold.of(context).showSnackBar(snackBar);
+                              else {
+                                _getanswers();
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Dass21Page()));
+                              }
                             },
                             child: Card(
                               elevation: 8,
@@ -473,14 +527,23 @@ class QuizState extends State<Quiz> {
                           ),
                           InkWell(
                             onTap: () {
-                              _controller.next();
                               setState(() {
-                                answers[3] = 0;
+                                answers[2] = "None";
                               });
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Dass21Page()));
+                              if (answers[0] == "none" && gender.text == "" ||
+                                  answers[1] == "none" ||
+                                  answers[2] == "none" ||
+                                  _dateTime == null ||
+                                  course.text == "" ||
+                                  year.text == "")
+                                Scaffold.of(context).showSnackBar(snackBar);
+                              else {
+                                _getanswers();
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Dass21Page()));
+                              }
                             },
                             child: Card(
                               elevation: 8,
@@ -500,8 +563,7 @@ class QuizState extends State<Quiz> {
                       ),
                     ),
                   );
-                } 
-                else
+                } else
                   return null;
               },
               itemCount: 4,
@@ -512,4 +574,17 @@ class QuizState extends State<Quiz> {
       ),
     );
   }
+}
+
+void _getanswers() {
+  if (answers[0] != "none")
+    print(answers[0]);
+  else
+    print(gender.text);
+
+  print(_dateTime);
+  print(course.text);
+  print(year.text);
+  print(answers[1]);
+  print(answers[2]);
 }
