@@ -1,6 +1,8 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mental_health_app/question.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'BACE_Page.dart';
@@ -304,6 +306,24 @@ class _PHQ9PageState extends State<PHQ9Page> {
     else
       return "Severe";
   }
+    Future pushToFirebase() async {
+    final Map<String, String> someMap = {};
+    print('map for GAD7 created');
+
+    for (int i = 0; i < 9; i++) {
+      someMap["Q${i + 10}"] = PHQ9_Questions[i].answer;
+      print(PHQ9_Questions[i].answer);
+    }
+    print('done');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String pushId = prefs.getString('key');
+    FirebaseDatabase.instance
+        .reference()
+        .child("Responses")
+        .child(pushId)
+        .child("phq9")
+        .set(someMap);
+  }
 
   Widget summary(BuildContext context) {
     return Center(
@@ -318,7 +338,7 @@ class _PHQ9PageState extends State<PHQ9Page> {
             height: 250.h,
           )),
           InkWell(
-            onTap: () {
+            onTap: ()async{
               setState(() {
                 count = 0;
                 for (int i = 0; i < 9; i++) {
@@ -330,10 +350,11 @@ class _PHQ9PageState extends State<PHQ9Page> {
                   }
                 }
               });
-              if (count == 9)
+              if (count == 9) {
+                await pushToFirebase();
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => BACEPage()));
-              else {
+              }else {
                 final snackBar = SnackBar(
                   content: Text("Please complete the questionnaire"),
                   duration: Duration(milliseconds: 800),

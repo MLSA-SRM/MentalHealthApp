@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mental_health_app/GAD7_Page.dart';
@@ -295,6 +296,24 @@ class _SDRSPageState extends State<SDRSPage> {
     if(total_a >=6 || total_d >=7 )isSevere = true;
     else isSevere = false;*/
   }
+Future pushToFirebase() async {
+    final Map<String, String> someMap = {};
+    print('map for SDRS created');
+
+    for (int i = 0; i < 5; i++) {
+      someMap["Q${i + 10}"] = SDRS_Questions[i].answer;
+      print(SDRS_Questions[i].answer);
+    }
+    print('done');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String pushId = prefs.getString('key');
+    FirebaseDatabase.instance
+        .reference()
+        .child("Responses")
+        .child(pushId)
+        .child("sdrs")
+        .set(someMap);
+  }
 
   Widget summary(BuildContext context){
     _calcResult();
@@ -311,7 +330,7 @@ class _SDRSPageState extends State<SDRSPage> {
             height: 250.h,
           )),
           InkWell(
-            onTap: () {
+            onTap: ()async {
               setState(() {
                 count = 0;
                 for (int i = 0; i < 5; i++) {
@@ -327,6 +346,7 @@ class _SDRSPageState extends State<SDRSPage> {
               });
               if(count == 5)
               {
+                await pushToFirebase();
                 //Done
               }
               else

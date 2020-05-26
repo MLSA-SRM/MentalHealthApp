@@ -1,7 +1,9 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mental_health_app/PHQ9_Page.dart';
 import 'package:mental_health_app/question.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -258,6 +260,24 @@ class _GAD7PageState extends State<GAD7Page> {
     else if(total >=11 && total <= 15) return "Moderately severe";
     else return "Severe";
   }
+Future pushToFirebase() async {
+    final Map<String, String> someMap = {};
+    print('map for GAD7 created');
+
+    for (int i = 0; i < 7; i++) {
+      someMap["Q${i + 10}"] = GAD7_Questions[i].answer;
+      print(GAD7_Questions[i].answer);
+    }
+    print('done');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String pushId = prefs.getString('key');
+    FirebaseDatabase.instance
+        .reference()
+        .child("Responses")
+        .child(pushId)
+        .child("gad7")
+        .set(someMap);
+  }
 
   Widget summary(BuildContext context){
     return Center(
@@ -271,7 +291,7 @@ class _GAD7PageState extends State<GAD7Page> {
             image: AssetImage('assets/checklist.png'),
             height: 250.h,
           )),
-          InkWell(onTap: (){
+          InkWell(onTap: ()async{
             setState(() {
                 count = 0;
                 for (int i = 0; i < 7; i++) {
@@ -283,9 +303,10 @@ class _GAD7PageState extends State<GAD7Page> {
                   }
                 }
               });
-            if(count==7)
+            if(count==7){
+              await pushToFirebase();
             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PHQ9Page()));
-            else{
+            }else{
               final snackBar = SnackBar(
                   content: Text("Please complete the questionnaire"),
                   duration: Duration(milliseconds: 800),
