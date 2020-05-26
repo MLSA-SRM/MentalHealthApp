@@ -39,7 +39,7 @@ class _GAD7PageState extends State<GAD7Page> {
 
   _getQuestions(){
     for(int i =0;i<7;i++){
-      GAD7_Questions[i].getQues(questions[i], "assets/PHQ-9iconsFINAL_${(i+1)}.png");
+      GAD7_Questions[i].getQues(questions[i], "assets/PHQ-9icons_${(i+1)}.png");
       GAD7_Questions[i].getOptions("Not at all", "Several days", "More than half the days", "Nearly every day");
       GAD7_Questions[i].getColor(randomizecolor[i%6],randomizecolor[i%6],randomizecolor[i%6], randomizecolor[i%6]);
       GAD7_Questions[i].type = 1;

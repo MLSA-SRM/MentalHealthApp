@@ -148,7 +148,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                   ),
                   ShowUp(
                     child: Text(
-                      "Awareness",
+                      "Here For You",
                       style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
@@ -161,7 +161,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                   ),
                   ShowUp(
                     child: Text(
-                      "Invest in your mental health\n",
+                      "\'And the thoughts in Your Head\'\n",
                       style: TextStyle(fontSize: 20, color: Colors.black),
                     ),
                     delay: delayedAmount,
@@ -176,11 +176,11 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            "\"Great Mental Health is not a destination.",
+                            "",
                             style: TextStyle(fontSize: 16, color: Colors.black),
                           ),
                           Text(
-                            "It's about how you drive not where you're going.\"\n",
+                            "",
                             style: TextStyle(fontSize: 16, color: Colors.black),
                           ),
                           Row(
@@ -189,7 +189,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                               Column(
                                 children: <Widget>[
                                   Text(
-                                    "-Andrea Balt",
+                                    "",
                                     style: TextStyle(
                                         fontSize: 16, color: Colors.black),
                                   ),
