@@ -462,23 +462,34 @@ class _Dass21PageState extends State<Dass21Page> {
                   }
                 }
               });
+              var prefs = await SharedPreferences.getInstance();
 
               if (count == 21) {
                 if (total_a >= 6 && total_d >= 7) {
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => GAD7Page(true)));
                   isSevere = true;
+                  prefs.setString('result', 'dep');
                 } else if (total_a >= 6) {
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => GAD7Page(false)));
+                  prefs.setString('result', 'anx');
                   isSevere = true;
                 } else if (total_d >= 7) {
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => PHQ9Page()));
+                  prefs.setString('result', 'dep');
                   isSevere = true;
-                } else {
+                } else if(total_s >= 10) {
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => BACEPage()));
+                  prefs.setString('result', 'str');
+                  isSevere = false;
+                }
+                else {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => BACEPage()));
+                  prefs.setString('result', 'non');
                   isSevere = false;
                 }
               } else {

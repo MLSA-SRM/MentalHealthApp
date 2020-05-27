@@ -2,6 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mental_health_app/GAD7_Page.dart';
+import 'package:mental_health_app/GetToKnowPage.dart';
 import 'package:mental_health_app/PHQ9_Page.dart';
 import 'package:mental_health_app/question.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -347,7 +348,7 @@ Future pushToFirebase() async {
               if(count == 5)
               {
                 await pushToFirebase();
-                //Done
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ResultPage()));//Done
               }
               else
               {
