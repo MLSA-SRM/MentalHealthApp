@@ -8,8 +8,9 @@
          FlutterApplication and put your custom class here. -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:name="io.flutter.app.FlutterApplication"
+        android:name=".Application"
         android:label="Here for You"
+        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
@@ -26,10 +27,12 @@
                 android:name="io.flutter.app.android.SplashScreenUntilFirstFrame"
                 android:value="true" />
             <intent-filter>
+                             <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
                 <action android:name="FLUTTER_NOTIFICATION_CLICK" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
     </application>

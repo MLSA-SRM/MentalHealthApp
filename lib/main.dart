@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:mental_health_app/DASS21_Page.dart';
 import 'package:mental_health_app/GAD7_Page.dart';
+import 'package:mental_health_app/WebView.dart';
 import 'package:mental_health_app/onboarding.dart';
 import 'package:mental_health_app/test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,6 +19,22 @@ void main() {
     home: MyApp(),
     debugShowCheckedModeBanner: false,
   ));
+}
+
+
+Future<dynamic> myBackgroundMessageHandler(Map<String, dynamic> message) {
+  if (message.containsKey('data')) {
+    // Handle data message
+    final dynamic data = message['data'];
+  }
+
+  if (message.containsKey('notification')) {
+    // Handle notification message
+    final dynamic notification = message['notification'];
+    print(notification);
+  }
+
+  // Or do other work.
 }
 
 class MyApp extends StatefulWidget {
@@ -52,25 +69,25 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
         print("onMessage: $message");
         print(message['notification']['body'] + "message");
         url = message['notification']['body'];
-        onCallback = true;
         setState(() {
 
         });
       },
+      onBackgroundMessage: myBackgroundMessageHandler,
       onLaunch: (Map<String, dynamic> message) async {
         print("onLaunch: $message");
-        print(message['notification']['body'] + "launch");
-        url = message['notification']['body'];
-        onCallback = true;
+        print(message['data']['body']);
+        url = message['data']['body'];
+        Navigator.push(context, MaterialPageRoute(builder: (context) => WebViewPage(url)));
         setState(() {
 
         });
       },
       onResume: (Map<String, dynamic> message) async {
         print("onResume: $message");
-        print(message['notification']['body'] + "resume");
-        url = message['notification']['body'];
-        onCallback = true;
+        print(message['data']['body']);
+        url = message['data']['body'];
+        Navigator.push(context, MaterialPageRoute(builder: (context) => WebViewPage(url)));
         setState(() {
 
         });
@@ -115,7 +132,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,
-        body: (!onCallback) ?SingleChildScrollView(
+        body: SingleChildScrollView(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -243,10 +260,6 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                 ]),
               ]),
         )
-        : WebviewScaffold(
-          initialChild: Center(child: CircularProgressIndicator()),
-          url: url,
-        ),
       ),
     );
   }
