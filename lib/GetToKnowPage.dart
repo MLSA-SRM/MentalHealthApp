@@ -64,7 +64,7 @@ class _ResultPageState extends State<ResultPage> {
       body: ListView(
         children: <Widget>[
           SizedBox(
-            height: MediaQuery.of(context).size.height / 20,
+            height: MediaQuery.of(context).size.height / 30,
           ),
           Text("Preliminary Findings",textAlign: TextAlign.center,
             style: TextStyle(
@@ -73,7 +73,7 @@ class _ResultPageState extends State<ResultPage> {
               color: Colors.green
             ),),
           SizedBox(
-            height: MediaQuery.of(context).size.height / 50,
+            height: MediaQuery.of(context).size.height / 70,
           ),
           ShowUp(
               child: Container(
@@ -96,14 +96,14 @@ class _ResultPageState extends State<ResultPage> {
                 return Column(
                   children: <Widget>[
                     SizedBox(
-                      height: MediaQuery.of(context).size.height / 50,
+                      height: MediaQuery.of(context).size.height / 70,
                     ),
                     Text(snapshot.data[1],textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: MediaQuery.of(context).size.width/23,
                       ),),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height / 20,
+                      height: MediaQuery.of(context).size.height / 30,
                     ),
                     Text(snapshot.data[2],textAlign: TextAlign.center,
                       style: TextStyle(
@@ -114,7 +114,7 @@ class _ResultPageState extends State<ResultPage> {
                     SizedBox(
                       height: MediaQuery.of(context).size.height / 30,
                     ),
-                    Text("Don't worry we are “Here For You” Click here to ",
+                    Text("Don't worry we are “Here For You”",
                       style: TextStyle(
                         color: Colors.green,
                         fontSize: MediaQuery.of(context).size.width/23,
@@ -123,10 +123,11 @@ class _ResultPageState extends State<ResultPage> {
                       onTap: ()async{
                         launch("https://athensdazzle.wixsite.com/website-1");
                       },
-                      child: Text("Get Help Now!",textAlign: TextAlign.center,
+                      child: Text("Click here to Get Help Now!",textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: MediaQuery.of(context).size.width/23,
-                          color: Colors.blue,
+                          color: Colors.green,
+                          decoration: TextDecoration.underline
                         ),),
                     )
                   ],

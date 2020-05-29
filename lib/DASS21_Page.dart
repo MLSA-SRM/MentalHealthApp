@@ -194,36 +194,34 @@ class _Dass21PageState extends State<Dass21Page> {
 
   Widget page(Question question, int index) {
     ScreenUtil.init(context,
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
         allowFontScaling: true);
     return Center(
-      child: SizedBox(
-        height: 650.h,
-        child: Column(
-          children: <Widget>[
-            ShowUp(
-              delay: 500,
-              child: Container(
-                  child: Image(
-                image: AssetImage(question.imgURL),
-                height: 200.h,
-              )),
+      child: Column(
+        children: <Widget>[
+          ShowUp(
+            delay: 500,
+            child: Container(
+                child: Image(
+              image: AssetImage(question.imgURL),
+              height: 400.h,
+            )),
+          ),
+          SizedBox(height: 10.h),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: Text(
+              question.ques,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: ScreenUtil().setSp(55,allowFontScalingSelf: true),
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black),
             ),
-            SizedBox(height: 10.h),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                question.ques,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black),
-              ),
-            ),
-            SizedBox(height: 20.h),
-            InkWell(
+          ),
+          SizedBox(height: 20.h),
+          Padding(
+            padding:  EdgeInsets.only(top: 10.h),
+            child: InkWell(
               onTap: () {
                 _controller.next();
                 if (DASS21_Questions[index].points != null) {
@@ -266,7 +264,10 @@ class _Dass21PageState extends State<Dass21Page> {
                 ),
               ),
             ),
-            InkWell(
+          ),
+          Padding(
+            padding:  EdgeInsets.only(top: 10.h),
+            child: InkWell(
               onTap: () {
                 _controller.next();
                 if (DASS21_Questions[index].points != null) {
@@ -309,7 +310,10 @@ class _Dass21PageState extends State<Dass21Page> {
                 ),
               ),
             ),
-            InkWell(
+          ),
+          Padding(
+            padding:  EdgeInsets.only(top: 10.h),
+            child: InkWell(
               onTap: () {
                 _controller.next();
                 if (DASS21_Questions[index].points != null) {
@@ -352,7 +356,10 @@ class _Dass21PageState extends State<Dass21Page> {
                 ),
               ),
             ),
-            InkWell(
+          ),
+          Padding(
+            padding:  EdgeInsets.only(top: 10.h),
+            child: InkWell(
               onTap: () {
                 _controller.next();
                 if (DASS21_Questions[index].points != null) {
@@ -395,40 +402,40 @@ class _Dass21PageState extends State<Dass21Page> {
                 ),
               ),
             ),
-            Container(
-              height: 80.h,
-              width: MediaQuery.of(context).size.width,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: StepProgressIndicator(
-                    totalSteps: 21,
-                    height: 10.h,
-                    //currentStep: index,
-                    //selectedColor: randomizecolor[index % 6],
-                    //unselectedColor: randomizecolorlight[index % 6],
-                    customColor: (index) => isselected[index - 1][0] ||
-                            isselected[index - 1][1] ||
-                            isselected[index - 1][2] ||
-                            isselected[index - 1][3]
-                        ? Colors.green
-                        : Colors.red,
-                    customStep: (index, color) {
-                      return Icon(
-                        Icons.check_box_outline_blank,
-                        color: color,
-                        size: 15,
-                      );
-                    },
-                    onTap: (index) {
-                      return () {
-                        _controller.move(index - 1);
-                        //print('$index step pressed');
-                      };
-                    }),
-              ),
+          ),
+          Container(
+            height: 80.h,
+            width: MediaQuery.of(context).size.width,
+            child: Padding(
+              padding:  EdgeInsets.all(10.w),
+              child: StepProgressIndicator(
+                  totalSteps: 21,
+                  height: 10.h,
+                  //currentStep: index,
+                  //selectedColor: randomizecolor[index % 6],
+                  //unselectedColor: randomizecolorlight[index % 6],
+                  customColor: (index) => isselected[index - 1][0] ||
+                          isselected[index - 1][1] ||
+                          isselected[index - 1][2] ||
+                          isselected[index - 1][3]
+                      ? Colors.green
+                      : Colors.red,
+                  customStep: (index, color) {
+                    return Icon(
+                      Icons.check_box_outline_blank,
+                      color: color,
+                      size: 15,
+                    );
+                  },
+                  onTap: (index) {
+                    return () {
+                      _controller.move(index - 1);
+                      //print('$index step pressed');
+                    };
+                  }),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -444,7 +451,7 @@ class _Dass21PageState extends State<Dass21Page> {
           Container(
               child: Image(
             image: AssetImage('assets/checklist.png'),
-            height: 250.h,
+            height: 400.h,
           )),
           SizedBox(
             height: 20.h,

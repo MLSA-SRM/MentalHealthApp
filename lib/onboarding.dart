@@ -47,7 +47,7 @@ class _OnboardingState extends State<Onboarding> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, width: MediaQuery.of(context).size.width, height: MediaQuery.of(context).size.height, allowFontScaling: true);
+    ScreenUtil.init(context, allowFontScaling: true);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Swiper(
@@ -73,34 +73,34 @@ class _OnboardingState extends State<Onboarding> {
                       child: Container(
                           child: Image(
                         image: AssetImage('assets/Onboarding1.png'),
-                        height: 250.h,
+                        height: 500.h,
                       )),
                     ),
-                    SizedBox(height: 20.h),
+                    SizedBox(height: 50.h),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
                       child: Text(
                         "Developed by Professionals",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: 22,
+                            fontSize: ScreenUtil().setSp(75,allowFontScalingSelf: true),
                             fontWeight: FontWeight.bold,
                             color: Colors.black),
                       ),
                     ),
-                    SizedBox(height: 30.h),
+                    SizedBox(height: 50.h),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
                       child: Text(
                         "This app has been developed by Mental Health Professionals and is based on Scientific evidence and research. There is a team of eminent mental health professionals in the University who are available to help you.",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: 18,
+                            fontSize: ScreenUtil().setSp(60),
                             //fontWeight: FontWeight.bold,
                             color: Colors.black),
                       ),
                     ),
-                    SizedBox(height: 20.h),
+                    SizedBox(height: 50.h),
                     InkWell(
                       onTap: () {
                         _controller.next();
@@ -113,13 +113,13 @@ class _OnboardingState extends State<Onboarding> {
                           title: Text(
                             "Swipe anywhere or Tap here to Navigate",
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 16, color: Colors.white),
+                            style: TextStyle(fontSize: ScreenUtil().setSp(55,allowFontScalingSelf: true), color: Colors.white),
                           ),
                         ),
                       ),
                     ),
                     SizedBox(
-                      height: 10.h,
+                      height: 30.h,
                     ),
                     RaisedButton(
                       shape: RoundedRectangleBorder(
@@ -136,7 +136,7 @@ class _OnboardingState extends State<Onboarding> {
                           "Know the Team",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: 16,
+                              fontSize: ScreenUtil().setSp(55,allowFontScalingSelf: true),
                               //fontWeight: FontWeight.bold,
                               decoration: TextDecoration.underline,
                               color: Colors.blue[700]),
@@ -149,7 +149,7 @@ class _OnboardingState extends State<Onboarding> {
                       height: 80.h,
                       width: MediaQuery.of(context).size.width,
                       child: Padding(
-                        padding: const EdgeInsets.all(10),
+                        padding:  EdgeInsets.symmetric(vertical: 30.h,horizontal: 10.w),
                         child: StepProgressIndicator(
                           totalSteps: 3,
                           height: 10.h,
@@ -185,34 +185,35 @@ class _OnboardingState extends State<Onboarding> {
                       child: Container(
                           child: Image(
                         image: AssetImage('assets/Onboarding2.png'),
-                        height: 250.h,
-                      )),
+                            height: 500.h,
+
+                          )),
                     ),
-                    SizedBox(height: 20.h),
+                    SizedBox(height: 50.h),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
                       child: Text(
                         "It's OK to ask for Help!",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: 22,
+                            fontSize: ScreenUtil().setSp(75),
                             fontWeight: FontWeight.bold,
                             color: Colors.black),
                       ),
                     ),
-                    SizedBox(height: 30.h),
+                    SizedBox(height: 50.h),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
                       child: Text(
                         "Going out and asking for help is a good thing. Don’t let others tell you otherwise. If you can’t seem to get help then you might be looking in the wrong place. Let professionals lend you a hand.",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: 18,
+                            fontSize: ScreenUtil().setSp(60),
                             //fontWeight: FontWeight.bold,
                             color: Colors.black),
                       ),
                     ),
-                    SizedBox(height: 20.h),
+                    SizedBox(height: 30.h),
                     InkWell(
                       onTap: () {
                         _controller.next();
@@ -225,13 +226,13 @@ class _OnboardingState extends State<Onboarding> {
                               color: Colors.white),
                           title: Text(
                             "Next",
-                            style: TextStyle(fontSize: 16, color: Colors.white),
+                            style: TextStyle(fontSize: ScreenUtil().setSp(60,allowFontScalingSelf: true), color: Colors.white),
                           ),
                         ),
                       ),
                     ),
                     SizedBox(
-                      height: 10.h,
+                      height: 30.h,
                     ),
                     RaisedButton(
                       shape: RoundedRectangleBorder(
@@ -248,7 +249,7 @@ class _OnboardingState extends State<Onboarding> {
                           "I want help now!",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: 16,
+                              fontSize: ScreenUtil().setSp(55,allowFontScalingSelf: true),
                               //fontWeight: FontWeight.bold,
                               decoration: TextDecoration.underline,
                               color: Colors.red[700]),
@@ -261,7 +262,7 @@ class _OnboardingState extends State<Onboarding> {
                       height: 80.h,
                       width: MediaQuery.of(context).size.width,
                       child: Padding(
-                        padding: const EdgeInsets.all(10),
+                        padding:  EdgeInsets.symmetric(horizontal: 10.w,vertical: 50.h),
                         child: StepProgressIndicator(
                           totalSteps: 3,
                           height: 10.h,
@@ -297,41 +298,41 @@ class _OnboardingState extends State<Onboarding> {
                       child: Container(
                           child: Image(
                         image: AssetImage('assets/Onboarding3.png'),
-                        height: 200.h,
+                        height: 500.h,
                       )),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
                       child: Text(
                         "Disclaimer",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: 22,
+                            fontSize: ScreenUtil().setSp(75,allowFontScalingSelf: true),
                             fontWeight: FontWeight.bold,
                             decoration: TextDecoration.underline,
                             color: Colors.black),
                       ),
                     ),
-                    SizedBox(height: 20.h),
+                    SizedBox(height: 50.h),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
                       child: Text(
                         "This is not an alternative to seeking professional help for any acute mental health condition, If you’re currently feeling extremely anxious, suicidal or depressed kindly visit the Emergency of SRM Medical College & Hospital help will be provided to you promptly for the same. Please go through the Consent form below.\n",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: 18,
+                            fontSize: ScreenUtil().setSp(60,allowFontScalingSelf: true),
                             //fontWeight: FontWeight.bold,
                             color: Colors.black),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
                       child: Link(
                         child: Text(
                           "Consent Form",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: 20.h,
+                              fontSize: ScreenUtil().setSp(50),
                               //fontWeight: FontWeight.bold,
                               decoration: TextDecoration.underline,
                               color: Colors.blue[700]),
@@ -339,7 +340,7 @@ class _OnboardingState extends State<Onboarding> {
                         url: 'https://athensdazzle.wixsite.com/mysite',
                       ),
                     ),
-                    SizedBox(height: 20.h),
+                    SizedBox(height: 30.h),
                     InkWell(
                       onTap: () {
                         //_controller.next();
@@ -354,7 +355,7 @@ class _OnboardingState extends State<Onboarding> {
                           title: Text(
                             "I have read the form and I give Consent",
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 16, color: Colors.white),
+                            style: TextStyle(fontSize: ScreenUtil().setSp(50,allowFontScalingSelf: true), color: Colors.white),
                           ),
                         ),
                       ),
@@ -363,7 +364,7 @@ class _OnboardingState extends State<Onboarding> {
                       height: 80.h,
                       width: MediaQuery.of(context).size.width,
                       child: Padding(
-                        padding: const EdgeInsets.all(10),
+                        padding:  EdgeInsets.symmetric(horizontal: 10.w,vertical: 30.h),
                         child: StepProgressIndicator(
                           totalSteps: 3,
                           height: 10.h,

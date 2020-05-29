@@ -76,8 +76,6 @@ class QuizState extends State<Quiz> {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context,
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
         allowFontScaling: true);
     return WillPopScope(
       onWillPop: _backPressed,
@@ -86,40 +84,36 @@ class QuizState extends State<Quiz> {
         home: Scaffold(
           backgroundColor: Colors.white,
           body: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding:  EdgeInsets.symmetric(horizontal: 20.w),
             child: new Swiper(
               curve: Curves.easeInOutCubic,
               scrollDirection: Axis.vertical,
               loop: false,
-              viewportFraction: 0.7,
+              viewportFraction: 0.8,
               scale: 0.2,
               controller: _controller,
               itemBuilder: (BuildContext context, int index) {
                 if (index == 0) {
                   return Center(
-                    child: SizedBox(
-                      height: 650.h,
-                      child: Column(
-                        children: <Widget>[
-                          Container(
-                              height: 130.h,
-                              child: Image(
-                                  image: AssetImage('assets/gendercomf.png'))),
-                          SizedBox(
-                            height: 5.h,
-                          ),
-                          Text(
-                            "I identify as a",
-                            style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          ),
-                          Text(
-                            "",
-                            style: TextStyle(fontSize: 18, color: Colors.black),
-                          ),
-                          InkWell(
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                            height: 400.h,
+                            child: Image(
+                                image: AssetImage('assets/gendercomf.png'))),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        Text(
+                          "I identify as a",
+                          style: TextStyle(
+                              fontSize: ScreenUtil().setSp(75,allowFontScalingSelf: true),
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                        ),
+                        Padding(
+                          padding:  EdgeInsets.only(top: 20.h),
+                          child: InkWell(
                             onTap: () {
                               _controller.next();
                               setState(() {
@@ -135,12 +129,15 @@ class QuizState extends State<Quiz> {
                                 title: Text(
                                   'Male',
                                   style: TextStyle(
-                                      fontSize: 16, color: Colors.white),
+                                      fontSize: ScreenUtil().setSp(60,allowFontScalingSelf: true), color: Colors.white),
                                 ),
                               ),
                             ),
                           ),
-                          InkWell(
+                        ),
+                        Padding(
+                          padding:  EdgeInsets.only(top: 20.h),
+                          child: InkWell(
                             onTap: () {
                               _controller.next();
                               setState(() {
@@ -156,12 +153,15 @@ class QuizState extends State<Quiz> {
                                 title: Text(
                                   'Female',
                                   style: TextStyle(
-                                      fontSize: 16, color: Colors.white),
+                                      fontSize: ScreenUtil().setSp(60,allowFontScalingSelf: true), color: Colors.white),
                                 ),
                               ),
                             ),
                           ),
-                          InkWell(
+                        ),
+                        Padding(
+                          padding:  EdgeInsets.only(top: 20.h),
+                          child: InkWell(
                             onTap: () {
                               _controller.next();
                               setState(() {
@@ -181,35 +181,33 @@ class QuizState extends State<Quiz> {
                                   autofocus: false,
                                 )),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   );
                 }
                 if (index == 1) {
                   return Center(
-                    child: SizedBox(
-                      height: 650.h,
-                      child: Column(
-                        children: <Widget>[
-                          Container(
-                            child:
-                                Image(image: AssetImage('assets/dob-info.png')),
-                            height: 130.h,
-                          ),
-                          Text(
-                            "Please enter the following details.",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          ),
-                          Text(
-                            "",
-                            style: TextStyle(fontSize: 18, color: Colors.black),
-                          ),
-                          InkWell(
+                    child: ListView(
+                      physics: ClampingScrollPhysics(),
+                      children: <Widget>[
+                        Container(
+                          child:
+                              Image(image: AssetImage('assets/dob-info.png')),
+                          height: 400.h,
+                        ),
+                        Text(
+                          "Please enter the following details.",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: ScreenUtil().setSp(75,allowFontScalingSelf: true),
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                        ),
+
+                        Padding(
+                          padding:  EdgeInsets.only(top: 20.h),
+                          child: InkWell(
                             onTap: () {
                               //_controller.next();
                               showDatePicker(
@@ -238,7 +236,7 @@ class QuizState extends State<Quiz> {
                                           "/" +
                                           _dateTime.year.toString(),
                                   style: TextStyle(
-                                      fontSize: 16, color: Colors.white),
+                                      fontSize: ScreenUtil().setSp(55,allowFontScalingSelf: true), color: Colors.white),
                                 ),
                               ),
                               //child: Text(_dateTime==null? "Please select a date":_dateTime.toString()),
@@ -252,7 +250,10 @@ class QuizState extends State<Quiz> {
                                 )*/
                             ),
                           ),
-                          InkWell(
+                        ),
+                        Padding(
+                          padding:  EdgeInsets.only(top: 20.h),
+                          child: InkWell(
                             onTap: () {
                               _controller.next();
                               setState(() {
@@ -272,7 +273,10 @@ class QuizState extends State<Quiz> {
                                   autofocus: false,
                                 )),
                           ),
-                          InkWell(
+                        ),
+                        Padding(
+                          padding:  EdgeInsets.only(top: 20.h),
+                          child: InkWell(
                             onTap: () {
                               _controller.next();
                               setState(() {
@@ -292,34 +296,30 @@ class QuizState extends State<Quiz> {
                                   autofocus: false,
                                 )),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   );
                 }
                 if (index == 2) {
                   return Center(
-                    child: SizedBox(
-                      height: 650.h,
-                      child: Column(
-                        children: <Widget>[
-                          Container(
-                            child: Image(image: AssetImage('assets/heart.png')),
-                            height: 130.h,
-                          ),
-                          Text(
-                            "\nDo you have any physical illness?\nIf yes, have you consulted a",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          ),
-                          Text(
-                            "",
-                            style: TextStyle(fontSize: 18, color: Colors.black),
-                          ),
-                          InkWell(
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          child: Image(image: AssetImage('assets/heart.png')),
+                          height: 400.h,
+                        ),
+                        Text(
+                          "\nDo you have any physical illness?\nIf yes, have you consulted a",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: ScreenUtil().setSp(65,allowFontScalingSelf: true),
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                        ),
+                        Padding(
+                          padding:  EdgeInsets.only(top: 20.h),
+                          child: InkWell(
                             onTap: () {
                               _controller.next();
                               answers[1] = "Medical Doctor";
@@ -333,12 +333,16 @@ class QuizState extends State<Quiz> {
                                 title: Text(
                                   'Medical Doctor',
                                   style: TextStyle(
-                                      fontSize: 16, color: Colors.white),
+                                      fontSize: ScreenUtil().setSp(50,allowFontScalingSelf: true),
+                                      color: Colors.white),
                                 ),
                               ),
                             ),
                           ),
-                          InkWell(
+                        ),
+                        Padding(
+                          padding:  EdgeInsets.only(top: 20.h),
+                          child: InkWell(
                             onTap: () {
                               _controller.next();
                               answers[1] = "AYUSH doctor";
@@ -352,12 +356,16 @@ class QuizState extends State<Quiz> {
                                 title: Text(
                                   'AYUSH doctor',
                                   style: TextStyle(
-                                      fontSize: 16, color: Colors.white),
+                                      fontSize: ScreenUtil().setSp(50,allowFontScalingSelf: true),
+                                      color: Colors.white),
                                 ),
                               ),
                             ),
                           ),
-                          InkWell(
+                        ),
+                        Padding(
+                          padding:  EdgeInsets.only(top: 20.h),
+                          child: InkWell(
                             onTap: () {
                               _controller.next();
                               answers[1] = "No physical illness";
@@ -371,59 +379,56 @@ class QuizState extends State<Quiz> {
                                 title: Text(
                                   'No physical illness',
                                   style: TextStyle(
-                                      fontSize: 16, color: Colors.white),
+                                      fontSize: ScreenUtil().setSp(50,allowFontScalingSelf: true),
+                                      color: Colors.white),
                                 ),
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   );
                 }
                 if (index == 3) {
                   return Center(
-                    child: SizedBox(
-                      height: 650.h,
-                      child: Column(
-                        children: <Widget>[
-                          Container(
-                            child: Image(
-                                image: AssetImage('assets/prevpsychhelp.png')),
-                            height: 130.h,
-                          ),
-                          Text(
-                            "\nHave you ever consulted a",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          ),
-                          Text(
-                            "",
-                            style: TextStyle(fontSize: 18, color: Colors.black),
-                          ),
-                          /*InkWell(
-                            onTap: () {
-                              _controller.next();
-                              setState(() {
-                                answers[3] = 1;
-                              });
-                            },
-                            child: Card(
-                                elevation: 8,
-                                color: Colors.white,
-                                child: TextField(
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    labelText: 'Yes',
-                                    hintText: 'Please Specify',
-                                  ),
-                                  autofocus: false,
-                                )),
-                          ),*/
-                          InkWell(
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          child: Image(
+                              image: AssetImage('assets/prevpsychhelp.png')),
+                          height: 400.h,
+                        ),
+                        Text(
+                          "\nHave you ever consulted a",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: ScreenUtil().setSp(70,allowFontScalingSelf: true),
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                        ),
+                        /*InkWell(
+                          onTap: () {
+                            _controller.next();
+                            setState(() {
+                              answers[3] = 1;
+                            });
+                          },
+                          child: Card(
+                              elevation: 8,
+                              color: Colors.white,
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  labelText: 'Yes',
+                                  hintText: 'Please Specify',
+                                ),
+                                autofocus: false,
+                              )),
+                        ),*/
+                        Padding(
+                          padding:  EdgeInsets.only(top: 20.h),
+                          child: InkWell(
                             onTap: () {
                               setState(() {
                                 answers[2] = "Psychiatrist";
@@ -452,12 +457,16 @@ class QuizState extends State<Quiz> {
                                 title: Text(
                                   'Psychiatrist',
                                   style: TextStyle(
-                                      fontSize: 16, color: Colors.white),
+                                      fontSize: ScreenUtil().setSp(60,allowFontScalingSelf: true),
+                                      color: Colors.white),
                                 ),
                               ),
                             ),
                           ),
-                          InkWell(
+                        ),
+                        Padding(
+                          padding:  EdgeInsets.only(top: 20.h),
+                          child: InkWell(
                             onTap: () {
                               setState(() {
                                 answers[2] = "Psychologist";
@@ -486,12 +495,16 @@ class QuizState extends State<Quiz> {
                                 title: Text(
                                   'Psychologist',
                                   style: TextStyle(
-                                      fontSize: 16, color: Colors.white),
+                                      fontSize: ScreenUtil().setSp(60,allowFontScalingSelf: true),
+                                      color: Colors.white),
                                 ),
                               ),
                             ),
                           ),
-                          InkWell(
+                        ),
+                        Padding(
+                          padding:  EdgeInsets.only(top: 20.h),
+                          child: InkWell(
                             onTap: () {
                               setState(() {
                                 answers[2] = "Counsellor";
@@ -520,12 +533,16 @@ class QuizState extends State<Quiz> {
                                 title: Text(
                                   'Counsellor',
                                   style: TextStyle(
-                                      fontSize: 16, color: Colors.white),
+                                      fontSize: ScreenUtil().setSp(60,allowFontScalingSelf: true),
+                                      color: Colors.white),
                                 ),
                               ),
                             ),
                           ),
-                          InkWell(
+                        ),
+                        Padding(
+                          padding:  EdgeInsets.only(top: 20.h),
+                          child: InkWell(
                             onTap: () {
                               setState(() {
                                 answers[2] = "None";
@@ -554,13 +571,14 @@ class QuizState extends State<Quiz> {
                                 title: Text(
                                   'None',
                                   style: TextStyle(
-                                      fontSize: 16, color: Colors.white),
+                                      fontSize: ScreenUtil().setSp(60,allowFontScalingSelf: true),
+                                      color: Colors.white),
                                 ),
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   );
                 } else

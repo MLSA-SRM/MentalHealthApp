@@ -1,6 +1,8 @@
 import 'package:avatar_glow/avatar_glow.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:mental_health_app/DASS21_Page.dart';
@@ -14,11 +16,17 @@ import 'Showup.dart';
 import 'quiz.dart';
 
 void main() {
-  runApp(MaterialApp(
+  runApp(
+      DevicePreview(
+        enabled: !kReleaseMode,
+        builder:(context) =>  MaterialApp(
+          locale: DevicePreview.of(context).locale,
+          builder: DevicePreview.appBuilder,
     title: 'Navigation Basics',
     home: MyApp(),
     debugShowCheckedModeBanner: false,
-  ));
+  ),
+      ));
 }
 
 
@@ -127,7 +135,8 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
 // 'title': 'Realtime db rocks',
 // 'created_at': 'a goodtime'
 // });
-
+    var _height = MediaQuery.of(context).size.height;
+    var _width = MediaQuery.of(context).size.width;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -143,7 +152,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                   ShowUp(
                     child: AvatarGlow(
                       //curve: Curves.easeOut,
-                      endRadius: 110,
+                      endRadius: _width/4,
                       duration: Duration(seconds: 2),
                       glowColor: Colors.blueAccent,
                       repeat: true,
@@ -156,7 +165,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                             backgroundColor: Colors.grey[100],
                             child:
                                 Image(image: AssetImage('assets/mainlogo.png')),
-                            radius: 80.0,
+                            radius: _width/5,
                           )),
                     ),
                   ),
@@ -167,19 +176,19 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                     child: Text(
                       "Here For You",
                       style: TextStyle(
-                          fontSize: 24,
+                          fontSize: _width/15,
                           fontWeight: FontWeight.bold,
                           color: Colors.black),
                     ),
                     delay: delayedAmount - 500,
                   ),
                   SizedBox(
-                    height: 40,
+                    height: _height/20,
                   ),
                   ShowUp(
                     child: Text(
                       "\'And the thoughts in Your Head\'\n",
-                      style: TextStyle(fontSize: 20, color: Colors.black),
+                      style: TextStyle(fontSize: _width/18, color: Colors.black),
                     ),
                     delay: delayedAmount,
                   ),
@@ -188,7 +197,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                   ),
                   ShowUp(
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(12, 10, 12, 0),
+                      padding: EdgeInsets.symmetric(horizontal: _width/20,vertical: _height/70),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -220,12 +229,12 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                     delay: delayedAmount,
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height / 7,
+                    height: MediaQuery.of(context).size.height / 20,
                   ),
                   ShowUp(
                     child: Container(
-                      height: 50,
-                      width: 150,
+                      height: _height/10,
+                      width: _width/2,
                       child: RaisedButton(
                         elevation: 10,
                         onPressed: () {
@@ -244,14 +253,14 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                         padding: const EdgeInsets.all(8.0),
                         child: new Text(
                           "Get Started",
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: _width/20),
                         ),
                       ),
                     ),
                     delay: 1100,
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height / 50,
+                    height: MediaQuery.of(context).size.height / 40,
                   ),
                   ShowUp(
                     child: Text("Instructions: Swipe Up after every question\n",

@@ -68,7 +68,7 @@ class _SDRSPageState extends State<SDRSPage> {
         curve: Curves.easeInOutCubic,
         scrollDirection:Axis.horizontal,
         loop: false,
-        viewportFraction: 0.95,
+        viewportFraction: 1,
         scale: 0.5,
         controller: _controller,
         itemBuilder: (BuildContext context, int index) {
@@ -82,209 +82,204 @@ class _SDRSPageState extends State<SDRSPage> {
   }
 
   Widget page(Question question,int index) {
-    ScreenUtil.init(context, width: MediaQuery.of(context).size.width, height: MediaQuery.of(context).size.height, allowFontScaling: true);
+    ScreenUtil.init(context,
+        allowFontScaling: true);
     return Center(
-      child: SizedBox(
-        height: 700.h,
-        child: Column(
-          children: <Widget>[
-            ShowUp(
-              delay : 500,
-                          child: Container(
-                  child: Image(
-                    image: AssetImage(question.imgURL),
-                    height: 200.h,
-                  )),
+      child: Column(
+        children: <Widget>[
+          ShowUp(
+            delay : 500,
+                        child: Container(
+                child: Image(
+                  image: AssetImage(question.imgURL),
+                  height: 300.h,
+                )),
+          ),
+          SizedBox(height: 10.h),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              question.ques,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: ScreenUtil().setSp(55,allowFontScalingSelf: true),
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black),
             ),
-            SizedBox(height: 20.h),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                question.ques,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black),
-              ),
-            ),
-            SizedBox(height: 20.h),
-            InkWell(
-              onTap: () {
-                _controller.next();
-                if(SDRS_Questions[index].type == 1){total +=1;SDRS_Questions[index].points = 1;}
-                else {total += 0;SDRS_Questions[index].points = 0;}
-                setState(() {
-                  SDRS_Questions[index].answer = question.opt1;
-                  isselected[index][0] = true;
-                  isselected[index][1] = false;
-                  isselected[index][2] = false;
-                  isselected[index][3] = false;
-                  isselected[index][4] = false;
+          ),
+          SizedBox(height: 20.h),
+          InkWell(
+            onTap: () {
+              _controller.next();
+              if(SDRS_Questions[index].type == 1){total +=1;SDRS_Questions[index].points = 1;}
+              else {total += 0;SDRS_Questions[index].points = 0;}
+              setState(() {
+                SDRS_Questions[index].answer = question.opt1;
+                isselected[index][0] = true;
+                isselected[index][1] = false;
+                isselected[index][2] = false;
+                isselected[index][3] = false;
+                isselected[index][4] = false;
 
-                });
-              },
-              child: Card(
-                elevation: 8,
-                color: question.opt1Color,
-                child: ListTile(
-                  leading:
-                  Icon(Icons.keyboard_arrow_right, color: Colors.white),
-                  trailing: isselected[index][0]? Icon(Icons.spellcheck, color: Colors.white) : null,
-                  title: Text(
-                    question.opt1,
-                    style: TextStyle(fontSize: 16, color: Colors.white),
-                  ),
+              });
+            },
+            child: Card(
+              elevation: 8,
+              color: question.opt1Color,
+              child: ListTile(
+                leading:
+                Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                trailing: isselected[index][0]? Icon(Icons.spellcheck, color: Colors.white) : null,
+                title: Text(
+                  question.opt1,
+                  style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
             ),
-            InkWell(
-              onTap: () {
-                _controller.next();
-                if(SDRS_Questions[index].type == 1){total +=1;SDRS_Questions[index].points = 1;}
-                else {total += 0;SDRS_Questions[index].points = 0;}
-                setState(() {
-                  SDRS_Questions[index].answer = question.opt2;
-                  isselected[index][0] = false;
-                  isselected[index][1] = true;
-                  isselected[index][2] = false;
-                  isselected[index][3] = false;
-                  isselected[index][4] = false;
-                });
-              },
-              child: Card(
-                elevation: 8,
-                color: question.opt2Color,
-                child: ListTile(
-                  leading:
-                  Icon(Icons.keyboard_arrow_right, color: Colors.white),
-                  trailing: isselected[index][1]? Icon(Icons.spellcheck, color: Colors.white) : null,
-                  title: Text(
-                    question.opt2,
-                    style: TextStyle(fontSize: 16, color: Colors.white),
-                  ),
+          ),
+          InkWell(
+            onTap: () {
+              _controller.next();
+              if(SDRS_Questions[index].type == 1){total +=1;SDRS_Questions[index].points = 1;}
+              else {total += 0;SDRS_Questions[index].points = 0;}
+              setState(() {
+                SDRS_Questions[index].answer = question.opt2;
+                isselected[index][0] = false;
+                isselected[index][1] = true;
+                isselected[index][2] = false;
+                isselected[index][3] = false;
+                isselected[index][4] = false;
+              });
+            },
+            child: Card(
+              elevation: 8,
+              color: question.opt2Color,
+              child: ListTile(
+                leading:
+                Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                trailing: isselected[index][1]? Icon(Icons.spellcheck, color: Colors.white) : null,
+                title: Text(
+                  question.opt2,
+                  style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
             ),
-            InkWell(
-              onTap: () {
-                _controller.next();
-                if(SDRS_Questions[index].type == 1){total +=1;SDRS_Questions[index].points = 1;}
-                else {total += 0;SDRS_Questions[index].points = 0;}
-                setState(() {
-                  SDRS_Questions[index].answer = question.opt3;
-                  isselected[index][0] = false;
-                  isselected[index][1] = false;
-                  isselected[index][2] = true;
-                  isselected[index][3] = false;
-                  isselected[index][4] = false;
-                });
-              },
-              child: Card(
-                elevation: 8,
-                color: question.opt3Color,
-                child: ListTile(
-                  leading:
-                  Icon(Icons.keyboard_arrow_right, color: Colors.white),
-                  trailing: isselected[index][2]? Icon(Icons.spellcheck, color: Colors.white) : null,
-                  title: Text(
-                    question.opt3,
-                    style: TextStyle(fontSize: 16, color: Colors.white),
-                  ),
+          ),
+          InkWell(
+            onTap: () {
+              _controller.next();
+              if(SDRS_Questions[index].type == 1){total +=1;SDRS_Questions[index].points = 1;}
+              else {total += 0;SDRS_Questions[index].points = 0;}
+              setState(() {
+                SDRS_Questions[index].answer = question.opt3;
+                isselected[index][0] = false;
+                isselected[index][1] = false;
+                isselected[index][2] = true;
+                isselected[index][3] = false;
+                isselected[index][4] = false;
+              });
+            },
+            child: Card(
+              elevation: 8,
+              color: question.opt3Color,
+              child: ListTile(
+                leading:
+                Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                trailing: isselected[index][2]? Icon(Icons.spellcheck, color: Colors.white) : null,
+                title: Text(
+                  question.opt3,
+                  style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
             ),
-            InkWell(
-              onTap: () {
-                _controller.next();
-                if(SDRS_Questions[index].type == 1){total +=1;SDRS_Questions[index].points = 1;}
-                else {total += 0;SDRS_Questions[index].points = 0;}
-                setState(() {
-                  SDRS_Questions[index].answer = question.opt4;
-                  isselected[index][0] = false;
-                  isselected[index][1] = false;
-                  isselected[index][2] = false;
-                  isselected[index][3] = true;
-                  isselected[index][4] = false;
-                });
-              },
-              child: Card(
-                elevation: 8,
-                color: question.opt4Color,
-                child: ListTile(
-                  leading:
-                  Icon(Icons.keyboard_arrow_right, color: Colors.white),
-                  trailing: isselected[index][3]? Icon(Icons.spellcheck, color: Colors.white) : null,
-                  title: Text(
-                    question.opt4,
-                    style: TextStyle(fontSize: 16, color: Colors.white),
-                  ),
+          ),
+          InkWell(
+            onTap: () {
+              _controller.next();
+              if(SDRS_Questions[index].type == 1){total +=1;SDRS_Questions[index].points = 1;}
+              else {total += 0;SDRS_Questions[index].points = 0;}
+              setState(() {
+                SDRS_Questions[index].answer = question.opt4;
+                isselected[index][0] = false;
+                isselected[index][1] = false;
+                isselected[index][2] = false;
+                isselected[index][3] = true;
+                isselected[index][4] = false;
+              });
+            },
+            child: Card(
+              elevation: 8,
+              color: question.opt4Color,
+              child: ListTile(
+                leading:
+                Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                trailing: isselected[index][3]? Icon(Icons.spellcheck, color: Colors.white) : null,
+                title: Text(
+                  question.opt4,
+                  style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
             ),
-            InkWell(
-              onTap: () {
-                _controller.next();
-                if(SDRS_Questions[index].type == 2){total +=1;SDRS_Questions[index].points = 1;}
-                else {total += 0;SDRS_Questions[index].points = 0;}
-                setState(() {
-                  SDRS_Questions[index].answer = question.opt5;
-                  isselected[index][0] = false;
-                  isselected[index][1] = false;
-                  isselected[index][2] = false;
-                  isselected[index][3] = false;
-                  isselected[index][4] = true;
-                });
-              },
-              child: Card(
-                elevation: 8,
-                color: question.opt5Color,
-                child: ListTile(
-                  leading:
-                  Icon(Icons.keyboard_arrow_right, color: Colors.white),
-                  trailing: isselected[index][4]? Icon(Icons.spellcheck, color: Colors.white) : null,
-                  title: Text(
-                    question.opt5,
-                    style: TextStyle(fontSize: 16, color: Colors.white),
-                  ),
+          ),
+          InkWell(
+            onTap: () {
+              _controller.next();
+              if(SDRS_Questions[index].type == 2){total +=1;SDRS_Questions[index].points = 1;}
+              else {total += 0;SDRS_Questions[index].points = 0;}
+              setState(() {
+                SDRS_Questions[index].answer = question.opt5;
+                isselected[index][0] = false;
+                isselected[index][1] = false;
+                isselected[index][2] = false;
+                isselected[index][3] = false;
+                isselected[index][4] = true;
+              });
+            },
+            child: Card(
+              elevation: 8,
+              color: question.opt5Color,
+              child: ListTile(
+                leading:
+                Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                trailing: isselected[index][4]? Icon(Icons.spellcheck, color: Colors.white) : null,
+                title: Text(
+                  question.opt5,
+                  style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
             ),
-            Container(
-              height: 80.h,
-              width: MediaQuery.of(context).size.width,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: StepProgressIndicator(
-                    totalSteps: 5,
-                    height: 10.h,
-                    //currentStep: index,
-                    //selectedColor: randomizecolor[index % 6],
-                    //unselectedColor: randomizecolorlight[index % 6],
-                    customColor: (index) => isselected[index - 1][0] ||
-                            isselected[index - 1][1] ||
-                            isselected[index - 1][2] ||
-                            isselected[index - 1][3] ||
-                            isselected[index - 1][4]
-                        ? Colors.green
-                        : Colors.red,
-                    customStep: (index, color) {
-                      return Icon(
-                        Icons.check_box_outline_blank,
-                        color: color,
-                        size: 15,
-                      );
-                    },
-                    onTap: (index) {
-                      return () {
-                        _controller.move(index-1);
-                        //print('$index step pressed');
-                      };
-                    }),
-              ),
-            ),
-          ],
-        ),
+          ),
+          Container(
+            height: 60.h,
+            width: MediaQuery.of(context).size.width,
+            child: StepProgressIndicator(
+                totalSteps: 5,
+                height: 10.h,
+                //currentStep: index,
+                //selectedColor: randomizecolor[index % 6],
+                //unselectedColor: randomizecolorlight[index % 6],
+                customColor: (index) => isselected[index - 1][0] ||
+                        isselected[index - 1][1] ||
+                        isselected[index - 1][2] ||
+                        isselected[index - 1][3] ||
+                        isselected[index - 1][4]
+                    ? Colors.green
+                    : Colors.red,
+                customStep: (index, color) {
+                  return Icon(
+                    Icons.check_box_outline_blank,
+                    color: color,
+                    size: 15,
+                  );
+                },
+                onTap: (index) {
+                  return () {
+                    _controller.move(index-1);
+                    //print('$index step pressed');
+                  };
+                }),
+          ),
+        ],
       ),
     );
   }
@@ -321,14 +316,13 @@ Future pushToFirebase() async {
     return Center(
       child: Column(
         children: <Widget>[
-          
           SizedBox(
             height: 250.h,
           ),
           Container(
               child: Image(
             image: AssetImage('assets/checklist.png'),
-            height: 250.h,
+            height: 400.h,
           )),
           InkWell(
             onTap: ()async {
