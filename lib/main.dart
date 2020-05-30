@@ -9,6 +9,7 @@ import 'package:mental_health_app/DASS21_Page.dart';
 import 'package:mental_health_app/GAD7_Page.dart';
 import 'package:mental_health_app/WebView.dart';
 import 'package:mental_health_app/onboarding.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mental_health_app/test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -130,6 +131,8 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context,
+        allowFontScaling: true);
 //     FirebaseDatabase.instance.reference().child('recent').child('id')
 // .set({
 // 'title': 'Realtime db rocks',
@@ -229,7 +232,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                     delay: delayedAmount,
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height / 20,
+                    //height: MediaQuery.of(context).size.height / 150,
                   ),
                   ShowUp(
                     child: Container(
@@ -265,7 +268,23 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                   ShowUp(
                     child: Text("Instructions: Swipe Up after every question\n",
                         style: TextStyle(color: Colors.grey)),
-                  )
+                  ),
+                  ShowUp(
+                    delay: 1300,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Image(
+                  image: AssetImage("assets/mspc.png"),
+                  height: 250.h,
+                ),
+                Image(
+                  image: AssetImage("assets/envision.png"),
+                  height: 250.h,
+                ),
+                      ],
+                    )
+                  ,),
                 ]),
               ]),
         )
