@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:mental_health_app/DASS21_Page.dart';
 import 'package:mental_health_app/GAD7_Page.dart';
+import 'package:mental_health_app/GetToKnowPage.dart';
 import 'package:mental_health_app/WebView.dart';
 import 'package:mental_health_app/onboarding.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,16 +19,15 @@ import 'quiz.dart';
 
 void main() {
   runApp(
-      DevicePreview(
-        enabled: !kReleaseMode,
-        builder:(context) =>  MaterialApp(
-          locale: DevicePreview.of(context).locale,
-          builder: DevicePreview.appBuilder,
+      
+        
+        MaterialApp(
+          
     title: 'Navigation Basics',
     home: MyApp(),
     debugShowCheckedModeBanner: false,
   ),
-      ));
+      );
 }
 
 
@@ -55,8 +55,16 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   final int delayedAmount = 1000;
   SharedPreferences prefs;
   FirebaseMessaging firebaseMessaging = FirebaseMessaging();
-  bool onCallback = false;
-  String url;
+  bool onCallback = false,buttontoshow = false;
+  String url,_result;
+
+  getresult() async {
+    prefs = await SharedPreferences.getInstance();
+    final _result = prefs.getString('result');
+    print(_result);
+    if(_result=="dep"||_result=="anx"||_result=="str")
+    buttontoshow = true;
+  }
 
   checkDeviceId() async{
     prefs = await SharedPreferences.getInstance();
@@ -73,6 +81,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
     super.initState();
     checkId();
     checkDeviceId();
+    getresult();
     firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
         print("onMessage: $message");
@@ -236,7 +245,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                   ),
                   ShowUp(
                     child: Container(
-                      height: _height/10,
+                      height: _height/15,
                       width: _width/2,
                       child: RaisedButton(
                         elevation: 10,
@@ -262,6 +271,39 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                     ),
                     delay: 1100,
                   ),
+                  buttontoshow?
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height/30,
+                  ): Container(),
+                  buttontoshow?
+                  ShowUp(
+                    child: Container(
+                      height: _height/15,
+                      width: _width/3,
+                      child: RaisedButton(
+                        elevation: 10,
+                        onPressed: () async {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ResultPage()));
+                        },
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(30),
+                          ),
+                        ),
+                        textColor: Colors.white,
+                        color: Colors.blue,
+                        padding: const EdgeInsets.all(8.0),
+                        child: new Text(
+                          "Results",
+                          style: TextStyle(fontSize: _width/20),
+                        ),
+                      ),
+                    ),
+                    delay: 1100,
+                  ):Container(),
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 40,
                   ),
