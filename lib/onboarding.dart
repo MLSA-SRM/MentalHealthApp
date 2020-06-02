@@ -141,7 +141,7 @@ class _OnboardingState extends State<Onboarding> {
                               decoration: TextDecoration.underline,
                               color: Colors.blue[700]),
                         ),
-                        url: 'https://docs.google.com/document/d/1-UaRguuQuFR4R08Q4jtmiL9KCL_B-ZwYG70tQImGNgU/edit?ts=5ecccadb',
+                        url: 'https://docs.google.com/document/d/1-UaRguuQuFR4R08Q4jtmiL9KCL_B-ZwYG70tQImGNgU/edit?ts=5ecccadb', //Know The Team
                       ),
                       onPressed: () {},
                     ),
@@ -254,7 +254,7 @@ class _OnboardingState extends State<Onboarding> {
                               decoration: TextDecoration.underline,
                               color: Colors.red[700]),
                         ),
-                        url: 'https://docs.google.com/document/d/1ZZLO3FCzaQupIxGP1x0Bpsarps9Z1gx4X6UQlxnhBhQ/edit?usp=sharing',
+                        url: 'https://docs.google.com/document/d/1ZZLO3FCzaQupIxGP1x0Bpsarps9Z1gx4X6UQlxnhBhQ/edit?usp=sharing', // Get Help Now
                       ),
                       onPressed: () {},
                     ),
@@ -337,7 +337,7 @@ class _OnboardingState extends State<Onboarding> {
                               decoration: TextDecoration.underline,
                               color: Colors.blue[700]),
                         ),
-                        url: 'https://docs.google.com/document/d/1CemTRCFTUyOoCCWahtIfKgqbRbGBLubkIJqZtCZokoo/edit?usp=sharing',
+                        url: 'https://docs.google.com/document/d/1CemTRCFTUyOoCCWahtIfKgqbRbGBLubkIJqZtCZokoo/edit?usp=sharing', // Consent Form
                       ),
                     ),
                     SizedBox(height: 30.h),
