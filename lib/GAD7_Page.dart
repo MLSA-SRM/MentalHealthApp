@@ -84,6 +84,8 @@ class _GAD7PageState extends State<GAD7Page> {
         allowFontScaling: true);
     return Center(
       child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           ShowUp(
             delay : 500,

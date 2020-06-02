@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:mental_health_app/DASS21_Page.dart';
 import 'package:mental_health_app/GAD7_Page.dart';
-import 'package:mental_health_app/GetToKnowPage.dart';
+import 'package:mental_health_app/ResultPage.dart';
 import 'package:mental_health_app/WebView.dart';
 import 'package:mental_health_app/onboarding.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -60,9 +60,9 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
 
   getresult() async {
     prefs = await SharedPreferences.getInstance();
-    final _result = prefs.getString('result');
+    final _result = prefs.getString('status');
     print(_result);
-    if(_result=="dep"||_result=="anx"||_result=="str")
+    if(_result != null)
     buttontoshow = true;
   }
 
@@ -155,30 +155,35 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Column(children: <Widget>[
+                Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 20,
                   ),
                   ShowUp(
                     child: AvatarGlow(
                       //curve: Curves.easeOut,
-                      endRadius: _width/4,
-                      duration: Duration(seconds: 2),
+                      endRadius: _width/3.5,
+                      duration: Duration(seconds: 3),
                       glowColor: Colors.blueAccent,
                       repeat: true,
-                      repeatPauseDuration: Duration(seconds: 2),
-                      startDelay: Duration(seconds: 1),
-                      child: Material(
-                          elevation: 8.0,
-                          shape: CircleBorder(),
-                          child: CircleAvatar(
-                            backgroundColor: Colors.grey[100],
-                            child:
-                                Image(image: AssetImage('assets/mainlogo.png')),
-                            radius: _width/5,
-                          )),
+                      child: GestureDetector(
+                        onTap: () async {
+                         launch("https://docs.google.com/document/d/1-UaRguuQuFR4R08Q4jtmiL9KCL_B-ZwYG70tQImGNgU/edit?ts=5ecccadb");
+                        },
+                        child: Material(
+                            elevation: 8.0,
+                            shape: CircleBorder(),
+                            child: CircleAvatar(
+                              backgroundColor: Colors.grey[100],
+                              child:
+                                  Image(image: AssetImage('assets/mainlogo.png')),
+                              radius: _width/5,
+                            )),
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -199,135 +204,107 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                   ),
                   ShowUp(
                     child: Text(
-                      "\'And the thoughts in your head\'\n",
+                      "\'And the thoughts in your head\'",
                       style: TextStyle(fontSize: _width/18, color: Colors.black),
                     ),
                     delay: delayedAmount,
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height / 20,
-                  ),
-                  ShowUp(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: _width/20,vertical: _height/70),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            "",
-                            style: TextStyle(fontSize: 16, color: Colors.black),
-                          ),
-                          Text(
-                            "",
-                            style: TextStyle(fontSize: 16, color: Colors.black),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
-                              Column(
-                                children: <Widget>[
-                                  Text(
-                                    "",
-                                    style: TextStyle(
-                                        fontSize: 16, color: Colors.black),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    delay: delayedAmount,
-                  ),
-                  SizedBox(
-                    //height: MediaQuery.of(context).size.height / 150,
-                  ),
-                  ShowUp(
-                    child: Container(
-                      height: _height/15,
-                      width: _width/2,
-                      child: RaisedButton(
-                        elevation: 10,
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Onboarding()));
-                        },
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(30),
-                          ),
-                        ),
-                        textColor: Colors.white,
-                        color: Colors.blue,
-                        padding: const EdgeInsets.all(8.0),
-                        child: new Text(
-                          "Get Started",
-                          style: TextStyle(fontSize: _width/20),
-                        ),
-                      ),
-                    ),
-                    delay: 1100,
-                  ),
-                  buttontoshow?
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height/30,
-                  ): Container(),
-                  buttontoshow?
-                  ShowUp(
-                    child: Container(
-                      height: _height/15,
-                      width: _width/3,
-                      child: RaisedButton(
-                        elevation: 10,
-                        onPressed: () async {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ResultPage()));
-                        },
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(30),
-                          ),
-                        ),
-                        textColor: Colors.white,
-                        color: Colors.blue,
-                        padding: const EdgeInsets.all(8.0),
-                        child: new Text(
-                          "Results",
-                          style: TextStyle(fontSize: _width/20),
-                        ),
-                      ),
-                    ),
-                    delay: 1100,
-                  ):Container(),
-                  SizedBox(
                     height: MediaQuery.of(context).size.height / 40,
                   ),
-                  ShowUp(
-                    child: Text("Instructions: Swipe Up after every question\n",
-                        style: TextStyle(color: Colors.grey)),
-                  ),
-                  ShowUp(
+                      ShowUp(
+                        child: Text("Developed By",style: TextStyle(
+                          fontSize: _width/25
+                        ),),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 40,
+                      ),
+                      ShowUp(
                     delay: 1300,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Image(
-                  image: AssetImage("assets/mspc.png"),
-                  height: 250.h,
-                ),
-                Image(
-                  image: AssetImage("assets/envision.png"),
-                  height: 250.h,
-                ),
+                          image: AssetImage("assets/mspc.png"),
+                          height: 350.h,
+                        ),
+                        Image(
+                          image: AssetImage("assets/envision.png"),
+                          height: 350.h,
+                        ),
                       ],
                     )
-                  ,),
-                ]),
+                    ,),]),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 30,
+                      ),
+                      ShowUp(
+                        child: Container(
+                          height: _height/15,
+                          width: _width/2,
+                          child: RaisedButton(
+                            //elevation: 10,
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Onboarding()));
+                            },
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(30),
+                              ),
+                            ),
+                            textColor: Colors.white,
+                            color: Colors.blue,
+                            padding: const EdgeInsets.all(8.0),
+                            child: new Text(
+                              !buttontoshow ? "Get Started" : "Retake Quiz",
+                              style: TextStyle(fontSize: _width/20),
+                            ),
+                          ),
+                        ),
+                        delay: 1100,
+                      ),
+                      buttontoshow?
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height/30,
+                      ): Container(),
+                      buttontoshow?
+                      ShowUp(
+                        child: Container(
+                          height: _height/15,
+                          width: _width/2,
+                          child: RaisedButton(
+                            //    elevation: 10,
+                            onPressed: () async {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ResultPage()));
+                            },
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(30),
+                              ),
+                            ),
+                            textColor: Colors.white,
+                            color: Colors.teal,
+                            padding: const EdgeInsets.all(8.0),
+                            child: new Text(
+                              "Your Result",
+                              style: TextStyle(fontSize: _width/20),
+                            ),
+                          ),
+                        ),
+                        delay: 1100,
+                      ):Container(),
+                    ],
+                  ),
               ]),
         )
       ),

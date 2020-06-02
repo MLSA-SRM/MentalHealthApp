@@ -2,7 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mental_health_app/GAD7_Page.dart';
-import 'package:mental_health_app/GetToKnowPage.dart';
+import 'package:mental_health_app/ResultPage.dart';
 import 'package:mental_health_app/PHQ9_Page.dart';
 import 'package:mental_health_app/question.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -86,6 +86,8 @@ class _SDRSPageState extends State<SDRSPage> {
         allowFontScaling: true);
     return Center(
       child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           ShowUp(
             delay : 500,

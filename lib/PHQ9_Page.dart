@@ -112,6 +112,8 @@ class _PHQ9PageState extends State<PHQ9Page> {
 
     return Center(
       child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           ShowUp(
             delay: 500,

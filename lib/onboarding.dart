@@ -5,6 +5,7 @@ import 'package:mental_health_app/quiz.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:link/link.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'Showup.dart';
 
 class Onboarding extends StatefulWidget {
@@ -95,7 +96,7 @@ class _OnboardingState extends State<Onboarding> {
                         "This app has been developed by Mental Health Professionals and is based on Scientific evidence and research. There is a team of eminent mental health professionals in the University who are available to help you.",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: ScreenUtil().setSp(60),
+                            fontSize: ScreenUtil().setSp(55,allowFontScalingSelf: true),
                             //fontWeight: FontWeight.bold,
                             color: Colors.black),
                       ),
@@ -111,7 +112,7 @@ class _OnboardingState extends State<Onboarding> {
                         child: ListTile(
                           //leading: Icon(Icons.keyboard_arrow_right, color: Colors.white),
                           title: Text(
-                            "Swipe anywhere or Tap here to Navigate",
+                            "Swipe left or Tap here to Navigate",
                             textAlign: TextAlign.center,
                             style: TextStyle(fontSize: ScreenUtil().setSp(55,allowFontScalingSelf: true), color: Colors.white),
                           ),
@@ -131,7 +132,10 @@ class _OnboardingState extends State<Onboarding> {
                       disabledColor: Colors.blue[100],
                       disabledElevation: 5,
                       elevation: 5,
-                      child: Link(
+                      child: GestureDetector(
+                        onTap: () async {
+                          launch('https://docs.google.com/document/d/1-UaRguuQuFR4R08Q4jtmiL9KCL_B-ZwYG70tQImGNgU/edit?ts=5ecccadb');
+                        },
                         child: Text(
                           "Know the Team",
                           textAlign: TextAlign.center,
@@ -141,7 +145,6 @@ class _OnboardingState extends State<Onboarding> {
                               decoration: TextDecoration.underline,
                               color: Colors.blue[700]),
                         ),
-                        url: 'https://docs.google.com/document/d/1-UaRguuQuFR4R08Q4jtmiL9KCL_B-ZwYG70tQImGNgU/edit?ts=5ecccadb',
                       ),
                       onPressed: () {},
                     ),
@@ -149,7 +152,7 @@ class _OnboardingState extends State<Onboarding> {
                       height: 80.h,
                       width: MediaQuery.of(context).size.width,
                       child: Padding(
-                        padding:  EdgeInsets.symmetric(vertical: 30.h,horizontal: 10.w),
+                        padding:  EdgeInsets.symmetric(vertical: 50.h,horizontal: 10.w),
                         child: StepProgressIndicator(
                           totalSteps: 3,
                           height: 10.h,
@@ -196,7 +199,7 @@ class _OnboardingState extends State<Onboarding> {
                         "It's OK to ask for Help!",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: ScreenUtil().setSp(75),
+                            fontSize: ScreenUtil().setSp(70,allowFontScalingSelf: true),
                             fontWeight: FontWeight.bold,
                             color: Colors.black),
                       ),
@@ -208,7 +211,7 @@ class _OnboardingState extends State<Onboarding> {
                         "Going out and asking for help is a good thing. Don’t let others tell you otherwise. If you can’t seem to get help then you might be looking in the wrong place. Let professionals lend you a hand.",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: ScreenUtil().setSp(60),
+                            fontSize: ScreenUtil().setSp(55,allowFontScalingSelf: true),
                             //fontWeight: FontWeight.bold,
                             color: Colors.black),
                       ),
@@ -244,7 +247,10 @@ class _OnboardingState extends State<Onboarding> {
                       disabledColor: Colors.blue[100],
                       disabledElevation: 5,
                       elevation: 5,
-                      child: Link(
+                      child: GestureDetector(
+                        onTap: () async {
+                          launch("https://docs.google.com/document/d/1ZZLO3FCzaQupIxGP1x0Bpsarps9Z1gx4X6UQlxnhBhQ/edit?usp=sharing");
+                        },
                         child: Text(
                           "I want help now!",
                           textAlign: TextAlign.center,
@@ -254,7 +260,6 @@ class _OnboardingState extends State<Onboarding> {
                               decoration: TextDecoration.underline,
                               color: Colors.red[700]),
                         ),
-                        url: 'https://athensdazzle.wixsite.com/website-1',
                       ),
                       onPressed: () {},
                     ),
@@ -307,7 +312,7 @@ class _OnboardingState extends State<Onboarding> {
                         "Disclaimer",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: ScreenUtil().setSp(75,allowFontScalingSelf: true),
+                            fontSize: ScreenUtil().setSp(70,allowFontScalingSelf: true),
                             fontWeight: FontWeight.bold,
                             decoration: TextDecoration.underline,
                             color: Colors.black),
@@ -320,14 +325,17 @@ class _OnboardingState extends State<Onboarding> {
                         "This is not an alternative to seeking professional help for any acute mental health condition, If you’re currently feeling extremely anxious, suicidal or depressed kindly visit the Emergency of SRM Medical College & Hospital help will be provided to you promptly for the same. Please go through the Consent form below.\n",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: ScreenUtil().setSp(60,allowFontScalingSelf: true),
+                            fontSize: ScreenUtil().setSp(55,allowFontScalingSelf: true),
                             //fontWeight: FontWeight.bold,
                             color: Colors.black),
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20.w),
-                      child: Link(
+                      child: GestureDetector(
+                        onTap: () async {
+                          launch("https://docs.google.com/document/d/1CemTRCFTUyOoCCWahtIfKgqbRbGBLubkIJqZtCZokoo/edit?usp=sharing");
+                        },
                         child: Text(
                           "Consent Form",
                           textAlign: TextAlign.center,
@@ -337,7 +345,6 @@ class _OnboardingState extends State<Onboarding> {
                               decoration: TextDecoration.underline,
                               color: Colors.blue[700]),
                         ),
-                        url: 'https://athensdazzle.wixsite.com/mysite',
                       ),
                     ),
                     SizedBox(height: 30.h),

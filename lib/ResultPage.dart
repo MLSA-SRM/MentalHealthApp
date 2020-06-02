@@ -1,6 +1,7 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mental_health_app/ArticlesPage.dart';
 import 'package:mental_health_app/Showup.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -12,6 +13,7 @@ class ResultPage extends StatefulWidget {
 
 class _ResultPageState extends State<ResultPage> {
   String res, msg,title,endMsg;
+
  Future<List<String>> _getFinalMessage() async {
     List<String> msgList = List<String>(3);
     var prefs = await SharedPreferences.getInstance();
@@ -54,6 +56,8 @@ class _ResultPageState extends State<ResultPage> {
     msgList[0] = title;
     msgList[1] = msg;
     msgList[2] = endMsg;
+    prefs.setString('status', 'done');
+    prefs.remove('deviceToken');
    return msgList; 
   }
   
@@ -121,7 +125,7 @@ class _ResultPageState extends State<ResultPage> {
                       ),),
                     GestureDetector(
                       onTap: ()async{
-                        launch("https://athensdazzle.wixsite.com/website-1");
+                        launch("https://docs.google.com/document/d/1ZZLO3FCzaQupIxGP1x0Bpsarps9Z1gx4X6UQlxnhBhQ/edit?usp=sharing");
                       },
                       child: Text("Click here to Get Help Now!",textAlign: TextAlign.center,
                         style: TextStyle(
@@ -129,7 +133,49 @@ class _ResultPageState extends State<ResultPage> {
                           color: Colors.green,
                           decoration: TextDecoration.underline
                         ),),
+                    ),
+
+                    Padding(
+                        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height/30),
+                    child: Text("Click the button below, to get your hands on some cool and interesting mental health articles!",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.width/25,
+                      color: Colors.blue,
+                    ),),),
+
+                    Padding(
+                      padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height/30),
+                      child: ShowUp(
+                        child: Container(
+                          height: MediaQuery.of(context).size.height/15,
+                          width: MediaQuery.of(context).size.width/2,
+                          child: RaisedButton(
+                            //    elevation: 10,
+                            onPressed: () async {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ArticlePage()));
+                            },
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(30),
+                              ),
+                            ),
+                            textColor: Colors.white,
+                            color: Colors.teal,
+                            padding: const EdgeInsets.all(8.0),
+                            child: new Text(
+                              "Articles",
+                              style: TextStyle(fontSize: MediaQuery.of(context).size.width/20),
+                            ),
+                          ),
+                        ),
+                        delay: 1100,
+                      ),
                     )
+
                   ],
                 );
               },

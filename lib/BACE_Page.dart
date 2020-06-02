@@ -151,6 +151,8 @@ int count = 0;
         allowFontScaling: true);
     return Center(
       child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           ShowUp(
             delay: 500,

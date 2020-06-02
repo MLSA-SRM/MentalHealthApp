@@ -297,6 +297,36 @@ class QuizState extends State<Quiz> {
                                 )),
                           ),
                         ),
+                        Padding(
+                          padding:  EdgeInsets.only(top:MediaQuery.of(context).size.height/50,
+                          left: MediaQuery.of(context).size.width/4,
+                          right: MediaQuery.of(context).size.width/4),
+                          child: Container(
+                            height: MediaQuery.of(context).size.height/15,
+                            width: MediaQuery.of(context).size.width/2,
+                            child: RaisedButton(
+                              //    elevation: 10,
+                              onPressed: ()  {
+                                _controller.next();
+                                setState(() {
+
+                                });
+                                },
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(30),
+                                ),
+                              ),
+                              textColor: Colors.white,
+                              color: Colors.blue,
+                              padding: const EdgeInsets.all(8.0),
+                              child: new Text(
+                                "Next",
+                                style: TextStyle(fontSize: MediaQuery.of(context).size.width/20),
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   );
