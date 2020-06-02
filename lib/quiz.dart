@@ -61,6 +61,9 @@ class Quiz extends StatefulWidget {
 }
 
 List<String> answers = ["none", "none", "none"];
+List<bool> q1done = [false,false];
+List<bool> q3done = [false,false,false];
+List<bool> q4done = [false,false,false,false];
 final gender = TextEditingController();
 final course = TextEditingController();
 final year = TextEditingController();
@@ -118,6 +121,8 @@ class QuizState extends State<Quiz> {
                               _controller.next();
                               setState(() {
                                 answers[0] = "Male";
+                                q1done[0] = true;
+                                q1done[1] = false;
                               });
                             },
                             child: Card(
@@ -126,6 +131,7 @@ class QuizState extends State<Quiz> {
                               child: ListTile(
                                 leading: Icon(Icons.keyboard_arrow_right,
                                     color: Colors.white),
+                                    trailing: q1done[0]?Icon(Icons.spellcheck, color: Colors.white,):null,
                                 title: Text(
                                   'Male',
                                   style: TextStyle(
@@ -142,6 +148,8 @@ class QuizState extends State<Quiz> {
                               _controller.next();
                               setState(() {
                                 answers[0] = "Female";
+                                q1done[0] = false;
+                                q1done[1] = true;
                               });
                             },
                             child: Card(
@@ -150,6 +158,8 @@ class QuizState extends State<Quiz> {
                               child: ListTile(
                                 leading: Icon(Icons.keyboard_arrow_right,
                                     color: Colors.white),
+                                    trailing: q1done[1]?Icon(Icons.spellcheck, color: Colors.white,):null,
+
                                 title: Text(
                                   'Female',
                                   style: TextStyle(
@@ -298,31 +308,22 @@ class QuizState extends State<Quiz> {
                           ),
                         ),
                         Padding(
-                          padding:  EdgeInsets.only(top:MediaQuery.of(context).size.height/50,
-                          left: MediaQuery.of(context).size.width/4,
-                          right: MediaQuery.of(context).size.width/4),
-                          child: Container(
-                            height: MediaQuery.of(context).size.height/15,
-                            width: MediaQuery.of(context).size.width/2,
-                            child: RaisedButton(
-                              //    elevation: 10,
-                              onPressed: ()  {
-                                _controller.next();
-                                setState(() {
-
-                                });
-                                },
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(30),
-                                ),
-                              ),
-                              textColor: Colors.white,
+                          padding:  EdgeInsets.only(top: 20.h),
+                          child: InkWell(
+                            onTap: () {
+                              _controller.next();
+                            },
+                            child: Card(
+                              elevation: 8,
                               color: Colors.blue,
-                              padding: const EdgeInsets.all(8.0),
-                              child: new Text(
-                                "Next",
-                                style: TextStyle(fontSize: MediaQuery.of(context).size.width/20),
+                              child: ListTile(
+                                leading: Icon(Icons.keyboard_arrow_right,
+                                    color: Colors.white),
+                                title: Text(
+                                  'Next',
+                                  style: TextStyle(
+                                      fontSize: ScreenUtil().setSp(60,allowFontScalingSelf: true), color: Colors.white),
+                                ),
                               ),
                             ),
                           ),
@@ -353,6 +354,11 @@ class QuizState extends State<Quiz> {
                             onTap: () {
                               _controller.next();
                               answers[1] = "Medical Doctor";
+                              setState(() {
+                                q3done[0] = true;
+                                q3done[1] = false;
+                                q3done[2] = false;
+                              });
                             },
                             child: Card(
                               elevation: 8,
@@ -360,6 +366,7 @@ class QuizState extends State<Quiz> {
                               child: ListTile(
                                 leading: Icon(Icons.keyboard_arrow_right,
                                     color: Colors.white),
+                                    trailing: q3done[0]?Icon(Icons.spellcheck, color: Colors.white,):null,
                                 title: Text(
                                   'Medical Doctor',
                                   style: TextStyle(
@@ -376,6 +383,11 @@ class QuizState extends State<Quiz> {
                             onTap: () {
                               _controller.next();
                               answers[1] = "AYUSH doctor";
+                              setState(() {
+                                q3done[0] = false;
+                                q3done[1] = true;
+                                q3done[2] = false;
+                              });
                             },
                             child: Card(
                               elevation: 8,
@@ -383,6 +395,7 @@ class QuizState extends State<Quiz> {
                               child: ListTile(
                                 leading: Icon(Icons.keyboard_arrow_right,
                                     color: Colors.white),
+                                    trailing: q3done[1]?Icon(Icons.spellcheck, color: Colors.white,):null,
                                 title: Text(
                                   'AYUSH doctor',
                                   style: TextStyle(
@@ -399,6 +412,11 @@ class QuizState extends State<Quiz> {
                             onTap: () {
                               _controller.next();
                               answers[1] = "No physical illness";
+                              setState(() {
+                                q3done[0] = false;
+                                q3done[1] = false;
+                                q3done[2] = true;
+                              });
                             },
                             child: Card(
                               elevation: 8,
@@ -406,6 +424,8 @@ class QuizState extends State<Quiz> {
                               child: ListTile(
                                 leading: Icon(Icons.keyboard_arrow_right,
                                     color: Colors.white),
+                                    trailing: q3done[2]?Icon(Icons.spellcheck, color: Colors.white,):null,
+
                                 title: Text(
                                   'No physical illness',
                                   style: TextStyle(
@@ -462,6 +482,10 @@ class QuizState extends State<Quiz> {
                             onTap: () {
                               setState(() {
                                 answers[2] = "Psychiatrist";
+                                q4done[0] = true;
+                                q4done[1] = false;
+                                q4done[2] = false;
+                                q4done[3] = false;
                               });
                               if (answers[0] == "none" && gender.text == "" ||
                                   answers[1] == "none" ||
@@ -484,6 +508,8 @@ class QuizState extends State<Quiz> {
                               child: ListTile(
                                 leading: Icon(Icons.keyboard_arrow_right,
                                     color: Colors.white),
+                                    trailing: q4done[0]?Icon(Icons.spellcheck, color: Colors.white,):null,
+
                                 title: Text(
                                   'Psychiatrist',
                                   style: TextStyle(
@@ -500,6 +526,10 @@ class QuizState extends State<Quiz> {
                             onTap: () {
                               setState(() {
                                 answers[2] = "Psychologist";
+                                q4done[0] = false;
+                                q4done[1] = true;
+                                q4done[2] = false;
+                                q4done[3] = false;
                               });
                               if (answers[0] == "none" && gender.text == "" ||
                                   answers[1] == "none" ||
@@ -522,6 +552,8 @@ class QuizState extends State<Quiz> {
                               child: ListTile(
                                 leading: Icon(Icons.keyboard_arrow_right,
                                     color: Colors.white),
+                                    trailing: q4done[1]?Icon(Icons.spellcheck, color: Colors.white,):null,
+
                                 title: Text(
                                   'Psychologist',
                                   style: TextStyle(
@@ -538,6 +570,10 @@ class QuizState extends State<Quiz> {
                             onTap: () {
                               setState(() {
                                 answers[2] = "Counsellor";
+                                q4done[0] = false;
+                                q4done[1] = false;
+                                q4done[2] = true;
+                                q4done[3] = false;
                               });
                               if (answers[0] == "none" && gender.text == "" ||
                                   answers[1] == "none" ||
@@ -560,6 +596,8 @@ class QuizState extends State<Quiz> {
                               child: ListTile(
                                 leading: Icon(Icons.keyboard_arrow_right,
                                     color: Colors.white),
+                                    trailing: q4done[2]?Icon(Icons.spellcheck, color: Colors.white,):null,
+
                                 title: Text(
                                   'Counsellor',
                                   style: TextStyle(
@@ -576,6 +614,10 @@ class QuizState extends State<Quiz> {
                             onTap: () {
                               setState(() {
                                 answers[2] = "None";
+                                q4done[0] = false;
+                                q4done[1] = false;
+                                q4done[2] = false;
+                                q4done[3] = true;
                               });
                               if (answers[0] == "none" && gender.text == "" ||
                                   answers[1] == "none" ||
@@ -598,6 +640,8 @@ class QuizState extends State<Quiz> {
                               child: ListTile(
                                 leading: Icon(Icons.keyboard_arrow_right,
                                     color: Colors.white),
+                                    trailing: q4done[3]?Icon(Icons.spellcheck, color: Colors.white,):null,
+
                                 title: Text(
                                   'None',
                                   style: TextStyle(
