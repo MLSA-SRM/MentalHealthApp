@@ -334,7 +334,7 @@ class _OnboardingState extends State<Onboarding> {
                       padding: EdgeInsets.symmetric(horizontal: 20.w),
                       child: GestureDetector(
                         onTap: () async {
-                          launch("https://docs.google.com/document/d/1CemTRCFTUyOoCCWahtIfKgqbRbGBLubkIJqZtCZokoo/edit?usp=sharing");
+                          launch("https://github.com/MSPC-Tech/MentalHealthApp/raw/master/static/Consent%20Form.pdf");
                         },
                         child: Text(
                           "Consent Form",
