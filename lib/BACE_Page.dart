@@ -101,6 +101,8 @@ class _BACEPageState extends State<BACEPage> {
 int count = 0;
   int total = 0, critical_total = 0;
 
+  var varysize=1;
+
   _getQuestions() {
     for (int i = 0; i < 27; i++) {
       BACE_Questions[i]
@@ -127,6 +129,9 @@ int count = 0;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Swiper(
+        onIndexChanged: (index){
+          varysize = index+1;
+        },
         itemCount: 28,
         curve: Curves.easeInOutCubic,
         scrollDirection: Axis.vertical,
@@ -329,10 +334,18 @@ int count = 0;
                       ? Colors.green
                       : Colors.red,
                   customStep: (index, color) {
-                    return Icon(
+                    if(varysize==index)
+                    {
+                      return Icon(
                       Icons.check_box_outline_blank,
                       color: color,
-                      size: 30.w,
+                      size: 40.w,
+                    );
+                    }
+                    return Icon(
+                      Icons.stop,
+                      color: color,
+                      size: 40.w,
                     );
                   },
                   onTap: (index) {

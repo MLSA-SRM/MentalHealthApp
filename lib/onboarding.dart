@@ -102,26 +102,8 @@ class _OnboardingState extends State<Onboarding> {
                       ),
                     ),
                     SizedBox(height: 50.h),
-                    InkWell(
-                      onTap: () {
-                        _controller.next();
-                      },
-                      child: Card(
-                        elevation: 8,
-                        color: randomizecolor[index % 6],
-                        child: ListTile(
-                          //leading: Icon(Icons.keyboard_arrow_right, color: Colors.white),
-                          title: Text(
-                            "Swipe left or Tap here to Navigate",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: ScreenUtil().setSp(55,allowFontScalingSelf: true), color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 30.h,
-                    ),
+
+                    
                     RaisedButton(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(
@@ -148,6 +130,26 @@ class _OnboardingState extends State<Onboarding> {
                       ),
                       onPressed: () {},
                     ),
+                    SizedBox(
+                      height: 30.h,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        _controller.next();
+                      },
+                      child: Card(
+                        elevation: 8,
+                        color: randomizecolor[index % 6],
+                        child: ListTile(
+                          //leading: Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                          title: Text(
+                            "Swipe left or Tap here to Navigate",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: ScreenUtil().setSp(55,allowFontScalingSelf: true), color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
                     Container(
                       height: 80.h,
                       width: MediaQuery.of(context).size.width,
@@ -160,10 +162,18 @@ class _OnboardingState extends State<Onboarding> {
                           selectedColor: randomizecolor[index % 6],
                           unselectedColor: randomizecolorlight[index % 6],
                           customStep: (index, color) {
-                            return Icon(
+                            if(index == 1)
+                            {
+                              return Icon(
                               Icons.check_box_outline_blank,
                               color: color,
-                              size: 15,
+                              size: 50.w,
+                            );
+                            }
+                            return Icon(
+                              Icons.stop,
+                              color: color,
+                              size: 50.w,
                             );
                           },
                         ),
@@ -216,24 +226,7 @@ class _OnboardingState extends State<Onboarding> {
                             color: Colors.black),
                       ),
                     ),
-                    SizedBox(height: 30.h),
-                    InkWell(
-                      onTap: () {
-                        _controller.next();
-                      },
-                      child: Card(
-                        elevation: 8,
-                        color: Colors.pink[400],
-                        child: ListTile(
-                          leading: Icon(Icons.keyboard_arrow_right,
-                              color: Colors.white),
-                          title: Text(
-                            "Next",
-                            style: TextStyle(fontSize: ScreenUtil().setSp(60,allowFontScalingSelf: true), color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ),
+                    
                     SizedBox(
                       height: 30.h,
                     ),
@@ -263,6 +256,24 @@ class _OnboardingState extends State<Onboarding> {
                       ),
                       onPressed: () {},
                     ),
+                    SizedBox(height: 30.h),
+                    InkWell(
+                      onTap: () {
+                        _controller.next();
+                      },
+                      child: Card(
+                        elevation: 8,
+                        color: Colors.pink[400],
+                        child: ListTile(
+                          leading: Icon(Icons.keyboard_arrow_right,
+                              color: Colors.white),
+                          title: Text(
+                            "Next",
+                            style: TextStyle(fontSize: ScreenUtil().setSp(60,allowFontScalingSelf: true), color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
                     Container(
                       height: 80.h,
                       width: MediaQuery.of(context).size.width,
@@ -275,10 +286,18 @@ class _OnboardingState extends State<Onboarding> {
                           selectedColor: randomizecolor[index % 6],
                           unselectedColor: randomizecolorlight[index % 6],
                           customStep: (index, color) {
-                            return Icon(
+                            if(index == 2)
+                            {
+                              return Icon(
                               Icons.check_box_outline_blank,
                               color: color,
-                              size: 15,
+                              size: 50.w,
+                            );
+                            }
+                            return Icon(
+                              Icons.stop,
+                              color: color,
+                              size: 50.w,
                             );
                           },
                         ),
@@ -330,22 +349,31 @@ class _OnboardingState extends State<Onboarding> {
                             color: Colors.black),
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                    RaisedButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30),
+                        ),
+                      ),
+                      color: Colors.green[100],
+                      disabledColor: Colors.blue[100],
+                      disabledElevation: 5,
+                      elevation: 5,
                       child: GestureDetector(
                         onTap: () async {
                           launch("https://docs.google.com/document/d/1CemTRCFTUyOoCCWahtIfKgqbRbGBLubkIJqZtCZokoo/edit?usp=sharing");
                         },
                         child: Text(
-                          "Consent Form",
+                          "Consent Form!",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: ScreenUtil().setSp(50),
+                              fontSize: ScreenUtil().setSp(55,allowFontScalingSelf: true),
                               //fontWeight: FontWeight.bold,
                               decoration: TextDecoration.underline,
-                              color: Colors.blue[700]),
+                              color: Colors.green[700]),
                         ),
                       ),
+                      onPressed: () {},
                     ),
                     SizedBox(height: 30.h),
                     InkWell(
@@ -379,10 +407,18 @@ class _OnboardingState extends State<Onboarding> {
                           selectedColor: randomizecolor[index % 6],
                           unselectedColor: randomizecolorlight[index % 6],
                           customStep: (index, color) {
-                            return Icon(
+                            if(index == 3)
+                            {
+                              return Icon(
                               Icons.check_box_outline_blank,
                               color: color,
-                              size: 15,
+                              size: 50.w,
+                            );
+                            }
+                            return Icon(
+                              Icons.stop,
+                              color: color,
+                              size: 50.w,
                             );
                           },
                         ),
