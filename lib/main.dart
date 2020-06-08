@@ -204,7 +204,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                   ),
                   ShowUp(
                     child: Text(
-                      "\'And the thoughts in your head\'",
+                      "\'& the thoughts in your head\'",
                       style: TextStyle(fontSize: _width/18, color: Colors.black),
                     ),
                     delay: delayedAmount,
