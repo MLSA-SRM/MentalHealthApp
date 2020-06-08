@@ -172,7 +172,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                       repeat: true,
                       child: GestureDetector(
                         onTap: () async {
-                         launch("https://docs.google.com/document/d/1-UaRguuQuFR4R08Q4jtmiL9KCL_B-ZwYG70tQImGNgU/edit?ts=5ecccadb");
+                         //launch("https://docs.google.com/document/d/1-UaRguuQuFR4R08Q4jtmiL9KCL_B-ZwYG70tQImGNgU/edit?ts=5ecccadb");
                         },
                         child: Material(
                             elevation: 8.0,
