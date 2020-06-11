@@ -61,13 +61,12 @@ class Quiz extends StatefulWidget {
 }
 
 List<String> answers = ["none", "none", "none"];
-List<bool> q1done = [false,false];
-List<bool> q3done = [false,false,false];
+List<bool> q1done = [false,false,false];
+List<bool> q3done = [false,false,false,false];
 List<bool> q4done = [false,false,false,false];
-final gender = TextEditingController();
+int rating = 18;
 final course = TextEditingController();
 final year = TextEditingController();
-DateTime _dateTime, date;
 final snackBar = SnackBar(
   content: Text("Please complete the questionnaire"),
   duration: Duration(milliseconds: 800),
@@ -75,6 +74,9 @@ final snackBar = SnackBar(
 
 class QuizState extends State<Quiz> {
   SwiperController _controller = SwiperController();
+
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -123,6 +125,7 @@ class QuizState extends State<Quiz> {
                                 answers[0] = "Male";
                                 q1done[0] = true;
                                 q1done[1] = false;
+                                q1done[2] = false;
                               });
                             },
                             child: Card(
@@ -150,6 +153,7 @@ class QuizState extends State<Quiz> {
                                 answers[0] = "Female";
                                 q1done[0] = false;
                                 q1done[1] = true;
+                                q1done[2] = false;
                               });
                             },
                             child: Card(
@@ -175,21 +179,26 @@ class QuizState extends State<Quiz> {
                             onTap: () {
                               _controller.next();
                               setState(() {
-                                //Taking input on the final question using mycontroller.text
+                                answers[0] = "Others";
+                                q1done[0] = false;
+                                q1done[1] = false;
+                                q1done[2] = true;
                               });
                             },
                             child: Card(
-                                elevation: 8,
-                                color: Colors.white,
-                                child: TextField(
-                                  controller: gender,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    labelText: 'Others',
-                                    hintText: 'Please Specify',
-                                  ),
-                                  autofocus: false,
-                                )),
+                              elevation: 8,
+                              color: Colors.blue,
+                              child: ListTile(
+                                leading: Icon(Icons.keyboard_arrow_right,
+                                    color: Colors.white),
+                                    trailing: q1done[0]?Icon(Icons.spellcheck, color: Colors.white,):null,
+                                title: Text(
+                                  'Others',
+                                  style: TextStyle(
+                                      fontSize: ScreenUtil().setSp(60,allowFontScalingSelf: true), color: Colors.white),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -214,52 +223,29 @@ class QuizState extends State<Quiz> {
                               fontWeight: FontWeight.bold,
                               color: Colors.black),
                         ),
+                        SizedBox(
+                          height: 30.h,
+                        ),
 
-                        Padding(
-                          padding:  EdgeInsets.only(top: 20.h),
-                          child: InkWell(
-                            onTap: () {
-                              //_controller.next();
-                              showDatePicker(
-                                      context: context,
-                                      initialDate: DateTime.now(),
-                                      firstDate: DateTime(1930),
-                                      lastDate: DateTime(2021))
-                                  .then((date) {
-                                setState(() {
-                                  _dateTime = date;
-                                });
-                              });
-                            },
-                            child: Card(
-                              elevation: 8,
-                              color: Colors.blue,
-                              child: ListTile(
-                                leading: Icon(Icons.keyboard_arrow_right,
-                                    color: Colors.white),
-                                title: Text(
-                                  _dateTime == null
-                                      ? "Please enter Date of Birth"
-                                      : _dateTime.day.toString() +
-                                          "/" +
-                                          _dateTime.month.toString() +
-                                          "/" +
-                                          _dateTime.year.toString(),
-                                  style: TextStyle(
-                                      fontSize: ScreenUtil().setSp(55,allowFontScalingSelf: true), color: Colors.white),
-                                ),
-                              ),
-                              //child: Text(_dateTime==null? "Please select a date":_dateTime.toString()),
-                              /*TextField(
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    labelText: 'DOB',
-                                    hintText: 'Date of Birth',
-                                  ),
-                                  autofocus: false,
-                                )*/
-                            ),
-                          ),
+Text(
+                          "Please enter your age : $rating",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: ScreenUtil().setSp(50,allowFontScalingSelf: true),
+                              //fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                        ),
+                        Slider(
+                          value: rating.toDouble(), 
+                          onChanged: (newRating){
+                          setState(() {
+                            rating = newRating.toInt();
+                          });
+                        },
+                        divisions: 53,
+                        label: "$rating",
+                        min: 18,
+                        max: 70,
                         ),
                         Padding(
                           padding:  EdgeInsets.only(top: 20.h),
@@ -411,11 +397,12 @@ class QuizState extends State<Quiz> {
                           child: InkWell(
                             onTap: () {
                               _controller.next();
-                              answers[1] = "No physical illness";
+                              answers[1] = "Have physical illness but haven't gone to a doctor";
                               setState(() {
                                 q3done[0] = false;
                                 q3done[1] = false;
                                 q3done[2] = true;
+                                q3done[3] = false;
                               });
                             },
                             child: Card(
@@ -425,6 +412,37 @@ class QuizState extends State<Quiz> {
                                 leading: Icon(Icons.keyboard_arrow_right,
                                     color: Colors.white),
                                     trailing: q3done[2]?Icon(Icons.spellcheck, color: Colors.white,):null,
+
+                                title: Text(
+                                  'No physical illness',
+                                  style: TextStyle(
+                                      fontSize: ScreenUtil().setSp(50,allowFontScalingSelf: true),
+                                      color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding:  EdgeInsets.only(top: 20.h),
+                          child: InkWell(
+                            onTap: () {
+                              _controller.next();
+                              answers[1] = "No physical illness";
+                              setState(() {
+                                q3done[0] = false;
+                                q3done[1] = false;
+                                q3done[2] = false;
+                                q3done[3] = true;
+                              });
+                            },
+                            child: Card(
+                              elevation: 8,
+                              color: Colors.amber[700],
+                              child: ListTile(
+                                leading: Icon(Icons.keyboard_arrow_right,
+                                    color: Colors.white),
+                                    trailing: q3done[3]?Icon(Icons.spellcheck, color: Colors.white,):null,
 
                                 title: Text(
                                   'No physical illness',
@@ -487,10 +505,10 @@ class QuizState extends State<Quiz> {
                                 q4done[2] = false;
                                 q4done[3] = false;
                               });
-                              if (answers[0] == "none" && gender.text == "" ||
+                              if (answers[0] == "none"||
                                   answers[1] == "none" ||
                                   answers[2] == "none" ||
-                                  _dateTime == null ||
+                                  rating == null ||
                                   course.text == "" ||
                                   year.text == "")
                                 Scaffold.of(context).showSnackBar(snackBar);
@@ -531,10 +549,10 @@ class QuizState extends State<Quiz> {
                                 q4done[2] = false;
                                 q4done[3] = false;
                               });
-                              if (answers[0] == "none" && gender.text == "" ||
+                              if (answers[0] == "none" ||
                                   answers[1] == "none" ||
                                   answers[2] == "none" ||
-                                  _dateTime == null ||
+                                  rating== null ||
                                   course.text == "" ||
                                   year.text == "")
                                 Scaffold.of(context).showSnackBar(snackBar);
@@ -575,10 +593,10 @@ class QuizState extends State<Quiz> {
                                 q4done[2] = true;
                                 q4done[3] = false;
                               });
-                              if (answers[0] == "none" && gender.text == "" ||
+                              if (answers[0] == "none"  ||
                                   answers[1] == "none" ||
                                   answers[2] == "none" ||
-                                  _dateTime == null ||
+                                  rating == null ||
                                   course.text == "" ||
                                   year.text == "")
                                 Scaffold.of(context).showSnackBar(snackBar);
@@ -619,10 +637,10 @@ class QuizState extends State<Quiz> {
                                 q4done[2] = false;
                                 q4done[3] = true;
                               });
-                              if (answers[0] == "none" && gender.text == "" ||
+                              if (answers[0] == "none"  ||
                                   answers[1] == "none" ||
                                   answers[2] == "none" ||
-                                  _dateTime == null ||
+                                  rating == null ||
                                   course.text == "" ||
                                   year.text == "")
                                 Scaffold.of(context).showSnackBar(snackBar);
@@ -669,12 +687,8 @@ class QuizState extends State<Quiz> {
 }
 
 void _getanswers() {
-  if (answers[0] != "none")
     print(answers[0]);
-  else
-    print(gender.text);
-
-  print(_dateTime);
+  print(rating);
   print(course.text);
   print(year.text);
   print(answers[1]);
