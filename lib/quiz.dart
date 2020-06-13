@@ -61,12 +61,14 @@ class Quiz extends StatefulWidget {
 }
 
 List<String> answers = ["none", "none", "none"];
+List<String> year = ["First Year", "Second Year", "Third Year","Fourth Year", "Intern","Faculty"];
+List<String> course = ["Courses"];
 List<bool> q1done = [false,false,false];
 List<bool> q3done = [false,false,false,false];
 List<bool> q4done = [false,false,false,false];
+  String currentyear = "First Year";
+  String currentcourse = "Courses";
 int rating = 18;
-final course = TextEditingController();
-final year = TextEditingController();
 final snackBar = SnackBar(
   content: Text("Please complete the questionnaire"),
   duration: Duration(milliseconds: 800),
@@ -74,6 +76,9 @@ final snackBar = SnackBar(
 
 class QuizState extends State<Quiz> {
   SwiperController _controller = SwiperController();
+
+
+
 
 
   
@@ -187,7 +192,7 @@ class QuizState extends State<Quiz> {
                             },
                             child: Card(
                               elevation: 8,
-                              color: Colors.blue,
+                              color: Colors.purple,
                               child: ListTile(
                                 leading: Icon(Icons.keyboard_arrow_right,
                                     color: Colors.white),
@@ -227,14 +232,24 @@ class QuizState extends State<Quiz> {
                           height: 30.h,
                         ),
 
-Text(
-                          "Please enter your age : $rating",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: ScreenUtil().setSp(50,allowFontScalingSelf: true),
-                              //fontWeight: FontWeight.bold,
-                              color: Colors.black),
-                        ),
+Padding(
+  padding: const EdgeInsets.only(left:10),
+  child:   Text(
+  
+                            "Please select your age : $rating",
+  
+                            textAlign: TextAlign.left,
+  
+                            style: TextStyle(
+  
+                                fontSize: ScreenUtil().setSp(50,allowFontScalingSelf: true),
+  
+                                //fontWeight: FontWeight.bold,
+  
+                                color: Colors.black),
+  
+                          ),
+),
                         Slider(
                           value: rating.toDouble(), 
                           onChanged: (newRating){
@@ -248,72 +263,83 @@ Text(
                         max: 70,
                         ),
                         Padding(
-                          padding:  EdgeInsets.only(top: 20.h),
-                          child: InkWell(
-                            onTap: () {
-                              _controller.next();
-                              setState(() {
-                                //last ques
-                              });
-                            },
-                            child: Card(
-                                elevation: 8,
-                                color: Colors.white,
-                                child: TextField(
-                                  controller: course,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    labelText: 'Course',
-                                    hintText: 'Course',
-                                  ),
-                                  autofocus: false,
-                                )),
-                          ),
-                        ),
-                        Padding(
-                          padding:  EdgeInsets.only(top: 20.h),
-                          child: InkWell(
-                            onTap: () {
-                              _controller.next();
-                              setState(() {
-                                //last ques
-                              });
-                            },
-                            child: Card(
-                                elevation: 8,
-                                color: Colors.white,
-                                child: TextField(
-                                  controller: year,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    labelText: 'Year',
-                                    hintText: 'Year',
-                                  ),
-                                  autofocus: false,
-                                )),
-                          ),
-                        ),
-                        Padding(
-                          padding:  EdgeInsets.only(top: 20.h),
-                          child: InkWell(
-                            onTap: () {
-                              _controller.next();
-                            },
-                            child: Card(
-                              elevation: 8,
-                              color: Colors.blue,
-                              child: ListTile(
-                                leading: Icon(Icons.keyboard_arrow_right,
-                                    color: Colors.white),
-                                title: Text(
-                                  'Next',
-                                  style: TextStyle(
-                                      fontSize: ScreenUtil().setSp(60,allowFontScalingSelf: true), color: Colors.white),
-                                ),
+                          padding: const EdgeInsets.all(10),
+                          child: RaisedButton(
+                            onPressed: (){},
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(30),
                               ),
                             ),
+                            disabledColor: Colors.orange,
+                            color: Colors.orange,
+                            
+                            child: DropdownButton<String>(
+                              dropdownColor: Colors.orange,
+                              iconEnabledColor: Colors.orange[800],
+                              focusColor: Colors.orange,
+                              iconSize: 30,
+                              isExpanded: true,
+                              elevation: 10,
+                              value: currentyear,
+                              hint: Text("Please select your year of study"),
+                              items: year.map((String dropdownstringitem){
+                              return DropdownMenuItem<String>(
+                                value: dropdownstringitem,
+                                child: Text(dropdownstringitem,style: TextStyle(
+                                        fontSize: ScreenUtil().setSp(50,allowFontScalingSelf: true),
+                                        color: Colors.white)),
+                              );
+                            }).toList(), 
+                            
+                            onChanged: (String newValueSelected){
+                              setState(() {
+                                currentyear = newValueSelected;
+                              });
+                            }),
                           ),
                         ),
+                        
+                        Visibility(
+                                                  child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: RaisedButton(
+                              onPressed: (){},
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(30),
+                                ),
+                              ),
+                              disabledColor: Colors.orange,
+                              color: Colors.orange,
+                              
+                              child: DropdownButton<String>(
+                                dropdownColor: Colors.orange,
+                                iconEnabledColor: Colors.orange[800],
+                                focusColor: Colors.orange,
+                                iconSize: 30,
+                                isExpanded: true,
+                                elevation: 10,
+                                value: currentcourse,
+                                items: course.map((String dropdownstringitem0){
+                                return DropdownMenuItem<String>(
+                                  value: dropdownstringitem0,
+                                  child: Text(dropdownstringitem0,style: TextStyle(
+                                          fontSize: ScreenUtil().setSp(50,allowFontScalingSelf: true),
+                                          color: Colors.white)),
+                                );
+                              }).toList(), 
+                              
+                              onChanged: (String newValueSelected){
+                                setState(() {
+                                  currentcourse = newValueSelected;
+                                });
+                              }),
+                            ),
+                          ),
+                          visible: currentyear=="Faculty"||currentyear=="Intern"?false:true,
+                        )
+
                       ],
                     ),
                   );
@@ -397,7 +423,7 @@ Text(
                           child: InkWell(
                             onTap: () {
                               _controller.next();
-                              answers[1] = "Have physical illness but haven't gone to a doctor";
+                              answers[1] = "Have physical illness but haven't consulted a doctor";
                               setState(() {
                                 q3done[0] = false;
                                 q3done[1] = false;
@@ -414,7 +440,7 @@ Text(
                                     trailing: q3done[2]?Icon(Icons.spellcheck, color: Colors.white,):null,
 
                                 title: Text(
-                                  'No physical illness',
+                                  'Have physical illness but haven\'t consulted a doctor',
                                   style: TextStyle(
                                       fontSize: ScreenUtil().setSp(50,allowFontScalingSelf: true),
                                       color: Colors.white),
@@ -508,9 +534,7 @@ Text(
                               if (answers[0] == "none"||
                                   answers[1] == "none" ||
                                   answers[2] == "none" ||
-                                  rating == null ||
-                                  course.text == "" ||
-                                  year.text == "")
+                                  rating == null)
                                 Scaffold.of(context).showSnackBar(snackBar);
                               else {
                                 _getanswers();
@@ -552,9 +576,7 @@ Text(
                               if (answers[0] == "none" ||
                                   answers[1] == "none" ||
                                   answers[2] == "none" ||
-                                  rating== null ||
-                                  course.text == "" ||
-                                  year.text == "")
+                                  rating== null )
                                 Scaffold.of(context).showSnackBar(snackBar);
                               else {
                                 _getanswers();
@@ -596,9 +618,7 @@ Text(
                               if (answers[0] == "none"  ||
                                   answers[1] == "none" ||
                                   answers[2] == "none" ||
-                                  rating == null ||
-                                  course.text == "" ||
-                                  year.text == "")
+                                  rating == null )
                                 Scaffold.of(context).showSnackBar(snackBar);
                               else {
                                 _getanswers();
@@ -640,9 +660,7 @@ Text(
                               if (answers[0] == "none"  ||
                                   answers[1] == "none" ||
                                   answers[2] == "none" ||
-                                  rating == null ||
-                                  course.text == "" ||
-                                  year.text == "")
+                                  rating == null)
                                 Scaffold.of(context).showSnackBar(snackBar);
                               else {
                                 _getanswers();
@@ -689,8 +707,7 @@ Text(
 void _getanswers() {
     print(answers[0]);
   print(rating);
-  print(course.text);
-  print(year.text);
+  print(currentyear);
   print(answers[1]);
   print(answers[2]);
 }

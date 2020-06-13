@@ -137,7 +137,7 @@ class _ResultPageState extends State<ResultPage> {
 
                     Padding(
                         padding: EdgeInsets.only(top: MediaQuery.of(context).size.height/30),
-                    child: Text("Click the button below, to get your hands on some cool and interesting mental health articles!",
+                    child: Text("Click the button below, to get your hands on some mental health articles.",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: MediaQuery.of(context).size.width/25,
