@@ -310,7 +310,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                             ),
                           ),
                         ),
-                        delay: 1100,
+                        delay: 1400,
                       ),
                       buttontoshow?
                       SizedBox(
