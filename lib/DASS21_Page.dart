@@ -89,6 +89,8 @@ class _Dass21PageState extends State<Dass21Page> {
   ];
   bool isSevere = false, allanswered = false;
   int count = 0;
+
+  int varysize=1;
   _getQuestions() {
     for (int i = 0; i < 21; i++) {
       DASS21_Questions[i].getQues(questions[i], 'assets/DASS21FINAL_${(i + 1)}.png');
@@ -174,6 +176,9 @@ class _Dass21PageState extends State<Dass21Page> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Swiper(
+        onIndexChanged: (index){
+          varysize = index+1;
+        },
         curve: Curves.easeInOutCubic,
         scrollDirection: Axis.horizontal,
         loop: false,
@@ -414,7 +419,8 @@ class _Dass21PageState extends State<Dass21Page> {
               child: StepProgressIndicator(
                   totalSteps: 21,
                   height: 10.h,
-                  //currentStep: index,
+                  currentStep: index,
+                  
                   //selectedColor: randomizecolor[index % 6],
                   //unselectedColor: randomizecolorlight[index % 6],
                   customColor: (index) => isselected[index - 1][0] ||
@@ -424,10 +430,19 @@ class _Dass21PageState extends State<Dass21Page> {
                       ? Colors.green
                       : Colors.red,
                   customStep: (index, color) {
-                    return Icon(
+                    if(varysize==index)
+                    {
+                      return Icon(
                       Icons.check_box_outline_blank,
                       color: color,
-                      size: 15,
+                      size: 50.w,
+                    );
+                    }
+                    else
+                    return Icon(
+                      Icons.stop,
+                      color: color,
+                      size: 50.w,
                     );
                   },
                   onTap: (index) {

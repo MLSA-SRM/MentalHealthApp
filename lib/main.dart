@@ -5,6 +5,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:mental_health_app/ArticlesPage.dart';
 import 'package:mental_health_app/DASS21_Page.dart';
 import 'package:mental_health_app/GAD7_Page.dart';
 import 'package:mental_health_app/ResultPage.dart';
@@ -172,7 +173,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                       repeat: true,
                       child: GestureDetector(
                         onTap: () async {
-                         launch("https://docs.google.com/document/d/1-UaRguuQuFR4R08Q4jtmiL9KCL_B-ZwYG70tQImGNgU/edit?ts=5ecccadb");
+                         //launch("https://docs.google.com/document/d/1-UaRguuQuFR4R08Q4jtmiL9KCL_B-ZwYG70tQImGNgU/edit?ts=5ecccadb");
                         },
                         child: Material(
                             elevation: 8.0,
@@ -200,11 +201,21 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                     delay: delayedAmount - 500,
                   ),
                   SizedBox(
-                    height: _height/20,
+                    height: _height/70,
                   ),
                   ShowUp(
                     child: Text(
-                      "\'& the thoughts in your head\'",
+                      "&",
+                      style: TextStyle(fontSize: _width/15, color: Colors.black),
+                    ),
+                    delay: delayedAmount,
+                  ),
+                  SizedBox(
+                    height: _height/70,
+                  ),
+                  ShowUp(
+                    child: Text(
+                      "\'The thoughts in your head\'",
                       style: TextStyle(fontSize: _width/18, color: Colors.black),
                     ),
                     delay: delayedAmount,
@@ -227,11 +238,11 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                       children: <Widget>[
                         Image(
                           image: AssetImage("assets/mspc.png"),
-                          height: 350.h,
+                          height: 250.h,
                         ),
                         Image(
                           image: AssetImage("assets/envision.png"),
-                          height: 350.h,
+                          height: 250.h,
                         ),
                       ],
                     )
@@ -244,7 +255,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                       ),
                       ShowUp(
                         child: Container(
-                          height: _height/15,
+                          height: _height/20,
                           width: _width/2,
                           child: RaisedButton(
                             //elevation: 10,
@@ -264,11 +275,42 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                             padding: const EdgeInsets.all(8.0),
                             child: new Text(
                               !buttontoshow ? "Get Started" : "Retake Quiz",
-                              style: TextStyle(fontSize: _width/20),
+                              style: TextStyle(fontSize: _width/23),
                             ),
                           ),
                         ),
                         delay: 1100,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height/30,
+                      ),
+                      ShowUp(
+                        child: Container(
+                          height: _height/20,
+                          width: _width/2,
+                          child: RaisedButton(
+                            //    elevation: 10,
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ArticlePage()));
+                            },
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(30),
+                              ),
+                            ),
+                            textColor: Colors.white,
+                            color: Colors.orange,
+                            padding: const EdgeInsets.all(8.0),
+                            child: new Text(
+                              "Articles",
+                              style: TextStyle(fontSize: _width/23),
+                            ),
+                          ),
+                        ),
+                        delay: 1400,
                       ),
                       buttontoshow?
                       SizedBox(
@@ -277,7 +319,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                       buttontoshow?
                       ShowUp(
                         child: Container(
-                          height: _height/15,
+                          height: _height/20,
                           width: _width/2,
                           child: RaisedButton(
                             //    elevation: 10,
@@ -297,12 +339,15 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                             padding: const EdgeInsets.all(8.0),
                             child: new Text(
                               "Your Result",
-                              style: TextStyle(fontSize: _width/20),
+                              style: TextStyle(fontSize: _width/23),
                             ),
                           ),
                         ),
                         delay: 1100,
                       ):Container(),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height/50,
+                      )
                     ],
                   ),
               ]),

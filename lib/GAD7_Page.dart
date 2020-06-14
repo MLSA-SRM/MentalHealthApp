@@ -21,6 +21,8 @@ class _GAD7PageState extends State<GAD7Page> {
   bool hasBoth;
 
   int count=0;
+
+  var varysize=1;
   _GAD7PageState(this.hasBoth);
   SwiperController _controller = SwiperController();
   List<Question> GAD7_Questions = [Question(),Question(),Question(),Question(),Question(),Question(),Question()];
@@ -62,6 +64,9 @@ class _GAD7PageState extends State<GAD7Page> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Swiper(
+        onIndexChanged: (index){
+          varysize = index+1;
+        },
         itemCount: 8,
         curve: Curves.easeInOutCubic,
         scrollDirection:Axis.horizontal,
@@ -235,10 +240,18 @@ class _GAD7PageState extends State<GAD7Page> {
                       ? Colors.green
                       : Colors.red,
                   customStep: (index, color) {
-                    return Icon(
+                    if(varysize==index)
+                    {
+                      return Icon(
                       Icons.check_box_outline_blank,
                       color: color,
-                      size: 15,
+                      size: 50.w,
+                    );
+                    }
+                    return Icon(
+                      Icons.stop,
+                      color: color,
+                      size: 50.w,
                     );
                   },
                   onTap: (index) {

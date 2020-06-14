@@ -36,6 +36,8 @@ class _SDRSPageState extends State<SDRSPage> {
 
   int count = 0;
 
+  var varysize=1;
+
   _getQuestions(){
     for(int i =0;i<5;i++){
       SDRS_Questions[i].getQues(questions[i], "assets/sdrs_${(i+1)}.png");
@@ -64,6 +66,9 @@ class _SDRSPageState extends State<SDRSPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Swiper(
+        onIndexChanged: (index){
+          varysize = index+1;
+        },
         itemCount: 6,
         curve: Curves.easeInOutCubic,
         scrollDirection:Axis.horizontal,
@@ -268,10 +273,18 @@ class _SDRSPageState extends State<SDRSPage> {
                     ? Colors.green
                     : Colors.red,
                 customStep: (index, color) {
+                  if(varysize==index)
+                    {
+                      return Icon(
+                      Icons.check_box_outline_blank,
+                      color: color,
+                      size: 50.w,
+                    );
+                    }
                   return Icon(
-                    Icons.check_box_outline_blank,
+                    Icons.stop,
                     color: color,
-                    size: 15,
+                    size: 50.w,
                   );
                 },
                 onTap: (index) {
