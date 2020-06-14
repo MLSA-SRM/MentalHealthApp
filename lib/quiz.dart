@@ -84,8 +84,8 @@ List<String> engdivision = [
   "Department of Biotechnology",
   "Department of Chemical Engineering",
   "Department of Chemistry",
-  "Department of Civil Engineering"
-      "Department of Computer Science Engineering",
+  "Department of Civil Engineering",
+  "Department of Computer Science Engineering",
   "Department of Electrical and Electronics",
   "Department of Electronics & Communication",
   "Department of Electronics & Instrumentation",

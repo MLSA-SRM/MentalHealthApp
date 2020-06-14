@@ -1,9 +1,9 @@
 import 'package:avatar_glow/avatar_glow.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:mental_health_app/ArticlesPage.dart';
 import 'package:mental_health_app/DASS21_Page.dart';
@@ -19,16 +19,16 @@ import 'Showup.dart';
 import 'quiz.dart';
 
 void main() {
-  runApp(
-      
-        
-        MaterialApp(
-          
-    title: 'Navigation Basics',
-    home: MyApp(),
-    debugShowCheckedModeBanner: false,
-  ),
-      );
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(
+      MaterialApp(
+        title: 'Navigation Basics',
+        home: MyApp(),
+        debugShowCheckedModeBanner: false,
+      ),
+    );  });
 }
 
 
@@ -251,19 +251,20 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       SizedBox(
-                        height: MediaQuery.of(context).size.height / 30,
+                        height: MediaQuery.of(context).size.height / 40,
                       ),
                       ShowUp(
                         child: Container(
-                          height: _height/20,
+                          height: _height/17,
                           width: _width/2,
                           child: RaisedButton(
                             //elevation: 10,
                             onPressed: () {
-                              Navigator.push(
+                              !buttontoshow ? Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Onboarding()));
+                                      builder: (context) => Onboarding()))
+                              : Navigator.push(context, MaterialPageRoute(builder: (context) => Quiz()));
                             },
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.all(
@@ -282,11 +283,11 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                         delay: 1100,
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height/30,
+                        height: MediaQuery.of(context).size.height/70,
                       ),
                       ShowUp(
                         child: Container(
-                          height: _height/20,
+                          height: _height/17,
                           width: _width/2,
                           child: RaisedButton(
                             //    elevation: 10,
@@ -312,22 +313,17 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                         ),
                         delay: 1400,
                       ),
-                      buttontoshow?
                       SizedBox(
-                        height: MediaQuery.of(context).size.height/30,
-                      ): Container(),
-                      buttontoshow?
+                        height: MediaQuery.of(context).size.height/70,
+                      ),
                       ShowUp(
                         child: Container(
-                          height: _height/20,
+                          height: _height/17,
                           width: _width/2,
                           child: RaisedButton(
-                            //    elevation: 10,
-                            onPressed: () async {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => ResultPage()));
+                            //elevation: 10,
+                            onPressed: () async{
+                              launch("https://docs.google.com/document/d/1ZZLO3FCzaQupIxGP1x0Bpsarps9Z1gx4X6UQlxnhBhQ/edit?usp=sharing");
                             },
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.all(
@@ -338,16 +334,16 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                             color: Colors.teal,
                             padding: const EdgeInsets.all(8.0),
                             child: new Text(
-                              "Your Result",
+                              "Get Help Now!",
                               style: TextStyle(fontSize: _width/23),
                             ),
                           ),
                         ),
                         delay: 1100,
-                      ):Container(),
+                      ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height/50,
-                      )
+                      ),
                     ],
                   ),
               ]),

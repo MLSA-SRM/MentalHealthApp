@@ -35,6 +35,7 @@ dependencies:
   url_launcher:
   flutter_webview_plugin: 0.3.11
   device_preview: 0.4.5
+  highlight_text:
 
 
 dev_dependencies:
