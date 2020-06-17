@@ -116,7 +116,7 @@ class _OnboardingState extends State<Onboarding> {
                       elevation: 5,
                       child: GestureDetector(
                         onTap: () async {
-                          launch('https://github.com/MSPC-Tech/MentalHealthApp/blob/master/static/Know%20the%20Team.pdf');
+                          launch('https://github.com/MSPC-Tech/MentalHealthApp/raw/master/static/Know%20the%20Team.pdf');
                         },
                         child: Text(
                           "Know the Team",
@@ -242,7 +242,7 @@ class _OnboardingState extends State<Onboarding> {
                       elevation: 5,
                       child: GestureDetector(
                         onTap: () async {
-                          launch("https://github.com/MSPC-Tech/MentalHealthApp/blob/master/static/Get%20Help%20Now.pdf");
+                          launch("https://github.com/MSPC-Tech/MentalHealthApp/raw/master/static/Get%20Help%20Now.pdf");
                         },
                         child: Text(
                           "I want help now!",
