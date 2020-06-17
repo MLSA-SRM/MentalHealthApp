@@ -1,4 +1,5 @@
 import 'package:avatar_glow/avatar_glow.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
@@ -20,15 +21,21 @@ import 'quiz.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((_) {
+//  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+//      .then((_) {
     runApp(
-      MaterialApp(
-        title: 'Navigation Basics',
-        home: MyApp(),
-        debugShowCheckedModeBanner: false,
+      DevicePreview(
+        enabled: !kReleaseMode,
+        builder: (context) => MaterialApp(
+          locale: DevicePreview.of(context).locale,
+          builder: DevicePreview.appBuilder,
+          title: 'Navigation Basics',
+          home: MyApp(),
+          debugShowCheckedModeBanner: false,
+        ),
       ),
-    );  });
+    );
+    //  });
 }
 
 

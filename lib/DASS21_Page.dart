@@ -514,7 +514,7 @@ class _Dass21PageState extends State<Dass21Page> {
                 else {
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => BACEPage()));
-                  prefs.setString('result', 'non');
+                  prefs.setString('result', 'no issues');
                   isSevere = false;
                 }
               } else {
