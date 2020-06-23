@@ -117,7 +117,7 @@ class _ResultPageState extends State<ResultPage> {
           ShowUp(
               child: Container(
                   padding: EdgeInsets.symmetric(
-                      horizontal: MediaQuery.of(context).size.width / 20),
+                      horizontal: MediaQuery.of(context).size.width / 25),
                   child: FutureBuilder(
                     future: _getFinalMessage(),
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -172,7 +172,7 @@ class _ResultPageState extends State<ResultPage> {
                                               color: Colors.black),
                                         ),
                                         SizedBox(
-                                          height: MediaQuery.of(context).size.height / 70,
+                                          height: MediaQuery.of(context).size.height / 50,
                                         ),
                                         Text(
                                            snapshot.data[2],

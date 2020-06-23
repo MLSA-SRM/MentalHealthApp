@@ -1,5 +1,4 @@
 import 'package:avatar_glow/avatar_glow.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
@@ -10,6 +9,7 @@ import 'package:mental_health_app/ArticlesPage.dart';
 import 'package:mental_health_app/DASS21_Page.dart';
 import 'package:mental_health_app/GAD7_Page.dart';
 import 'package:mental_health_app/ResultPage.dart';
+import 'package:mental_health_app/SocioDemographic.dart';
 import 'package:mental_health_app/WebView.dart';
 import 'package:mental_health_app/onboarding.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,21 +21,16 @@ import 'quiz.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-//  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-//      .then((_) {
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
     runApp(
-      DevicePreview(
-        enabled: !kReleaseMode,
-        builder: (context) => MaterialApp(
-          locale: DevicePreview.of(context).locale,
-          builder: DevicePreview.appBuilder,
+        MaterialApp(
           title: 'Navigation Basics',
           home: MyApp(),
           debugShowCheckedModeBanner: false,
         ),
-      ),
     );
-    //  });
+      });
 }
 
 

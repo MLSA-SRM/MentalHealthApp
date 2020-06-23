@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mental_health_app/DASS21_Page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mental_health_app/SocioDemographic.dart';
 import 'dart:async';
 import 'Showup.dart';
 import 'questionaire.dart';
@@ -198,7 +199,7 @@ class QuizState extends State<Quiz> {
               curve: Curves.easeInOutCubic,
               scrollDirection: Axis.vertical,
               loop: false,
-              viewportFraction: 0.8,
+              viewportFraction: 0.9,
               scale: 0.2,
               controller: _controller,
               itemBuilder: (BuildContext context, int index) {
@@ -309,7 +310,7 @@ class QuizState extends State<Quiz> {
                               child: ListTile(
                                 leading: Icon(Icons.keyboard_arrow_right,
                                     color: Colors.white),
-                                trailing: q1done[0]
+                                trailing: q1done[2]
                                     ? Icon(
                                         Icons.spellcheck,
                                         color: Colors.white,
@@ -824,7 +825,7 @@ class QuizState extends State<Quiz> {
                           child: InkWell(
                             onTap: () {
                               setState(() {
-                                answers[2] = "Psychiatrist";
+                                answers[2] = "Counsellor";
                                 q4done[0] = true;
                                 q4done[1] = false;
                                 q4done[2] = false;
@@ -840,7 +841,7 @@ class QuizState extends State<Quiz> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => Dass21Page()));
+                                        builder: (context) => SocioDemo()));
                               }
                             },
                             child: Card(
@@ -856,7 +857,7 @@ class QuizState extends State<Quiz> {
                                       )
                                     : null,
                                 title: Text(
-                                  'Psychiatrist',
+                                  'Counsellor',
                                   style: TextStyle(
                                       fontSize: ScreenUtil().setSp(60,
                                           allowFontScalingSelf: true),
@@ -887,7 +888,7 @@ class QuizState extends State<Quiz> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => Dass21Page()));
+                                        builder: (context) => SocioDemo()));
                               }
                             },
                             child: Card(
@@ -918,7 +919,7 @@ class QuizState extends State<Quiz> {
                           child: InkWell(
                             onTap: () {
                               setState(() {
-                                answers[2] = "Counsellor";
+                                answers[2] = "Psychiatrist";
                                 q4done[0] = false;
                                 q4done[1] = false;
                                 q4done[2] = true;
@@ -934,7 +935,7 @@ class QuizState extends State<Quiz> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => Dass21Page()));
+                                        builder: (context) => SocioDemo()));
                               }
                             },
                             child: Card(
@@ -950,7 +951,7 @@ class QuizState extends State<Quiz> {
                                       )
                                     : null,
                                 title: Text(
-                                  'Counsellor',
+                                  'Psychiatrist',
                                   style: TextStyle(
                                       fontSize: ScreenUtil().setSp(60,
                                           allowFontScalingSelf: true),
@@ -981,7 +982,7 @@ class QuizState extends State<Quiz> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => Dass21Page()));
+                                        builder: (context) => SocioDemo()));
                               }
                             },
                             child: Card(

@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:mental_health_app/TimerPage.dart';
 import 'package:mental_health_app/question.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
@@ -362,8 +363,12 @@ class _PHQ9PageState extends State<PHQ9Page> {
               });
               if (count == 9) {
                 await pushToFirebase();
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                String dummy = prefs.get('currentPage');
+                int cp = int.parse(dummy);
+                prefs.setString('currentPage', (cp+1).toString());
                 Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => BACEPage()));
+                    MaterialPageRoute(builder: (context) => TimerPage("BACE",false)));
               }else {
                 final snackBar = SnackBar(
                   content: Text("Please complete the questionnaire"),

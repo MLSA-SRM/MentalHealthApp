@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mental_health_app/SDRS_Page.dart';
+import 'package:mental_health_app/TimerPage.dart';
 import 'package:mental_health_app/question.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -407,8 +408,12 @@ Future pushToFirebase() async {
               if(count == 27)
               {
                 await pushToFirebase();
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                String dummy = prefs.get('currentPage');
+                int cp = int.parse(dummy);
+                prefs.setString('currentPage', (cp+1).toString());
                 Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => SDRSPage()));
+                  MaterialPageRoute(builder: (context) => TimerPage("SDRS",false)));
               }
               else
               {

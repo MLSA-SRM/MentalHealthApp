@@ -219,6 +219,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
+  language_pickers:
+    dependency: "direct main"
+    description:
+      name: language_pickers
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0+1"
   link:
     dependency: "direct main"
     description:

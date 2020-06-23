@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mental_health_app/BACE_Page.dart';
+import 'package:mental_health_app/TimerPage.dart';
 import 'package:mental_health_app/question.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
@@ -492,29 +493,43 @@ class _Dass21PageState extends State<Dass21Page> {
               if (count == 21) {
                 if (total_a >= 6 && total_d >= 7) {
                   Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => GAD7Page(true)));
+                      MaterialPageRoute(builder: (context) => TimerPage("GAD7",true)));
                   isSevere = true;
                   prefs.setString('result', 'dep');
+                  prefs.setString('currentPage', '1');
+                  prefs.setString('totalPages', "5");
                 } else if (total_a >= 6) {
                   Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => GAD7Page(false)));
+                      MaterialPageRoute(builder: (context) => TimerPage("GAD7",false)));
                   prefs.setString('result', 'anx');
+                  prefs.setString('currentPage', '1');
+                  prefs.setString('totalPages', "4");
+
                   isSevere = true;
                 } else if (total_d >= 7) {
                   Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => PHQ9Page()));
+                      MaterialPageRoute(builder: (context) => TimerPage("PHQ9",false)));
                   prefs.setString('result', 'dep');
+                  prefs.setString('currentPage', '1');
+                  prefs.setString('totalPages', "4");
+
                   isSevere = true;
                 } else if(total_s >= 10) {
                   Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => BACEPage()));
+                      MaterialPageRoute(builder: (context) => TimerPage("BACE",false)));
                   prefs.setString('result', 'str');
+                  prefs.setString('currentPage', '1');
+                  prefs.setString('totalPages', "3");
+
                   isSevere = false;
                 }
                 else {
                   Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => BACEPage()));
+                      MaterialPageRoute(builder: (context) => TimerPage("BACE",false)));
                   prefs.setString('result', 'no issues');
+                  prefs.setString('currentPage', '1');
+                  prefs.setString('totalPages', "3");
+
                   isSevere = false;
                 }
               } else {

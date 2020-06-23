@@ -2,6 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mental_health_app/PHQ9_Page.dart';
+import 'package:mental_health_app/TimerPage.dart';
 import 'package:mental_health_app/question.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
@@ -305,6 +306,7 @@ Future pushToFirebase() async {
             height: 400.h,
           )),
           InkWell(onTap: ()async{
+            SharedPreferences prefs = await SharedPreferences.getInstance();
             setState(() {
                 count = 0;
                 for (int i = 0; i < 7; i++) {
@@ -318,7 +320,14 @@ Future pushToFirebase() async {
               });
             if(count==7){
               await pushToFirebase();
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PHQ9Page()));
+            if(hasBoth){
+              prefs.setString('currentPage', '2');
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TimerPage("PHQ9",false)));
+            }
+            else {
+              prefs.setString('currentPage', '2');
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TimerPage("BACE",false)));
+            }
             }else{
               final snackBar = SnackBar(
                   content: Text("Please complete the questionnaire"),

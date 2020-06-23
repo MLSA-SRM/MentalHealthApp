@@ -4,6 +4,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mental_health_app/GAD7_Page.dart';
 import 'package:mental_health_app/ResultPage.dart';
 import 'package:mental_health_app/PHQ9_Page.dart';
+import 'package:mental_health_app/TimerPage.dart';
 import 'package:mental_health_app/question.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
@@ -357,7 +358,11 @@ Future pushToFirebase() async {
               if(count == 5)
               {
                 await pushToFirebase();
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ResultPage()));//Done
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                String dummy = prefs.get('currentPage');
+                int cp = int.parse(dummy);
+                prefs.setString('currentPage', (cp+1).toString());
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TimerPage("Result",false)));//Done
               }
               else
               {
