@@ -1,9 +1,11 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mental_health_app/DASS21_Page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mental_health_app/SocioDemographic.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 import 'Showup.dart';
 import 'questionaire.dart';
@@ -412,6 +414,7 @@ class QuizState extends State<Quiz> {
                                 onChanged: (String newValueSelected) {
                                   setState(() {
                                     currentyear = newValueSelected;
+                                    print(currentyear);
                                   });
                                 }),
                           ),
@@ -823,7 +826,7 @@ class QuizState extends State<Quiz> {
                         Padding(
                           padding: EdgeInsets.only(top: 20.h),
                           child: InkWell(
-                            onTap: () {
+                            onTap: () async {
                               setState(() {
                                 answers[2] = "Counsellor";
                                 q4done[0] = true;
@@ -837,7 +840,9 @@ class QuizState extends State<Quiz> {
                                   rating == null)
                                 Scaffold.of(context).showSnackBar(snackBar);
                               else {
-                                _getanswers();
+                                getAnswers();
+                                // await _pushToFirebase();
+
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -884,7 +889,7 @@ class QuizState extends State<Quiz> {
                                   rating == null)
                                 Scaffold.of(context).showSnackBar(snackBar);
                               else {
-                                _getanswers();
+                                _pushToFirebase();
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -931,7 +936,7 @@ class QuizState extends State<Quiz> {
                                   rating == null)
                                 Scaffold.of(context).showSnackBar(snackBar);
                               else {
-                                _getanswers();
+                                _pushToFirebase();
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -978,7 +983,7 @@ class QuizState extends State<Quiz> {
                                   rating == null)
                                 Scaffold.of(context).showSnackBar(snackBar);
                               else {
-                                _getanswers();
+                                _pushToFirebase();
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -1024,11 +1029,50 @@ class QuizState extends State<Quiz> {
   }
 }
 
-void _getanswers() {
+void getAnswers() {
   print(answers[0]);
   print(rating);
   print(currentyear);
   print(currentcourse);
   print(answers[1]);
   print(answers[2]);
+  final Map<String, String> someMap = {};
+
+  someMap["Q10"] = DateTime.now().toString();
+  someMap["Q11"] = answers[0];
+  someMap["Q12"] = rating.toString();
+  someMap["Q13"] = currentyear;
+  someMap["Q14"] = answers[1];
+  someMap["Q15"] = answers[2];
+
+  someMap.forEach((key, value) {
+    print(key + "=>" + value);
+  });
+}
+
+Future _pushToFirebase() async {
+  print(answers[0]);
+  print(rating);
+  print(currentyear);
+  print(currentcourse);
+  print(answers[1]);
+  print(answers[2]);
+  final Map<String, String> someMap = {};
+  print('map for demographic created');
+
+  someMap["Q10"] = DateTime.now().toString();
+  someMap["Q11"] = answers[0];
+  someMap["Q12"] = rating.toString();
+  someMap["Q13"] = currentyear;
+  someMap["Q14"] = answers[1];
+  someMap["Q15"] = answers[2];
+  print('done');
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String pushId = prefs.getString('key');
+  FirebaseDatabase.instance
+      .reference()
+      .child("Responses")
+      .child(pushId)
+      .child("demographic")
+      .set(someMap);
 }

@@ -312,8 +312,9 @@ Future pushToFirebase() async {
     final Map<String, String> someMap = {};
     print('map for SDRS created');
 
+    someMap["Q10"] = DateTime.now().toString();
     for (int i = 0; i < 5; i++) {
-      someMap["Q${i + 10}"] = SDRS_Questions[i].answer;
+      someMap["Q${i + 10+1}"] = SDRS_Questions[i].answer;
       print(SDRS_Questions[i].answer);
     }
     print('done');

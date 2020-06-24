@@ -91,10 +91,11 @@ class _Dass21PageState extends State<Dass21Page> {
   bool isSevere = false, allanswered = false;
   int count = 0;
 
-  int varysize=1;
+  int varysize = 1;
   _getQuestions() {
     for (int i = 0; i < 21; i++) {
-      DASS21_Questions[i].getQues(questions[i], 'assets/DASS21FINAL_${(i + 1)}.png');
+      DASS21_Questions[i]
+          .getQues(questions[i], 'assets/DASS21FINAL_${(i + 1)}.png');
       DASS21_Questions[i].getOptions("Never", "Sometimes", "Often", "Always");
       DASS21_Questions[i].getColor(randomizecolor[i % 6], randomizecolor[i % 6],
           randomizecolor[i % 6], randomizecolor[i % 6]);
@@ -146,9 +147,9 @@ class _Dass21PageState extends State<Dass21Page> {
 
     final Map<String, String> someMap = {};
     print('map created');
-
+    someMap["Q10"] = DateTime.now().toString();
     for (int i = 0; i < 21; i++) {
-      someMap["Q${i + 10}"] = DASS21_Questions[i].answer;
+      someMap["Q${i + 10 + 1}"] = DASS21_Questions[i].answer;
       print(DASS21_Questions[i].answer);
     }
     print('done');
@@ -170,15 +171,14 @@ class _Dass21PageState extends State<Dass21Page> {
     _getQuestions();
   }
 
-
   bool change = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Swiper(
-        onIndexChanged: (index){
-          varysize = index+1;
+        onIndexChanged: (index) {
+          varysize = index + 1;
         },
         curve: Curves.easeInOutCubic,
         scrollDirection: Axis.horizontal,
@@ -200,8 +200,7 @@ class _Dass21PageState extends State<Dass21Page> {
   }
 
   Widget page(Question question, int index) {
-    ScreenUtil.init(context,
-        allowFontScaling: true);
+    ScreenUtil.init(context, allowFontScaling: true);
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.max,
@@ -222,14 +221,14 @@ class _Dass21PageState extends State<Dass21Page> {
               question.ques,
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontSize: ScreenUtil().setSp(55,allowFontScalingSelf: true),
+                  fontSize: ScreenUtil().setSp(55, allowFontScalingSelf: true),
                   fontWeight: FontWeight.bold,
                   color: Colors.black),
             ),
           ),
           SizedBox(height: 20.h),
           Padding(
-            padding:  EdgeInsets.only(top: 10.h),
+            padding: EdgeInsets.only(top: 10.h),
             child: InkWell(
               onTap: () {
                 _controller.next();
@@ -275,7 +274,7 @@ class _Dass21PageState extends State<Dass21Page> {
             ),
           ),
           Padding(
-            padding:  EdgeInsets.only(top: 10.h),
+            padding: EdgeInsets.only(top: 10.h),
             child: InkWell(
               onTap: () {
                 _controller.next();
@@ -321,7 +320,7 @@ class _Dass21PageState extends State<Dass21Page> {
             ),
           ),
           Padding(
-            padding:  EdgeInsets.only(top: 10.h),
+            padding: EdgeInsets.only(top: 10.h),
             child: InkWell(
               onTap: () {
                 _controller.next();
@@ -367,7 +366,7 @@ class _Dass21PageState extends State<Dass21Page> {
             ),
           ),
           Padding(
-            padding:  EdgeInsets.only(top: 10.h),
+            padding: EdgeInsets.only(top: 10.h),
             child: InkWell(
               onTap: () {
                 _controller.next();
@@ -416,12 +415,12 @@ class _Dass21PageState extends State<Dass21Page> {
             height: 80.h,
             width: MediaQuery.of(context).size.width,
             child: Padding(
-              padding:  EdgeInsets.all(10.w),
+              padding: EdgeInsets.all(10.w),
               child: StepProgressIndicator(
                   totalSteps: 21,
                   height: 10.h,
                   currentStep: index,
-                  
+
                   //selectedColor: randomizecolor[index % 6],
                   //unselectedColor: randomizecolorlight[index % 6],
                   customColor: (index) => isselected[index - 1][0] ||
@@ -431,20 +430,18 @@ class _Dass21PageState extends State<Dass21Page> {
                       ? Colors.green
                       : Colors.red,
                   customStep: (index, color) {
-                    if(varysize==index)
-                    {
+                    if (varysize == index) {
                       return Icon(
-                      Icons.check_box_outline_blank,
-                      color: color,
-                      size: 50.w,
-                    );
-                    }
-                    else
-                    return Icon(
-                      Icons.stop,
-                      color: color,
-                      size: 50.w,
-                    );
+                        Icons.check_box_outline_blank,
+                        color: color,
+                        size: 50.w,
+                      );
+                    } else
+                      return Icon(
+                        Icons.stop,
+                        color: color,
+                        size: 50.w,
+                      );
                   },
                   onTap: (index) {
                     return () {
@@ -492,40 +489,49 @@ class _Dass21PageState extends State<Dass21Page> {
 
               if (count == 21) {
                 if (total_a >= 6 && total_d >= 7) {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => TimerPage("GAD7",true)));
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TimerPage("GAD7", true)));
                   isSevere = true;
                   prefs.setString('result', 'dep');
                   prefs.setString('currentPage', '1');
                   prefs.setString('totalPages', "5");
                 } else if (total_a >= 6) {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => TimerPage("GAD7",false)));
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TimerPage("GAD7", false)));
                   prefs.setString('result', 'anx');
                   prefs.setString('currentPage', '1');
                   prefs.setString('totalPages', "4");
 
                   isSevere = true;
                 } else if (total_d >= 7) {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => TimerPage("PHQ9",false)));
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TimerPage("PHQ9", false)));
                   prefs.setString('result', 'dep');
                   prefs.setString('currentPage', '1');
                   prefs.setString('totalPages', "4");
 
                   isSevere = true;
-                } else if(total_s >= 10) {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => TimerPage("BACE",false)));
+                } else if (total_s >= 10) {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TimerPage("BACE", false)));
                   prefs.setString('result', 'str');
                   prefs.setString('currentPage', '1');
                   prefs.setString('totalPages', "3");
 
                   isSevere = false;
-                }
-                else {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => TimerPage("BACE",false)));
+                } else {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TimerPage("BACE", false)));
                   prefs.setString('result', 'no issues');
                   prefs.setString('currentPage', '1');
                   prefs.setString('totalPages', "3");

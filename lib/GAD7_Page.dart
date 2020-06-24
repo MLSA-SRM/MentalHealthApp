@@ -278,8 +278,9 @@ Future pushToFirebase() async {
     final Map<String, String> someMap = {};
     print('map for GAD7 created');
 
+    someMap["Q10"] = DateTime.now().toString();
     for (int i = 0; i < 7; i++) {
-      someMap["Q${i + 10}"] = GAD7_Questions[i].answer;
+      someMap["Q${i + 10+1}"] = GAD7_Questions[i].answer;
       print(GAD7_Questions[i].answer);
     }
     print('done');
