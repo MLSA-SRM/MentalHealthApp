@@ -48,10 +48,12 @@ class _TimerPageState extends State<TimerPage> {
               return Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: MediaQuery.of(context).size.width / 20),
-                child: ListView(children: [
+                child: ListView(
+                  children: [
                   SizedBox(height: MediaQuery.of(context).size.height / 20),
                   Center(
                     child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
@@ -77,6 +79,7 @@ class _TimerPageState extends State<TimerPage> {
                               color: Colors.blueGrey,
                               fontWeight: FontWeight.bold),
                         ),
+                        // ListView(),
                         TextPortion(
                           nextPage: nextPage,
                         ),
@@ -128,8 +131,8 @@ class _TimerPageState extends State<TimerPage> {
                               padding: const EdgeInsets.all(8.0),
                               child: new Text(
                                 snapshot.data[0] != snapshot.data[1]
-                                ?"NEXT !"
-                                :"View Result",
+                                    ? "NEXT !"
+                                    : "View Result",
                                 style: TextStyle(fontSize: _width / 23),
                               ),
                             ),

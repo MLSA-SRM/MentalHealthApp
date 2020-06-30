@@ -459,106 +459,108 @@ class _Dass21PageState extends State<Dass21Page> {
   Widget summary(BuildContext context) {
     _getResult();
     return Center(
-      child: Column(
-        children: <Widget>[
-          SizedBox(
-            height: 250.h,
-          ),
-          Container(
-              child: Image(
-            image: AssetImage('assets/checklist.png'),
-            height: 400.h,
-          )),
-          SizedBox(
-            height: 20.h,
-          ),
-          InkWell(
-            onTap: () async {
-              setState(() {
-                count = 0;
-                for (int i = 0; i < 21; i++) {
-                  if (isselected[i][0] == true ||
-                      isselected[i][1] == true ||
-                      isselected[i][2] == true ||
-                      isselected[i][3] == true) {
-                    count += 1;
+      child: Container(
+        // color: Colors.blue,
+        child: Column(
+
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Container(
+                child: Image(
+              image: AssetImage('assets/checklist.png'),
+              height: 400.h,
+            )),
+            SizedBox(
+              height: 20.h,
+            ),
+            InkWell(
+              onTap: () async {
+                setState(() {
+                  count = 0;
+                  for (int i = 0; i < 21; i++) {
+                    if (isselected[i][0] == true ||
+                        isselected[i][1] == true ||
+                        isselected[i][2] == true ||
+                        isselected[i][3] == true) {
+                      count += 1;
+                    }
                   }
-                }
-              });
-              var prefs = await SharedPreferences.getInstance();
+                });
+                var prefs = await SharedPreferences.getInstance();
 
-              if (count == 21) {
-                if (total_a >= 6 && total_d >= 7) {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => TimerPage("GAD7", true)));
-                  isSevere = true;
-                  prefs.setString('result', 'dep');
-                  prefs.setString('currentPage', '1');
-                  prefs.setString('totalPages', "5");
-                } else if (total_a >= 6) {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => TimerPage("GAD7", false)));
-                  prefs.setString('result', 'anx');
-                  prefs.setString('currentPage', '1');
-                  prefs.setString('totalPages', "4");
+                if (count == 21) {
+                  if (total_a >= 6 && total_d >= 7) {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TimerPage("GAD7", true)));
+                    isSevere = true;
+                    prefs.setString('result', 'dep');
+                    prefs.setString('currentPage', '1');
+                    prefs.setString('totalPages', "5");
+                  } else if (total_a >= 6) {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TimerPage("GAD7", false)));
+                    prefs.setString('result', 'anx');
+                    prefs.setString('currentPage', '1');
+                    prefs.setString('totalPages', "4");
 
-                  isSevere = true;
-                } else if (total_d >= 7) {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => TimerPage("PHQ9", false)));
-                  prefs.setString('result', 'dep');
-                  prefs.setString('currentPage', '1');
-                  prefs.setString('totalPages', "4");
+                    isSevere = true;
+                  } else if (total_d >= 7) {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TimerPage("PHQ9", false)));
+                    prefs.setString('result', 'dep');
+                    prefs.setString('currentPage', '1');
+                    prefs.setString('totalPages', "4");
 
-                  isSevere = true;
-                } else if (total_s >= 10) {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => TimerPage("BACE", false)));
-                  prefs.setString('result', 'str');
-                  prefs.setString('currentPage', '1');
-                  prefs.setString('totalPages', "3");
+                    isSevere = true;
+                  } else if (total_s >= 10) {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TimerPage("BACE", false)));
+                    prefs.setString('result', 'str');
+                    prefs.setString('currentPage', '1');
+                    prefs.setString('totalPages', "3");
 
-                  isSevere = false;
+                    isSevere = false;
+                  } else {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TimerPage("BACE", false)));
+                    prefs.setString('result', 'no issues');
+                    prefs.setString('currentPage', '1');
+                    prefs.setString('totalPages', "3");
+
+                    isSevere = false;
+                  }
                 } else {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => TimerPage("BACE", false)));
-                  prefs.setString('result', 'no issues');
-                  prefs.setString('currentPage', '1');
-                  prefs.setString('totalPages', "3");
-
-                  isSevere = false;
+                  final snackBar = SnackBar(
+                    content: Text("Please complete the questionnaire"),
+                    duration: Duration(milliseconds: 800),
+                  );
+                  Scaffold.of(context).showSnackBar(snackBar);
                 }
-              } else {
-                final snackBar = SnackBar(
-                  content: Text("Please complete the questionnaire"),
-                  duration: Duration(milliseconds: 800),
-                );
-                Scaffold.of(context).showSnackBar(snackBar);
-              }
-            },
-            child: Card(
-              elevation: 8,
-              color: Colors.teal[400],
-              child: ListTile(
-                leading: Icon(Icons.keyboard_arrow_right, color: Colors.white),
-                title: Text(
-                  "Proceed",
-                  style: TextStyle(fontSize: 16, color: Colors.white),
+              },
+              child: Card(
+                elevation: 8,
+                color: Colors.teal[400],
+                child: ListTile(
+                  leading: Icon(Icons.keyboard_arrow_right, color: Colors.white),
+                  title: Text(
+                    "Proceed",
+                    style: TextStyle(fontSize: 16, color: Colors.white),
+                  ),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

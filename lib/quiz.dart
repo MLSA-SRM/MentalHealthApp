@@ -168,7 +168,7 @@ List<String> humdivision = [
 ];
 List<bool> q1done = [false, false, false];
 List<bool> q3done = [false, false, false, false];
-List<bool> q4done = [false, false, false, false];
+List<bool> q4done = [false, false, false, false, false];
 String currentyear = "First Year";
 String currentcourse = "Engineering & Technology";
 String currentdiveng = "Department of Automobile Engineering";
@@ -176,7 +176,7 @@ String currentdivmed = "Anaesthesia";
 String currentdivman = "BBA";
 String currentdivsci = "Department of Biotechnology";
 String currentdivhum = "Department of Bharatanatyam";
-
+String currentDivision = "Department of Automobile Engineering";
 int rating = 18;
 final snackBar = SnackBar(
   content: Text("Please complete the questionnaire"),
@@ -580,6 +580,7 @@ class QuizState extends State<Quiz> {
                                       ? (String newValueSelected) {
                                           setState(() {
                                             currentdiveng = newValueSelected;
+                                            currentDivision = newValueSelected;
                                           });
                                         }
                                       : currentcourse ==
@@ -588,6 +589,8 @@ class QuizState extends State<Quiz> {
                                               setState(() {
                                                 currentdivmed =
                                                     newValueSelected;
+                                                currentDivision =
+                                                    newValueSelected;
                                               });
                                             }
                                           : currentcourse == "Management"
@@ -595,6 +598,8 @@ class QuizState extends State<Quiz> {
                                                   setState(() {
                                                     currentdivman =
                                                         newValueSelected;
+                                                        currentDivision =
+                                                    newValueSelected;
                                                   });
                                                 }
                                               : currentcourse ==
@@ -603,12 +608,16 @@ class QuizState extends State<Quiz> {
                                                       setState(() {
                                                         currentdivsci =
                                                             newValueSelected;
+                                                            currentDivision =
+                                                    newValueSelected;
                                                       });
                                                     }
                                                   : (String newValueSelected) {
                                                       setState(() {
                                                         currentdivhum =
                                                             newValueSelected;
+                                                            currentDivision =
+                                                    newValueSelected;
                                                       });
                                                     }),
                             ),
@@ -828,11 +837,12 @@ class QuizState extends State<Quiz> {
                           child: InkWell(
                             onTap: () async {
                               setState(() {
-                                answers[2] = "Counsellor";
+                                answers[2] = "Faith Healer";
                                 q4done[0] = true;
                                 q4done[1] = false;
                                 q4done[2] = false;
                                 q4done[3] = false;
+                                q4done[4] = false;
                               });
                               if (answers[0] == "none" ||
                                   answers[1] == "none" ||
@@ -841,7 +851,7 @@ class QuizState extends State<Quiz> {
                                 Scaffold.of(context).showSnackBar(snackBar);
                               else {
                                 getAnswers();
-                                // await _pushToFirebase();
+                                await _pushToFirebase();
 
                                 Navigator.push(
                                     context,
@@ -862,7 +872,7 @@ class QuizState extends State<Quiz> {
                                       )
                                     : null,
                                 title: Text(
-                                  'Counsellor',
+                                  'Faith Healer',
                                   style: TextStyle(
                                       fontSize: ScreenUtil().setSp(60,
                                           allowFontScalingSelf: true),
@@ -877,11 +887,12 @@ class QuizState extends State<Quiz> {
                           child: InkWell(
                             onTap: () {
                               setState(() {
-                                answers[2] = "Psychologist";
+                                answers[2] = "Counsellor";
                                 q4done[0] = false;
                                 q4done[1] = true;
                                 q4done[2] = false;
                                 q4done[3] = false;
+                                q4done[4] = false;
                               });
                               if (answers[0] == "none" ||
                                   answers[1] == "none" ||
@@ -909,7 +920,7 @@ class QuizState extends State<Quiz> {
                                       )
                                     : null,
                                 title: Text(
-                                  'Psychologist',
+                                  'Counsellor',
                                   style: TextStyle(
                                       fontSize: ScreenUtil().setSp(60,
                                           allowFontScalingSelf: true),
@@ -924,11 +935,12 @@ class QuizState extends State<Quiz> {
                           child: InkWell(
                             onTap: () {
                               setState(() {
-                                answers[2] = "Psychiatrist";
+                                answers[2] = "Psychologist";
                                 q4done[0] = false;
                                 q4done[1] = false;
                                 q4done[2] = true;
                                 q4done[3] = false;
+                                q4done[4] = false;
                               });
                               if (answers[0] == "none" ||
                                   answers[1] == "none" ||
@@ -956,7 +968,7 @@ class QuizState extends State<Quiz> {
                                       )
                                     : null,
                                 title: Text(
-                                  'Psychiatrist',
+                                  'Psychologist',
                                   style: TextStyle(
                                       fontSize: ScreenUtil().setSp(60,
                                           allowFontScalingSelf: true),
@@ -971,11 +983,12 @@ class QuizState extends State<Quiz> {
                           child: InkWell(
                             onTap: () {
                               setState(() {
-                                answers[2] = "None";
+                                answers[2] = "Psychiatrist";
                                 q4done[0] = false;
                                 q4done[1] = false;
                                 q4done[2] = false;
                                 q4done[3] = true;
+                                q4done[4] = false;
                               });
                               if (answers[0] == "none" ||
                                   answers[1] == "none" ||
@@ -997,6 +1010,54 @@ class QuizState extends State<Quiz> {
                                 leading: Icon(Icons.keyboard_arrow_right,
                                     color: Colors.white),
                                 trailing: q4done[3]
+                                    ? Icon(
+                                        Icons.spellcheck,
+                                        color: Colors.white,
+                                      )
+                                    : null,
+                                title: Text(
+                                  'Psychiatrist',
+                                  style: TextStyle(
+                                      fontSize: ScreenUtil().setSp(60,
+                                          allowFontScalingSelf: true),
+                                      color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 20.h),
+                          child: InkWell(
+                            onTap: () {
+                              setState(() {
+                                answers[2] = "none";
+                                q4done[0] = false;
+                                q4done[1] = false;
+                                q4done[2] = false;
+                                q4done[3] = false;
+                                q4done[4] = true;
+                              });
+                              if (answers[0] == "none" ||
+                                  answers[1] == "none" ||
+                                  answers[2] == "none" ||
+                                  rating == null)
+                                Scaffold.of(context).showSnackBar(snackBar);
+                              else {
+                                _pushToFirebase();
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => SocioDemo()));
+                              }
+                            },
+                            child: Card(
+                              elevation: 8,
+                              color: Colors.blue[700],
+                              child: ListTile(
+                                leading: Icon(Icons.keyboard_arrow_right,
+                                    color: Colors.white),
+                                trailing: q4done[4]
                                     ? Icon(
                                         Icons.spellcheck,
                                         color: Colors.white,
@@ -1030,12 +1091,12 @@ class QuizState extends State<Quiz> {
 }
 
 void getAnswers() {
-  print(answers[0]);
-  print(rating);
-  print(currentyear);
-  print(currentcourse);
-  print(answers[1]);
-  print(answers[2]);
+  print("answers[0]=${answers[0]}");
+  print("rating=$rating");
+  print("currentyear=$currentyear");
+  print("currentcourse=$currentcourse");
+  print("answers[1]=${answers[1]}");
+  print("answers[2]=${answers[2]}");
   final Map<String, String> someMap = {};
 
   someMap["Q10"] = DateTime.now().toString();
@@ -1051,21 +1112,25 @@ void getAnswers() {
 }
 
 Future _pushToFirebase() async {
-  print(answers[0]);
-  print(rating);
-  print(currentyear);
-  print(currentcourse);
-  print(answers[1]);
-  print(answers[2]);
+  print("answers[0]=${answers[0]}");
+  print("rating=$rating");
+  print("currentyear=$currentyear");
+  print("currentcourse=$currentcourse");
+  print("answers[1]=${answers[1]}");
+  print("answers[2]=${answers[2]}");
   final Map<String, String> someMap = {};
   print('map for demographic created');
 
   someMap["Q10"] = DateTime.now().toString();
-  someMap["Q11"] = answers[0];
+  someMap["Q11"] = answers[0]; //gender
   someMap["Q12"] = rating.toString();
-  someMap["Q13"] = currentyear;
-  someMap["Q14"] = answers[1];
-  someMap["Q15"] = answers[2];
+
+  ///age
+  someMap["Q13"] = currentyear; //year of study
+  someMap["Q14"] = currentcourse; //Engg, BBA,Pharma etc.
+  someMap["Q15"] = currentDivision; //CSE,SWE and all
+  someMap["Q16"] = answers[1]; //has conducted if physical illness
+  someMap["Q17"] = answers[2]; //has consulted a
   print('done');
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String pushId = prefs.getString('key');

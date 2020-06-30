@@ -331,63 +331,63 @@ Future pushToFirebase() async {
   Widget summary(BuildContext context){
     _calcResult();
     return Center(
-      child: Column(
-        children: <Widget>[
-          SizedBox(
-            height: 250.h,
-          ),
-          Container(
-              child: Image(
-            image: AssetImage('assets/checklist.png'),
-            height: 400.h,
-          )),
-          InkWell(
-            onTap: ()async {
-              setState(() {
-                count = 0;
-                for (int i = 0; i < 5; i++) {
-                  if (isselected[i][0] == true ||
-                      isselected[i][1] == true ||
-                      isselected[i][2] == true ||
-                      isselected[i][3] == true ||
-                      isselected[i][4] == true
-                      ) {
-                    count += 1;
+      child: Container(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Container(
+                child: Image(
+              image: AssetImage('assets/checklist.png'),
+              height: 400.h,
+            )),
+            InkWell(
+              onTap: ()async {
+                setState(() {
+                  count = 0;
+                  for (int i = 0; i < 5; i++) {
+                    if (isselected[i][0] == true ||
+                        isselected[i][1] == true ||
+                        isselected[i][2] == true ||
+                        isselected[i][3] == true ||
+                        isselected[i][4] == true
+                        ) {
+                      count += 1;
+                    }
                   }
+                });
+                if(count == 5)
+                {
+                  await pushToFirebase();
+                  SharedPreferences prefs = await SharedPreferences.getInstance();
+                  String dummy = prefs.get('currentPage');
+                  int cp = int.parse(dummy);
+                  prefs.setString('currentPage', (cp+1).toString());
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TimerPage("Result",false)));//Done
                 }
-              });
-              if(count == 5)
-              {
-                await pushToFirebase();
-                SharedPreferences prefs = await SharedPreferences.getInstance();
-                String dummy = prefs.get('currentPage');
-                int cp = int.parse(dummy);
-                prefs.setString('currentPage', (cp+1).toString());
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TimerPage("Result",false)));//Done
-              }
-              else
-              {
-                final snackBar = SnackBar(
-                  content: Text("Please complete the questionnaire"),
-                  duration: Duration(milliseconds: 800),
-                );
-                Scaffold.of(context).showSnackBar(snackBar);
-              }
-              
-            },
-            child: Card(
-          elevation: 8,
-          color: Colors.teal[400],
-          child: ListTile(
-            leading: Icon(Icons.keyboard_arrow_right, color: Colors.white),
-            title: Text(
-              "Done",
-              style: TextStyle(fontSize: 16, color: Colors.white),
+                else
+                {
+                  final snackBar = SnackBar(
+                    content: Text("Please complete the questionnaire"),
+                    duration: Duration(milliseconds: 800),
+                  );
+                  Scaffold.of(context).showSnackBar(snackBar);
+                }
+                
+              },
+              child: Card(
+            elevation: 8,
+            color: Colors.teal[400],
+            child: ListTile(
+              leading: Icon(Icons.keyboard_arrow_right, color: Colors.white),
+              title: Text(
+                "Done",
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
             ),
           ),
+            )
+          ],
         ),
-          )
-        ],
       ),
     );
   }

@@ -18,10 +18,7 @@ class SocioDemo extends StatefulWidget {
 class _SocioDemoState extends State<SocioDemo> {
   SwiperController _controller = SwiperController();
   bool langClicked = false;
-
-  @override
-  Widget build(BuildContext context) {
-    List<String> langprof = [
+   List<String> langprof = [
       "Elementary Proficiency",
       "Limited Working Proficiency",
       "Professional Working Proficiency",
@@ -80,9 +77,13 @@ class _SocioDemoState extends State<SocioDemo> {
     ];
     String livingChosen = "Hostel";
 
-    ScreenUtil.init(context, allowFontScaling: true);
     Language _selectedDialogLanguage =
         LanguagePickerUtils.getLanguageByIsoCode('ml');
+   
+  @override
+  Widget build(BuildContext context) {
+    ScreenUtil.init(context, allowFontScaling: true);
+    
     return Scaffold(
       backgroundColor: Colors.white,
       body: Swiper(
@@ -130,9 +131,9 @@ class _SocioDemoState extends State<SocioDemo> {
                         itemBuilder: (language) => Container(
                           child: Row(
                             children: [
-                              Icon(Icons.translate,color: Colors.white,),
+                              Icon(Icons.translate,color: Colors.black,),
                               SizedBox(width: 7),
-                              Text("${language.name} (${language.isoCode})",style:TextStyle(color: Colors.white)),
+                              Text("${language.name} (${language.isoCode})",style:TextStyle(color: Colors.black)),
                             ],
                           ),
                         ),

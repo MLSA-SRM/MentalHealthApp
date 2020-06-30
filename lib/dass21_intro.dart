@@ -14,7 +14,7 @@ class Dass21Intro extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(
-            horizontal: MediaQuery.of(context).size.width / 20),
+            horizontal: MediaQuery.of(context).size.width / 12),
         child: ListView(children: [
           SizedBox(height: MediaQuery.of(context).size.height / 20),
           Center(
