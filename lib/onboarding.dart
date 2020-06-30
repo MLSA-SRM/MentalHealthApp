@@ -52,7 +52,7 @@ class _OnboardingState extends State<Onboarding> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Swiper(
-        itemCount: 3,
+        itemCount: 4,
         curve: Curves.easeInOutCubic,
         scrollDirection: Axis.horizontal,
         loop: false,
@@ -156,7 +156,7 @@ class _OnboardingState extends State<Onboarding> {
                       child: Padding(
                         padding:  EdgeInsets.symmetric(vertical: 50.h,horizontal: 10.w),
                         child: StepProgressIndicator(
-                          totalSteps: 3,
+                          totalSteps: 4,
                           height: 10.h,
                           currentStep: index + 1,
                           selectedColor: randomizecolor[index % 6],
@@ -280,7 +280,7 @@ class _OnboardingState extends State<Onboarding> {
                       child: Padding(
                         padding:  EdgeInsets.symmetric(horizontal: 10.w,vertical: 50.h),
                         child: StepProgressIndicator(
-                          totalSteps: 3,
+                          totalSteps: 4,
                           height: 10.h,
                           currentStep: index + 1,
                           selectedColor: randomizecolor[index % 6],
@@ -378,9 +378,7 @@ class _OnboardingState extends State<Onboarding> {
                     SizedBox(height: 30.h),
                     InkWell(
                       onTap: () {
-                        //_controller.next();
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Quiz()));
+                        _controller.next();
                       },
                       child: Card(
                         elevation: 8,
@@ -401,13 +399,108 @@ class _OnboardingState extends State<Onboarding> {
                       child: Padding(
                         padding:  EdgeInsets.symmetric(horizontal: 10.w,vertical: 30.h),
                         child: StepProgressIndicator(
-                          totalSteps: 3,
+                          totalSteps: 4,
                           height: 10.h,
                           currentStep: index + 1,
                           selectedColor: randomizecolor[index % 6],
                           unselectedColor: randomizecolorlight[index % 6],
                           customStep: (index, color) {
                             if(index == 3)
+                            {
+                              return Icon(
+                              Icons.check_box_outline_blank,
+                              color: color,
+                              size: 50.w,
+                            );
+                            }
+                            return Icon(
+                              Icons.stop,
+                              color: color,
+                              size: 50.w,
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }
+          else if(index == 3){
+            return Center(
+              child: SizedBox(
+                //height: MediaQuery.of(context).size.height*10,
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: 100.h,
+                    ),
+                    ShowUp(
+                      delay: 500,
+                      child: Container(
+                          child: Image(
+                        image: AssetImage('assets/Onboarding4.png'),
+                        height: 500.h,
+                      )),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      child: Text(
+                        "Privacy Note",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: ScreenUtil().setSp(70,allowFontScalingSelf: true),
+                            fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline,
+                            color: Colors.black),
+                      ),
+                    ),
+                    SizedBox(height: 50.h),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      child: Text(
+                        "Worried about your privacy and/or identity being revealed? Rest assured. The application is anonymous and does not collect any information by which you could be identified (such as your name, e-mail, etc.). The information collected (age, course, etc) is only to determine and analyse your mental health better. Your data and results are safe with us.\n",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: ScreenUtil().setSp(55,allowFontScalingSelf: true),
+                            //fontWeight: FontWeight.bold,
+                            color: Colors.black),
+                      ),
+                    ),
+                    SizedBox(height: 30.h),
+                    InkWell(
+                      onTap: () {
+                        //_controller.next();
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Quiz()));
+                      },
+                      child: Card(
+                        elevation: 8,
+                        color: randomizecolor[index % 6],
+                        child: ListTile(
+                          // trailing: Icon(Icons.accessibility_new, color: Colors.white),
+                          title: Text(
+                            "Start !",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: ScreenUtil().setSp(50,allowFontScalingSelf: true), color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 80.h,
+                      width: MediaQuery.of(context).size.width,
+                      child: Padding(
+                        padding:  EdgeInsets.symmetric(horizontal: 10.w,vertical: 30.h),
+                        child: StepProgressIndicator(
+                          totalSteps: 4,
+                          height: 10.h,
+                          currentStep: index + 1,
+                          selectedColor: randomizecolor[index % 6],
+                          unselectedColor: randomizecolorlight[index % 6],
+                          customStep: (index, color) {
+                            if(index == 4)
                             {
                               return Icon(
                               Icons.check_box_outline_blank,
