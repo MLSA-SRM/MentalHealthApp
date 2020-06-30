@@ -54,7 +54,8 @@ class _PHQ9PageState extends State<PHQ9Page> {
     "Poor appetite or overeating",
     "Feeling bad about yourself — or that you are a failure or have let yourself or your family down",
     "Trouble concentrating on things, such as reading the newspaper or watching television",
-    "Moving or speaking so slowly that other people could have noticed? Or the opposite — being fidgety",
+    "Moving or speaking so slowly that other people could "
+        "have noticed? Or the opposite — being fidgety"
         "",
     "Thoughts that you would be better off dead or of hurting yourself in some way"
   ];

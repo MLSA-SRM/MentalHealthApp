@@ -7,6 +7,7 @@ import 'package:language_pickers/language_pickers.dart';
 import 'package:language_pickers/languages.dart';
 import 'package:mental_health_app/DASS21_Page.dart';
 import 'package:mental_health_app/Showup.dart';
+import 'package:mental_health_app/dass21_intro.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SocioDemo extends StatefulWidget {
@@ -129,9 +130,9 @@ class _SocioDemoState extends State<SocioDemo> {
                         itemBuilder: (language) => Container(
                           child: Row(
                             children: [
-                              Icon(Icons.translate),
+                              Icon(Icons.translate,color: Colors.white,),
                               SizedBox(width: 7),
-                              Text("${language.name} (${language.isoCode})"),
+                              Text("${language.name} (${language.isoCode})",style:TextStyle(color: Colors.white)),
                             ],
                           ),
                         ),
@@ -342,7 +343,7 @@ class _SocioDemoState extends State<SocioDemo> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Dass21Page()));
+                                    builder: (context) => Dass21Intro()));
                           } else {
                             final snackBar = SnackBar(
                               content:
