@@ -123,8 +123,8 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
       var orderRef =
           FirebaseDatabase.instance.reference().child("Responses").push();
       prefs.setString('key', '${orderRef.key}');
-      print('${orderRef.key}');
-      orderRef.set({'akey': 'avalue okay ! '});
+      // print('${orderRef.key}');
+      // orderRef.set({'akey': 'avalue okay ! '});
     } else {
       print('key is already set');
       print(prefs.getString('key'));

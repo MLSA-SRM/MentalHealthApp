@@ -18,72 +18,90 @@ class SocioDemo extends StatefulWidget {
 class _SocioDemoState extends State<SocioDemo> {
   SwiperController _controller = SwiperController();
   bool langClicked = false;
-   List<String> langprof = [
-      "Elementary Proficiency",
-      "Limited Working Proficiency",
-      "Professional Working Proficiency",
-      "Full Professional Proficiency",
-      "Native or Bilingual Proficiency"
-    ];
-    String langProfValue = "Elementary Proficiency";
+  List<String> langprof = [
+    "Elementary Proficiency",
+    "Limited Working Proficiency",
+    "Professional Working Proficiency",
+    "Full Professional Proficiency",
+    "Native or Bilingual Proficiency"
+  ];
+  String langProfValue = "Elementary Proficiency";
 
-    List<String> states = [
-      "Andhra Pradesh",
-      "Arunachal Pradesh",
-      "Assam",
-      "Bihar",
-      "Chhattisgarh",
-      "Goa",
-      "Gujarat",
-      "Haryana",
-      "Himachal Pradesh",
-      "Jharkhand",
-      "Karnataka",
-      "Kerala",
-      'Madhya Pradesh',
-      "Maharashtra",
-      'Manipur',
-      "Meghalaya",
-      "Mizoram",
-      "Nagaland",
-      "Odisha",
-      "Punjab",
-      "Rajasthan",
-      "Sikkim",
-      "Tamil Nadu",
-      "Telangana",
-      "Tripura",
-      "Uttar Pradesh",
-      "Uttarakhand",
-      "West Bengal",
-      "Andaman and Nicobar Islands",
-      "Chandigarh",
-      "Dadra & Nagar Haveli and Daman & Diu",
-      "Delhi",
-      "Jammu and Kashmir",
-      "Lakshadweep",
-      "Puducherry",
-      "Ladakh",
-      "Other"
-    ];
+  List<String> states = [
+    "Andhra Pradesh",
+    "Arunachal Pradesh",
+    "Assam",
+    "Bihar",
+    "Chhattisgarh",
+    "Goa",
+    "Gujarat",
+    "Haryana",
+    "Himachal Pradesh",
+    "Jharkhand",
+    "Karnataka",
+    "Kerala",
+    'Madhya Pradesh',
+    "Maharashtra",
+    'Manipur',
+    "Meghalaya",
+    "Mizoram",
+    "Nagaland",
+    "Odisha",
+    "Punjab",
+    "Rajasthan",
+    "Sikkim",
+    "Tamil Nadu",
+    "Telangana",
+    "Tripura",
+    "Uttar Pradesh",
+    "Uttarakhand",
+    "West Bengal",
+    "Andaman and Nicobar Islands",
+    "Chandigarh",
+    "Dadra & Nagar Haveli and Daman & Diu",
+    "Delhi",
+    "Jammu and Kashmir",
+    "Lakshadweep",
+    "Puducherry",
+    "Ladakh",
+    "Other"
+  ];
 
-    String stateChosen = "Tamil Nadu";
+  List<String> languages = [
+    "Hindi",
+    "Bengali",
+    "Urdu",
+    "Punjabi",
+    "Marathi",
+    "Telugu",
+    "Tamil",
+    "Gujarati",
+    'Kannada',
+    "Odia",
+    "Malayalam",
+    "Santali",
+    "Sanskrit",
+  ];
 
-    List<String> living = [
-      "Day Scholar with Family",
-      "Hostel",
-      "Paying Guest",
-      "rented accommodation with friends"
-    ];
-    String livingChosen = "Hostel";
 
-    Language _selectedDialogLanguage =
-        LanguagePickerUtils.getLanguageByIsoCode('ml');
-   
+  String _selectedDialogLanguage ="Tamil";
+      // LanguagePickerUtils.getLanguageByIsoCode('ml');
+
+  String stateChosen = "Tamil Nadu";
+
+  List<String> living = [
+    "Day Scholar with Family",
+    "Hostel",
+    "Paying Guest",
+    "Rented accommodation with friends"
+  ];
+  String livingChosen = "Hostel";
+
+
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, allowFontScaling: true);
-    
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Swiper(
@@ -97,6 +115,8 @@ class _SocioDemoState extends State<SocioDemo> {
         itemBuilder: (BuildContext context, int index) {
           if (index == 0) {
             return Container(
+              padding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width / 20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -109,42 +129,84 @@ class _SocioDemoState extends State<SocioDemo> {
                     )),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height / 10),
-                  Text("What is your mother tongue?",
-                      style: TextStyle(
-                          fontSize: ScreenUtil()
-                              .setSp(65, allowFontScalingSelf: true),
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black)),
-                  SizedBox(height: MediaQuery.of(context).size.height / 20),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width / 20),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.orange,
-                      ),
-                      child: ListTile(
-                          // leading: Icon(Icons.language),
-                          title: LanguagePickerDropdown(
-                        initialValue: 'ml',
-                        itemBuilder: (language) => Container(
-                          child: Row(
-                            children: [
-                              Icon(Icons.translate,color: Colors.black,),
-                              SizedBox(width: 7),
-                              Text("${language.name} (${language.isoCode})",style:TextStyle(color: Colors.black)),
-                            ],
-                          ),
-                        ),
-                        onValuePicked: (Language language) {
-                          _selectedDialogLanguage = language;
-                          print(_selectedDialogLanguage.name);
-                          print(_selectedDialogLanguage.isoCode);
-                        },
-                      )),
-                    ),
+                  Center(
+                    child: Text("What is your mother tongue?",
+                        style: TextStyle(
+                            fontSize: ScreenUtil()
+                                .setSp(65, allowFontScalingSelf: true),
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black)),
                   ),
+                  SizedBox(height: MediaQuery.of(context).size.height / 20),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.orange),
+                    child: DropdownButtonFormField<String>(
+                        decoration: InputDecoration(border: InputBorder.none),
+                        dropdownColor: Colors.orange,
+                        iconEnabledColor: Colors.orange[800],
+                        focusColor: Colors.orange,
+                        iconSize: 30,
+                        isExpanded: true,
+                        elevation: 10,
+                        value: _selectedDialogLanguage.toString(),
+                        items: languages.map((String dropdownstringitem) {
+                          return DropdownMenuItem<String>(
+                            value: dropdownstringitem,
+                            child: Text(dropdownstringitem,
+                                style: TextStyle(
+                                    fontSize: ScreenUtil()
+                                        .setSp(50, allowFontScalingSelf: true),
+                                    color: Colors.white)),
+                          );
+                        }).toList(),
+                        onChanged: (String newValueSelected) {
+                          setState(() {
+                            _selectedDialogLanguage = newValueSelected;
+                            print(_selectedDialogLanguage);
+                            _controller.next();
+                          });
+                        }),
+                  ),
+                  // Container(
+                  //   padding: EdgeInsets.symmetric(horizontal: 8, vertical: 18),
+                  //   decoration: BoxDecoration(
+                  //     borderRadius: BorderRadius.circular(10),
+                  //     color: Colors.orange,
+                  //   ),
+                  //   child:
+                  //       //  ListTile(
+                  //       //   // leading: Icon(Icons.language),
+                  //       //   title:
+                  //       Expanded(
+                  //     child: LanguagePickerDropdown(
+                  //       initialValue: 'ml',
+                  //       itemBuilder: (language) => Container(
+                  //         child: Row(
+                  //           mainAxisSize: MainAxisSize.min,
+                  //           children: [
+                  //             Icon(
+                  //               Icons.translate,
+                  //               color: Colors.black,
+                  //             ),
+                  //             SizedBox(width: 7),
+                  //             Text("${language.name} (${language.isoCode})",
+                  //                 style: TextStyle(color: Colors.black)),
+                  //           ],
+                  //         ),
+                  //       ),
+                  //       onValuePicked: (Language language) {
+                  //         _selectedDialogLanguage = language;
+                  //         print(_selectedDialogLanguage.name);
+                  //         print(_selectedDialogLanguage.isoCode);
+                  //         _controller.next();
+                  //       },
+                  //     ),
+                  //   ),
+                  //   // ),
+                  // ),
                 ],
               ),
             );
@@ -177,9 +239,7 @@ class _SocioDemoState extends State<SocioDemo> {
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.orange),
                     child: DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                        border: InputBorder.none
-                      ),
+                        decoration: InputDecoration(border: InputBorder.none),
                         dropdownColor: Colors.orange,
                         iconEnabledColor: Colors.orange[800],
                         focusColor: Colors.orange,
@@ -201,6 +261,7 @@ class _SocioDemoState extends State<SocioDemo> {
                           setState(() {
                             langProfValue = newValueSelected;
                             print(langProfValue);
+                            _controller.next();
                           });
                         }),
                   ),
@@ -236,9 +297,7 @@ class _SocioDemoState extends State<SocioDemo> {
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.orange),
                     child: DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                        border: InputBorder.none
-                      ),
+                        decoration: InputDecoration(border: InputBorder.none),
                         dropdownColor: Colors.orange,
                         iconEnabledColor: Colors.orange[800],
                         focusColor: Colors.orange,
@@ -259,6 +318,7 @@ class _SocioDemoState extends State<SocioDemo> {
                         onChanged: (String newValueSelected) {
                           setState(() {
                             stateChosen = newValueSelected;
+                            _controller.next();
                           });
                         }),
                   ),
@@ -295,9 +355,7 @@ class _SocioDemoState extends State<SocioDemo> {
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.orange),
                     child: DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                        border: InputBorder.none
-                      ),
+                        decoration: InputDecoration(border: InputBorder.none),
                         dropdownColor: Colors.orange,
                         iconEnabledColor: Colors.orange[800],
                         focusColor: Colors.orange,
@@ -309,6 +367,7 @@ class _SocioDemoState extends State<SocioDemo> {
                           return DropdownMenuItem<String>(
                             value: dropdownstringitem,
                             child: Text(dropdownstringitem,
+                                maxLines: 2,
                                 style: TextStyle(
                                     fontSize: ScreenUtil()
                                         .setSp(50, allowFontScalingSelf: true),
@@ -334,13 +393,13 @@ class _SocioDemoState extends State<SocioDemo> {
                           if (livingChosen != null &&
                               stateChosen != null &&
                               langProfValue != null &&
-                              _selectedDialogLanguage.name != null) {
+                              _selectedDialogLanguage != null) {
                             await _pushToFirebase(
                                 livingChosen: livingChosen,
                                 stateChosen: stateChosen,
                                 langProfValue: langProfValue,
                                 selectedDialogLanguageName:
-                                    _selectedDialogLanguage.name);
+                                    _selectedDialogLanguage);
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(

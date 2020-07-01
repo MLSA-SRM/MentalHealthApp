@@ -445,7 +445,7 @@ class QuizState extends State<Quiz> {
                                       value: dropdownstringitem0,
                                       child: Text(dropdownstringitem0,
                                           style: TextStyle(
-                                              fontSize: ScreenUtil().setSp(50,
+                                              fontSize: ScreenUtil().setSp(40,
                                                   allowFontScalingSelf: true),
                                               color: Colors.white)),
                                     );
@@ -501,7 +501,7 @@ class QuizState extends State<Quiz> {
                                             child: Text(dropdownstringitem0,
                                                 style: TextStyle(
                                                     fontSize: ScreenUtil().setSp(
-                                                        50,
+                                                        40,
                                                         allowFontScalingSelf:
                                                             true),
                                                     color: Colors.white)),
@@ -516,7 +516,7 @@ class QuizState extends State<Quiz> {
                                                 child: Text(dropdownstringitem0,
                                                     style: TextStyle(
                                                         fontSize: ScreenUtil()
-                                                            .setSp(50,
+                                                            .setSp(40,
                                                                 allowFontScalingSelf:
                                                                     true),
                                                         color: Colors.white)),
@@ -532,7 +532,7 @@ class QuizState extends State<Quiz> {
                                                         dropdownstringitem0,
                                                         style: TextStyle(
                                                             fontSize: ScreenUtil()
-                                                                .setSp(50,
+                                                                .setSp(40,
                                                                     allowFontScalingSelf:
                                                                         true),
                                                             color:
@@ -551,7 +551,7 @@ class QuizState extends State<Quiz> {
                                                             dropdownstringitem0,
                                                             style: TextStyle(
                                                                 fontSize: ScreenUtil()
-                                                                    .setSp(50,
+                                                                    .setSp(40,
                                                                         allowFontScalingSelf:
                                                                             true),
                                                                 color: Colors
@@ -568,7 +568,7 @@ class QuizState extends State<Quiz> {
                                                             dropdownstringitem0,
                                                             style: TextStyle(
                                                                 fontSize: ScreenUtil()
-                                                                    .setSp(50,
+                                                                    .setSp(40,
                                                                         allowFontScalingSelf:
                                                                             true),
                                                                 color: Colors
@@ -582,6 +582,7 @@ class QuizState extends State<Quiz> {
                                             currentdiveng = newValueSelected;
                                             currentDivision = newValueSelected;
                                           });
+                                          _controller.next();
                                         }
                                       : currentcourse ==
                                               "Medicine & Health Sciences"
@@ -592,6 +593,7 @@ class QuizState extends State<Quiz> {
                                                 currentDivision =
                                                     newValueSelected;
                                               });
+                                              _controller.next();
                                             }
                                           : currentcourse == "Management"
                                               ? (String newValueSelected) {
@@ -601,6 +603,7 @@ class QuizState extends State<Quiz> {
                                                         currentDivision =
                                                     newValueSelected;
                                                   });
+                                                  _controller.next();
                                                 }
                                               : currentcourse ==
                                                       "Science & Humanities"
@@ -611,6 +614,7 @@ class QuizState extends State<Quiz> {
                                                             currentDivision =
                                                     newValueSelected;
                                                       });
+                                                      _controller.next();
                                                     }
                                                   : (String newValueSelected) {
                                                       setState(() {
@@ -619,6 +623,7 @@ class QuizState extends State<Quiz> {
                                                             currentDivision =
                                                     newValueSelected;
                                                       });
+                                                      _controller.next();
                                                     }),
                             ),
                           ),
