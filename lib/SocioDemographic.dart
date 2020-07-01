@@ -28,18 +28,25 @@ class _SocioDemoState extends State<SocioDemo> {
   String langProfValue = "Elementary Proficiency";
 
   List<String> states = [
+    "Andaman and Nicobar Islands",
     "Andhra Pradesh",
     "Arunachal Pradesh",
     "Assam",
     "Bihar",
+    "Chandigarh",
     "Chhattisgarh",
+    "Dadra & Nagar Haveli and Daman & Diu",
+    "Delhi",
     "Goa",
     "Gujarat",
     "Haryana",
     "Himachal Pradesh",
+    "Jammu and Kashmir",
     "Jharkhand",
     "Karnataka",
     "Kerala",
+    "Ladakh",
+    "Lakshadweep Islands",
     'Madhya Pradesh',
     "Maharashtra",
     'Manipur',
@@ -47,6 +54,8 @@ class _SocioDemoState extends State<SocioDemo> {
     "Mizoram",
     "Nagaland",
     "Odisha",
+    "Other"
+    "Puducherry",
     "Punjab",
     "Rajasthan",
     "Sikkim",
@@ -56,15 +65,6 @@ class _SocioDemoState extends State<SocioDemo> {
     "Uttar Pradesh",
     "Uttarakhand",
     "West Bengal",
-    "Andaman and Nicobar Islands",
-    "Chandigarh",
-    "Dadra & Nagar Haveli and Daman & Diu",
-    "Delhi",
-    "Jammu and Kashmir",
-    "Lakshadweep",
-    "Puducherry",
-    "Ladakh",
-    "Other"
   ];
 
   List<String> languages = [
