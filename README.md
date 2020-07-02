@@ -4,6 +4,10 @@ This app has been developed by [MSPCSRM](https://msclubsrm.in) and [Team Envisio
 
 You can also use this email to report any security vulnerabilities to us. 
 
+If you are looking to download the production(stable) version of the app, you can do so here: 
+- [Android](https://play.google.com/store/apps/details?id=com.envisionmspc.mentalHealthApp) 
+- iOS (coming soon)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
