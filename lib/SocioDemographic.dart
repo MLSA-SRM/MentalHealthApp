@@ -54,7 +54,6 @@ class _SocioDemoState extends State<SocioDemo> {
     "Mizoram",
     "Nagaland",
     "Odisha",
-    "Other"
     "Puducherry",
     "Punjab",
     "Rajasthan",
@@ -65,6 +64,7 @@ class _SocioDemoState extends State<SocioDemo> {
     "Uttar Pradesh",
     "Uttarakhand",
     "West Bengal",
+    "Others"
   ];
 
   List<String> languages = [
@@ -83,9 +83,8 @@ class _SocioDemoState extends State<SocioDemo> {
     "Sanskrit",
   ];
 
-
-  String _selectedDialogLanguage ="Tamil";
-      // LanguagePickerUtils.getLanguageByIsoCode('ml');
+  String _selectedDialogLanguage = "Tamil";
+  // LanguagePickerUtils.getLanguageByIsoCode('ml');
 
   String stateChosen = "Tamil Nadu";
 
@@ -96,7 +95,6 @@ class _SocioDemoState extends State<SocioDemo> {
     "Rented accommodation with friends"
   ];
   String livingChosen = "Hostel";
-
 
   @override
   Widget build(BuildContext context) {
