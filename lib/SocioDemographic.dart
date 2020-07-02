@@ -68,19 +68,28 @@ class _SocioDemoState extends State<SocioDemo> {
   ];
 
   List<String> languages = [
-    "Hindi",
-    "Bengali",
-    "Urdu",
-    "Punjabi",
-    "Marathi",
-    "Telugu",
-    "Tamil",
-    "Gujarati",
-    'Kannada',
-    "Odia",
-    "Malayalam",
-    "Santali",
-    "Sanskrit",
+"Assamese",
+"Bengali",
+"Bodo",
+"Dogri",
+"Gujarati",
+"Hindi",
+"Kannada",
+"Kashmiri",
+"Konkani",
+"Maithili",
+"Malayalam",
+"Manipuri",
+"Marathi",
+"Nepali",
+"Odia",
+"Punjabi",
+"Sanskrit",
+"Santhali",
+"Sindhi",
+"Tamil",
+"Telugu",
+"Urdu"
   ];
 
   String _selectedDialogLanguage = "Tamil";
@@ -141,8 +150,8 @@ class _SocioDemoState extends State<SocioDemo> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.orange),
-                    child: DropdownButtonFormField<String>(
-                        decoration: InputDecoration(border: InputBorder.none),
+                    child: DropdownButton<String>(
+                        //decoration: InputDecoration(border: InputBorder.none),
                         dropdownColor: Colors.orange,
                         iconEnabledColor: Colors.orange[800],
                         focusColor: Colors.orange,
@@ -236,8 +245,8 @@ class _SocioDemoState extends State<SocioDemo> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.orange),
-                    child: DropdownButtonFormField<String>(
-                        decoration: InputDecoration(border: InputBorder.none),
+                    child: DropdownButton<String>(
+                        //decoration: InputDecoration(border: InputBorder.none),
                         dropdownColor: Colors.orange,
                         iconEnabledColor: Colors.orange[800],
                         focusColor: Colors.orange,
@@ -294,8 +303,8 @@ class _SocioDemoState extends State<SocioDemo> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.orange),
-                    child: DropdownButtonFormField<String>(
-                        decoration: InputDecoration(border: InputBorder.none),
+                    child: DropdownButton<String>(
+                        //decoration: InputDecoration(border: InputBorder.none),
                         dropdownColor: Colors.orange,
                         iconEnabledColor: Colors.orange[800],
                         focusColor: Colors.orange,
@@ -352,8 +361,8 @@ class _SocioDemoState extends State<SocioDemo> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.orange),
-                    child: DropdownButtonFormField<String>(
-                        decoration: InputDecoration(border: InputBorder.none),
+                    child: DropdownButton<String>(
+                        //decoration: InputDecoration(border: InputBorder.none),
                         dropdownColor: Colors.orange,
                         iconEnabledColor: Colors.orange[800],
                         focusColor: Colors.orange,

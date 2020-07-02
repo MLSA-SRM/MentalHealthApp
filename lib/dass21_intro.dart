@@ -93,7 +93,7 @@ class Dass21Intro extends StatelessWidget {
                       color: Colors.teal,
                       padding: const EdgeInsets.all(8.0),
                       child: new Text(
-                        "NEXT !",
+                        "NEXT",
                         style: TextStyle(fontSize: _width / 23),
                       ),
                     ),

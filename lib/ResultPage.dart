@@ -28,9 +28,10 @@ class _ResultPageState extends State<ResultPage> {
     if (res == 'dep') {
       msg =
           "Sadness is a human emotion that all people feel at certain times during their lives."
-          " Feeling sad is a natural reaction to situations that cause emotional upset or pain.";
-      endMsg = " Depression differs from sadness. The feelings you have will affect all aspects of your life."
-          " Depression is a medical Condition, not an emotion."
+          " Feeling sad is a natural reaction to situations that cause emotional upset or pain."
+          " Depression differs from sadness. The feelings you have will affect all aspects of your life."
+          " Depression is a medical Condition, not an emotion.";
+      endMsg = 
           " Our screening assessment suggests that you have symptoms suggestive of Depression.";
       title = "Depression";
       imgUrl = "assets/icon_depression.png";
@@ -44,9 +45,9 @@ class _ResultPageState extends State<ResultPage> {
     } else if (res == 'anx') {
       msg =
           "It’s normal to feel Anxious when faced with a potentially dangerous situation or worrying triggers,"
-          " our “nerves” become the warning signs we need to navigate the dangers around us.";
+          " our “nerves” become the warning signs we need to navigate the dangers around us."
+          " The problem starts when you start experiencing  these symptoms constantly or intensely even without a present danger.";
       endMsg =
-          " The problem starts when you start experiencing  these symptoms constantly or intensely even without a present danger."
           " Our screening assessment suggests that you may have symptoms suggestive of an Anxiety disorder.";
       title = "Anxiety";
       imgUrl = "assets/icon_anxiety.png";
@@ -179,6 +180,7 @@ class _ResultPageState extends State<ResultPage> {
                                          // words: highlightMap.getMap,
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
+                                            fontWeight: FontWeight.bold,
                                               fontSize: MediaQuery.of(context)
                                                   .size
                                                   .width /
@@ -288,7 +290,7 @@ class _ResultPageState extends State<ResultPage> {
                                     color: Color(0xffD3515B),
 //                                    padding: const EdgeInsets.all(8.0),
                                     child: new Text(
-                                      "Homepage",
+                                      "Home",
                                       style: TextStyle(
                                           fontSize: MediaQuery.of(context)
                                               .size

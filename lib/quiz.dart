@@ -1036,7 +1036,7 @@ class QuizState extends State<Quiz> {
                           child: InkWell(
                             onTap: () {
                               setState(() {
-                                answers[2] = "none";
+                                answers[2] = "None";
                                 q4done[0] = false;
                                 q4done[1] = false;
                                 q4done[2] = false;

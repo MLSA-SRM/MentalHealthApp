@@ -131,7 +131,7 @@ class _TimerPageState extends State<TimerPage> {
                               padding: const EdgeInsets.all(8.0),
                               child: new Text(
                                 snapshot.data[0] != snapshot.data[1]
-                                    ? "NEXT !"
+                                    ? "NEXT"
                                     : "View Result",
                                 style: TextStyle(fontSize: _width / 23),
                               ),
