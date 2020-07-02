@@ -31,7 +31,7 @@ samples, guidance on mobile development, and a full API reference.
 - Clone the repo to your computer.
 - [Flutter SDK (1.19)](https://flutter.dev/docs/get-started/install) setup the production environments for iOS and Android
 - Open the directory in your favourite command line tool and run `flutter pub get` to get all packages.
-- `flutter build apk' will build an APK file.
+- `flutter build apk` will build an APK file.
 - `flutter run` will run the app on your connected device
 - `flutter build ios` will build the app for iOS devices (You will need a Mac for this).
 
