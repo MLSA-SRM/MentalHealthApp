@@ -27,12 +27,13 @@ class _ResultPageState extends State<ResultPage> {
     res = prefs.get('result');
     if (res == 'dep') {
       msg =
+      "According to our screening assessment you have symptoms suggestive of Depression.";
+          
+      endMsg = 
           "Sadness is a human emotion that all people feel at certain times during their lives."
           " Feeling sad is a natural reaction to situations that cause emotional upset or pain."
           " Depression differs from sadness. The feelings you have will affect all aspects of your life."
-          " Depression is a medical Condition, not an emotion.";
-      endMsg = 
-          " Our screening assessment suggests that you have symptoms suggestive of Depression.";
+          " Depression is a medical condition, not an emotion.";
       title = "Depression";
       imgUrl = "assets/icon_depression.png";
       words = {
@@ -43,12 +44,12 @@ class _ResultPageState extends State<ResultPage> {
             })
       };
     } else if (res == 'anx') {
-      msg =
-          "It’s normal to feel Anxious when faced with a potentially dangerous situation or worrying triggers,"
+      msg ="According to our screening assessment you  may have symptoms suggestive of an Anxiety disorder.";
+         
+      endMsg = "It’s normal to feel Anxious when faced with a potentially dangerous situation or worrying triggers,"
           " our “nerves” become the warning signs we need to navigate the dangers around us."
           " The problem starts when you start experiencing  these symptoms constantly or intensely even without a present danger.";
-      endMsg =
-          " Our screening assessment suggests that you may have symptoms suggestive of an Anxiety disorder.";
+          
       title = "Anxiety";
       imgUrl = "assets/icon_anxiety.png";
       words = {
@@ -60,11 +61,11 @@ class _ResultPageState extends State<ResultPage> {
             })
       };
     } else if (res == 'str') {
-      msg =
-          "We all go through stress in our lives, it’s important for your growth."
+      msg = "Our screening assessment suggests that you may be under stress, which you’re unable to cope with.";
+          
+      endMsg ="We all go through stress in our lives, it’s important for your growth."
           " Stress becomes a problem when it exceeds your ability to cope with them.";
-      endMsg =
-          " Our screening assessment suggests that you may be under stress, which you’re unable to cope with.";
+          
       title = "Stress";
       imgUrl = "assets/icon_stress.png";
       words = {
@@ -76,12 +77,10 @@ class _ResultPageState extends State<ResultPage> {
             })
       };
     } else if(res == 'no issues'){
-      msg =
-          "Strong mental health isn’t just the absence of mental health problems."
-          " Being mentally or emotionally healthy is much more than being free of depression, anxiety, or other psychological issues.";
+      msg ="According to our screening assessment you don’t have any symptoms suggestive of Depression, anxiety disorder or stress.";
+         
       endMsg =
-          " Rather than the absence of mental illness, mental health refers to the presence of positive characteristics."
-          " Although our Screening assessment didn’t find signs of any problems. ";
+         "Strong mental health isn’t just the absence of mental health problems. Being mentally or emotionally healthy is much more than being free of depression, anxiety, or other psychological issues. Rather than the absence of mental illness, mental health refers to the presence of positive characteristics.";
       title = "No Issues";
       imgUrl = "assets/icon_no problems.png";
     }
@@ -166,6 +165,7 @@ class _ResultPageState extends State<ResultPage> {
 //                                          words: highlightMap.getMap,
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
+                                            fontWeight: FontWeight.bold,
                                               fontSize: MediaQuery.of(context)
                                                   .size
                                                   .width /
@@ -180,7 +180,7 @@ class _ResultPageState extends State<ResultPage> {
                                          // words: highlightMap.getMap,
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                            fontWeight: FontWeight.bold,
+                                            
                                               fontSize: MediaQuery.of(context)
                                                   .size
                                                   .width /
@@ -223,7 +223,7 @@ class _ResultPageState extends State<ResultPage> {
                             GestureDetector(
                               onTap: () async {
                                 launch(
-                                    "https://docs.google.com/document/d/1ZZLO3FCzaQupIxGP1x0Bpsarps9Z1gx4X6UQlxnhBhQ/edit?usp=sharing");
+                                    "https://github.com/MSPC-Tech/MentalHealthApp/raw/master/static/Get%20Help%20Now.pdf");
                               },
                               child: Text(
                                 "Click here to Get Help Now!",
