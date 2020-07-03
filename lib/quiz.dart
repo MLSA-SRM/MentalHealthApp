@@ -694,7 +694,7 @@ class QuizState extends State<Quiz> {
                           height: 400.h,
                         ),
                         Text(
-                          "\nDo you have any physical illness?\nIf yes, have you consulted a",
+                          "\nDo you have any physical illness?\n",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: ScreenUtil()
