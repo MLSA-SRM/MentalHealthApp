@@ -35,7 +35,7 @@ class Dass21Intro extends StatelessWidget {
                   height: MediaQuery.of(context).size.height / 20,
                 ),
                 Text(
-                  "Kudos on taking a step towards bettering your mental health!",
+                  "Kudos on taking a step towards improving your mental health!",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: MediaQuery.of(context).size.width / 20,

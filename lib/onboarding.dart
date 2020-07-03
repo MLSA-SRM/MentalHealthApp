@@ -82,7 +82,7 @@ class _OnboardingState extends State<Onboarding> {
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20.w),
                         child: Text(
-                          "Developed by Professionals",
+                          "Developed in liaison by Professionals",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: ScreenUtil().setSp(75,allowFontScalingSelf: true),
@@ -346,7 +346,7 @@ class _OnboardingState extends State<Onboarding> {
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20.w),
                         child: Text(
-                          "This is not an alternative to seeking professional help for any acute mental health condition, If you’re currently feeling extremely anxious, suicidal or depressed kindly visit the Emergency of SRM Medical College & Hospital help will be provided to you promptly for the same. Please go through the Consent form below.\n",
+                          "This is not an alternative to seeking professional help for any acute mental health condition. If you’re currently feeling extremely anxious, suicidal or depressed kindly visit the Emergency of SRM Medical College & Hospital. Help will be provided to you promptly for the same. Please go through the Consent form below.\n",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: ScreenUtil().setSp(55,allowFontScalingSelf: true),
@@ -467,7 +467,7 @@ class _OnboardingState extends State<Onboarding> {
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20.w),
                         child: Text(
-                          "Worried about your privacy and/or identity being revealed? Rest assured. The application is anonymous and does not collect any information by which you could be identified (such as your name, e-mail, etc.). The information collected (age, course, etc) is only to determine and analyse your mental health better. Your data and results are safe with us.\n",
+                          "Worried about your privacy and/or identity being revealed? Rest assured. The application is anonymous and does not collect any information by which you could be identified (such as your name, e-mail, etc.). The information collected (age, course, etc.) is only to determine and analyse your mental health better. Your data and results are safe with us.\n",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: ScreenUtil().setSp(55,allowFontScalingSelf: true),
@@ -488,7 +488,7 @@ class _OnboardingState extends State<Onboarding> {
                           child: ListTile(
                             // trailing: Icon(Icons.accessibility_new, color: Colors.white),
                             title: Text(
-                              "Start !",
+                              "Start",
                               textAlign: TextAlign.center,
                               style: TextStyle(fontSize: ScreenUtil().setSp(50,allowFontScalingSelf: true), color: Colors.white),
                             ),

@@ -325,7 +325,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                           child: RaisedButton(
                             //elevation: 10,
                             onPressed: () async{
-                              launch("https://docs.google.com/document/d/1ZZLO3FCzaQupIxGP1x0Bpsarps9Z1gx4X6UQlxnhBhQ/edit?usp=sharing");
+                              launch("https://github.com/MSPC-Tech/MentalHealthApp/raw/master/static/Get%20Help%20Now.pdf");
                             },
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.all(

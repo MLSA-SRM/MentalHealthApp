@@ -208,7 +208,7 @@ class TextPortion extends StatelessWidget {
                   text: "Select",
                   style: TextStyle(color: Colors.black, fontSize: textSize)),
               TextSpan(
-                  text: " how much the following statements apply to you,",
+                  text: " how much the following statements apply to you, ",
                   style: TextStyle(color: Colors.red, fontSize: textSize)),
               TextSpan(
                   text: "this will help us understand you better.",
@@ -227,7 +227,7 @@ class TextPortion extends StatelessWidget {
               height: 15,
             ),
             Text(
-                "Next, you will see a list of things that can stop, delay, or discourage people from getting professional care for a mental health problem, or continuing to get help.By professional care, we mean care from staff such as a GP (family doctor), member of a community mental health team (e.g. care coordinator, mental health nurse or mental health social worker), psychiatrist, counselor, psychologist, or psychotherapist.",
+                "Next, you will see a list of things that can stop, delay, or discourage people from getting professional care for a mental health problem, or continuing to get help. By professional care, we mean care from staff such as a GP (family doctor), member of a community mental health team (e.g. care coordinator, mental health nurse or mental health social worker), psychiatrist, counselor, psychologist, or psychotherapist.",
                 style: TextStyle(fontSize: textSize - 2)),
             SizedBox(
               height: 12,

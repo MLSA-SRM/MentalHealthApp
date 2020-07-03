@@ -26,11 +26,11 @@ class _SDRSPageState extends State<SDRSPage> {
   List<Color> randomizecolorlight = [Colors.blue[100],Colors.green[100],Colors.red[100],Colors.purple[100],Colors.pink[100],Colors.orange[100]];
 
   List<List<bool>> isselected = new List.generate(27, (j) => [false,false,false,false,false]);
-  List<String> questions = ["I am always courteous even to people who are disagreeable.",
-                            "There have been occasions when I took advantage of someone.",
-                            "I sometimes try to get even rather than forgive and forget.",
+  List<String> questions = ["I am always courteous even to people who are disagreeable",
+                            "There have been occasions when I took advantage of someone",
+                            "I sometimes try to get even rather than forgive and forget",
                             "I sometimes feel resentful when I don’t get my way",
-                            "No matter who I’m talking to, I’m always a good listener."];
+                            "No matter who I’m talking to, I’m always a good listener"];
 
   List<int> qtype = [1,2,3];
   bool isSevere = false;
