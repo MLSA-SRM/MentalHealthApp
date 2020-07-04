@@ -27,9 +27,9 @@ class _ResultPageState extends State<ResultPage> {
     res = prefs.get('result');
     if (res == 'dep') {
       msg =
-      "According to our screening assessment you have symptoms suggestive of Depression.";
-          
-      endMsg = 
+          "According to our screening assessment you have symptoms suggestive of Depression.";
+
+      endMsg =
           "Sadness is a human emotion that all people feel at certain times during their lives."
           " Feeling sad is a natural reaction to situations that cause emotional upset or pain."
           " Depression differs from sadness. The feelings you have will affect all aspects of your life."
@@ -44,49 +44,51 @@ class _ResultPageState extends State<ResultPage> {
             })
       };
     } else if (res == 'anx') {
-      msg ="According to our screening assessment you  may have symptoms suggestive of an Anxiety disorder.";
-         
-      endMsg = "It’s normal to feel Anxious when faced with a potentially dangerous situation or worrying triggers,"
+      msg =
+          "According to our screening assessment you  may have symptoms suggestive of an Anxiety disorder.";
+
+      endMsg =
+          "It’s normal to feel Anxious when faced with a potentially dangerous situation or worrying triggers,"
           " our “nerves” become the warning signs we need to navigate the dangers around us."
           " The problem starts when you start experiencing  these symptoms constantly or intensely even without a present danger.";
-          
+
       title = "Anxiety";
       imgUrl = "assets/icon_anxiety.png";
       words = {
         "Anxiety": HighlightedWord(
-            textStyle:
-                TextStyle(color: Color(0xffF65158), fontWeight: FontWeight.bold),
+            textStyle: TextStyle(
+                color: Color(0xffF65158), fontWeight: FontWeight.bold),
             onTap: () {
               print("Anxiety");
             })
       };
     } else if (res == 'str') {
-      msg = "Our screening assessment suggests that you may be under stress, which you’re unable to cope with.";
-          
-      endMsg ="We all go through stress in our lives, it’s important for your growth."
+      msg =
+          "Our screening assessment suggests that you may be under stress, which you’re unable to cope with.";
+
+      endMsg =
+          "We all go through stress in our lives, it’s important for your growth."
           " Stress becomes a problem when it exceeds your ability to cope with them.";
-          
+
       title = "Stress";
       imgUrl = "assets/icon_stress.png";
       words = {
         "Stress": HighlightedWord(
-            textStyle:
-                TextStyle(color: Color(0xffF65158), fontWeight: FontWeight.bold),
+            textStyle: TextStyle(
+                color: Color(0xffF65158), fontWeight: FontWeight.bold),
             onTap: () {
               print("Stress");
             })
       };
-    } else if(res == 'no issues'){
-      msg ="According to our screening assessment you don’t have any symptoms suggestive of Depression, anxiety disorder or stress.";
-         
+    } else if (res == 'no issues') {
+      msg =
+          "According to our screening assessment you don’t have any symptoms suggestive of depression, anxiety disorder or stress.";
+
       endMsg =
-         "Strong mental health isn’t just the absence of mental health problems. Being mentally or emotionally healthy is much more than being free of depression, anxiety, or other psychological issues. Rather than the absence of mental illness, mental health refers to the presence of positive characteristics.";
+          "Strong mental health isn’t just the absence of mental health problems. Being mentally or emotionally healthy is much more than being free of depression, anxiety, or other psychological issues. Rather than the absence of mental illness, mental health refers to the presence of positive characteristics.";
       title = "No Issues";
       imgUrl = "assets/icon_no problems.png";
-    }
-    else {
-
-    }
+    } else {}
     msgList[0] = title;
     msgList[1] = msg;
     msgList[2] = endMsg;
@@ -125,7 +127,7 @@ class _ResultPageState extends State<ResultPage> {
                         return Column(
                           children: <Widget>[
                             SizedBox(
-                              height: MediaQuery.of(context).size.height/10 ,
+                              height: MediaQuery.of(context).size.height / 10,
                             ),
                             Text(
                               "Your result is loading....",
@@ -147,10 +149,15 @@ class _ResultPageState extends State<ResultPage> {
                             Stack(
                               children: <Widget>[
                                 Padding(
-                                  padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height/15),
+                                  padding: EdgeInsets.only(
+                                      top: MediaQuery.of(context).size.height /
+                                          15),
                                   child: Container(
-                                    padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width/50,
-                                        ),
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal:
+                                          MediaQuery.of(context).size.width /
+                                              50,
+                                    ),
                                     decoration: BoxDecoration(
                                       color: Color(0xffEFBFC3),
                                       borderRadius: BorderRadius.circular(20),
@@ -158,37 +165,45 @@ class _ResultPageState extends State<ResultPage> {
                                     child: Column(
                                       children: <Widget>[
                                         SizedBox(
-                                          height: MediaQuery.of(context).size.height/10 ,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              10,
                                         ),
                                         Text(
                                           snapshot.data[1],
 //                                          words: highlightMap.getMap,
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                            fontWeight: FontWeight.bold,
+                                              fontWeight: FontWeight.bold,
                                               fontSize: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
+                                                      .size
+                                                      .width /
                                                   24,
                                               color: Colors.black),
                                         ),
                                         SizedBox(
-                                          height: MediaQuery.of(context).size.height / 50,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              50,
                                         ),
                                         Text(
-                                           snapshot.data[2],
-                                         // words: highlightMap.getMap,
+                                          snapshot.data[2],
+                                          // words: highlightMap.getMap,
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                            
                                               fontSize: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
+                                                      .size
+                                                      .width /
                                                   24,
                                               color: Colors.black),
                                         ),
                                         SizedBox(
-                                          height: MediaQuery.of(context).size.height / 40,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              40,
                                         ),
                                       ],
                                     ),
@@ -201,9 +216,11 @@ class _ResultPageState extends State<ResultPage> {
                                     children: <Widget>[
                                       Container(
                                           child: Image(
-                                            image: AssetImage(snapshot.data[3]),
-                                            height: MediaQuery.of(context).size.height / 6,
-                                          )),
+                                        image: AssetImage(snapshot.data[3]),
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                6,
+                                      )),
                                     ],
                                   ),
                                 ),
@@ -237,41 +254,47 @@ class _ResultPageState extends State<ResultPage> {
                               ),
                             ),
                             SizedBox(
-                              height:  MediaQuery.of(context).size.height / 30,
+                              height: MediaQuery.of(context).size.height / 30,
                             ),
                             RichText(
-                              textAlign:TextAlign.center,
-                                text: TextSpan(
-                              children: <TextSpan>[
-                                TextSpan(
-                                 text:  "To read more about common Mental Health Problems, we have a specially curated list of Articles you might benefit from. ",
-                                  style: TextStyle(
-                                    fontSize:
-                                    MediaQuery.of(context).size.width / 24,
-                                    color: Color(0xff28324B),
-                                  ),
-                                ),
-                                TextSpan(
-                                  text:"Click Here!",
-                                  recognizer:  TapGestureRecognizer()..onTap = () {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => ArticlePage()));
-                                  },
-                                  style: TextStyle(
+                                textAlign: TextAlign.center,
+                                text: TextSpan(children: <TextSpan>[
+                                  TextSpan(
+                                    text:
+                                        "To read more about common Mental Health Problems, we have a specially curated list of Articles you might benefit from. ",
+                                    style: TextStyle(
                                       fontSize:
-                                      MediaQuery.of(context).size.width / 24,
+                                          MediaQuery.of(context).size.width /
+                                              24,
                                       color: Color(0xff28324B),
-                                      fontWeight: FontWeight.bold,
-                                      decoration: TextDecoration.underline),
-                                ),
-                              ]
-                            )),
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: "Click Here!",
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ArticlePage()));
+                                      },
+                                    style: TextStyle(
+                                        fontSize:
+                                            MediaQuery.of(context).size.width /
+                                                24,
+                                        color: Color(0xff28324B),
+                                        fontWeight: FontWeight.bold,
+                                        decoration: TextDecoration.underline),
+                                  ),
+                                ])),
                             Padding(
                               padding: EdgeInsets.only(
                                   top: MediaQuery.of(context).size.height / 30),
                               child: ShowUp(
                                 child: Container(
                                   height:
-                                  MediaQuery.of(context).size.height / 15,
+                                      MediaQuery.of(context).size.height / 15,
                                   width: MediaQuery.of(context).size.width / 2,
                                   child: RaisedButton(
                                     //    elevation: 10,
@@ -293,8 +316,8 @@ class _ResultPageState extends State<ResultPage> {
                                       "Home",
                                       style: TextStyle(
                                           fontSize: MediaQuery.of(context)
-                                              .size
-                                              .width /
+                                                  .size
+                                                  .width /
                                               25),
                                     ),
                                   ),
