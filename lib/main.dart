@@ -200,7 +200,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                           fontWeight: FontWeight.bold,
                           color: Colors.black),
                     ),
-                    delay: delayedAmount - 500,
+                    
                   ),
                   SizedBox(
                     height: _height/70,
@@ -210,7 +210,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                       "&",
                       style: TextStyle(fontSize: _width/15, color: Colors.black),
                     ),
-                    delay: delayedAmount,
+                   
                   ),
                   SizedBox(
                     height: _height/70,
@@ -220,7 +220,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                       "\'The thoughts in your head\'",
                       style: TextStyle(fontSize: _width/18, color: Colors.black),
                     ),
-                    delay: delayedAmount,
+                    
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 40,
@@ -234,7 +234,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                         height: MediaQuery.of(context).size.height / 40,
                       ),
                       ShowUp(
-                    delay: 1300,
+                   
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
@@ -282,7 +282,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                             ),
                           ),
                         ),
-                        delay: 1100,
+                        
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height/70,
@@ -313,7 +313,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                             ),
                           ),
                         ),
-                        delay: 1400,
+                        
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height/70,
@@ -341,7 +341,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                             ),
                           ),
                         ),
-                        delay: 1100,
+                        
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height/50,

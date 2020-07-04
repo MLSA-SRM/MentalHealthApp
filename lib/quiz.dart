@@ -74,13 +74,12 @@ List<String> year = [
 ];
 List<String> course = [
   "Engineering & Technology",
-  "Medicine & Health Sciences",
+  "Medicine",
   "Management",
   "Science & Humanities",
   "Dental",
-  "Law",
-  "Teacher Education and Research",
-  "Hotel and Catering Management"
+  "Allied Health Sciences",
+  "Others"
 ];
 List<String> engdivision = [
   "Department of Aerospace Engineering",
@@ -109,6 +108,7 @@ List<String> engdivision = [
   "Department of Telecommunication",
 ];
 List<String> meddivision = [
+  "Accident and Emergency Medicine",
   "Anaesthesia",
   "Anatomy",
   "Audiology",
@@ -118,6 +118,7 @@ List<String> meddivision = [
   "Community Medicine",
   "Clinical Psychology",
   "Dermatology, Venerology and Leprosy",
+  "Forensic Medicine",
   "General Medicine",
   "General Surgery",
   "MBBS",
@@ -184,6 +185,19 @@ List<String> dendivision = [
   "Prosthodontics & Implantology",
   "Public Health Dentistry"
 ];
+List<String> alldivision = [
+  "Audiology and Speech Language Pathology",
+  "Clinical Psychology",
+  "Clinical Nutrition",
+  "Imaging Technology",
+  "Laboratory Technology",
+  "Nursing",
+  "Optometry",
+  "Occupational Therapy",
+  "Pharmacy",
+  "Physiotherapy",
+  "Public Health",
+];
 List<String> defdivision = ["-"];
 
 List<bool> q1done = [false, false, false];
@@ -196,6 +210,7 @@ String currentdivmed = "Anaesthesia";
 String currentdivman = "BBA";
 String currentdivsci = "Department of Biotechnology";
 String currentdivden = "Conservative Dentistry and Endodontics";
+String currentdivall = "Audiology and Speech Language Pathology";
 String currentdefault = "-";
 String currentDivision = "Department of Automobile Engineering";
 int rating = 18;
@@ -505,8 +520,7 @@ class QuizState extends State<Quiz> {
                                   value: currentcourse ==
                                           "Engineering & Technology"
                                       ? currentdiveng
-                                      : currentcourse ==
-                                              "Medicine & Health Sciences"
+                                      : currentcourse == "Medicine"
                                           ? currentdivmed
                                           : currentcourse == "Management"
                                               ? currentdivman
@@ -515,7 +529,10 @@ class QuizState extends State<Quiz> {
                                                   ? currentdivsci
                                                   : currentcourse == "Dental"
                                                       ? currentdivden
-                                                      : currentdefault,
+                                                      : currentcourse ==
+                                                              "Allied Health Sciences"
+                                                          ? currentdivall
+                                                          : currentdefault,
                                   items: currentcourse ==
                                           "Engineering & Technology"
                                       ? engdivision
@@ -531,8 +548,7 @@ class QuizState extends State<Quiz> {
                                                     color: Colors.white)),
                                           );
                                         }).toList()
-                                      : currentcourse ==
-                                              "Medicine & Health Sciences"
+                                      : currentcourse == "Medicine"
                                           ? meddivision.map(
                                               (String dropdownstringitem0) {
                                               return DropdownMenuItem<String>(
@@ -583,24 +599,7 @@ class QuizState extends State<Quiz> {
                                                       );
                                                     }).toList()
                                                   : currentcourse == "Dental"
-                                                      ? dendivision.map((String
-                                                          dropdownstringitem0) {
-                                                          return DropdownMenuItem<
-                                                              String>(
-                                                            value:
-                                                                dropdownstringitem0,
-                                                            child: Text(
-                                                                dropdownstringitem0,
-                                                                style: TextStyle(
-                                                                    fontSize: ScreenUtil().setSp(
-                                                                        40,
-                                                                        allowFontScalingSelf:
-                                                                            true),
-                                                                    color: Colors
-                                                                        .white)),
-                                                          );
-                                                        }).toList()
-                                                      : defdivision.map(
+                                                      ? dendivision.map(
                                                           (String dropdownstringitem0) {
                                                           return DropdownMenuItem<
                                                               String>(
@@ -616,7 +615,40 @@ class QuizState extends State<Quiz> {
                                                                     color: Colors
                                                                         .white)),
                                                           );
-                                                        }).toList(),
+                                                        }).toList()
+                                                      : currentcourse == "Allied Health Sciences"
+                                                          ? alldivision.map((String dropdownstringitem0) {
+                                                              return DropdownMenuItem<
+                                                                  String>(
+                                                                value:
+                                                                    dropdownstringitem0,
+                                                                child: Text(
+                                                                    dropdownstringitem0,
+                                                                    style: TextStyle(
+                                                                        fontSize: ScreenUtil().setSp(
+                                                                            40,
+                                                                            allowFontScalingSelf:
+                                                                                true),
+                                                                        color: Colors
+                                                                            .white)),
+                                                              );
+                                                            }).toList()
+                                                          : defdivision.map((String dropdownstringitem0) {
+                                                              return DropdownMenuItem<
+                                                                  String>(
+                                                                value:
+                                                                    dropdownstringitem0,
+                                                                child: Text(
+                                                                    dropdownstringitem0,
+                                                                    style: TextStyle(
+                                                                        fontSize: ScreenUtil().setSp(
+                                                                            40,
+                                                                            allowFontScalingSelf:
+                                                                                true),
+                                                                        color: Colors
+                                                                            .white)),
+                                                              );
+                                                            }).toList(),
                                   onChanged: currentcourse == "Engineering & Technology"
                                       ? (String newValueSelected) {
                                           setState(() {
@@ -625,7 +657,7 @@ class QuizState extends State<Quiz> {
                                           });
                                           _controller.next();
                                         }
-                                      : currentcourse == "Medicine & Health Sciences"
+                                      : currentcourse == "Medicine"
                                           ? (String newValueSelected) {
                                               setState(() {
                                                 currentdivmed =
@@ -665,15 +697,27 @@ class QuizState extends State<Quiz> {
                                                           });
                                                           _controller.next();
                                                         }
-                                                      : (String newValueSelected) {
-                                                          setState(() {
-                                                            currentdefault =
-                                                                newValueSelected;
-                                                            currentDivision =
-                                                                newValueSelected;
-                                                          });
-                                                          _controller.next();
-                                                        }),
+                                                      : currentcourse == "Allied Health Sciences"
+                                                          ? (String newValueSelected) {
+                                                              setState(() {
+                                                                currentdivall =
+                                                                    newValueSelected;
+                                                                currentDivision =
+                                                                    newValueSelected;
+                                                              });
+                                                              _controller
+                                                                  .next();
+                                                            }
+                                                          : (String newValueSelected) {
+                                                              setState(() {
+                                                                currentdefault =
+                                                                    newValueSelected;
+                                                                currentDivision =
+                                                                    newValueSelected;
+                                                              });
+                                                              _controller
+                                                                  .next();
+                                                            }),
                             ),
                           ),
                           visible: currentyear == "Faculty" ||
