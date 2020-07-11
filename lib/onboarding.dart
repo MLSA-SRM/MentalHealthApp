@@ -40,7 +40,11 @@ class _OnboardingState extends State<Onboarding> {
   ];
 
   int total = 0;
-
+  bool consent = false; 
+  final snackBar = SnackBar(
+  content: Text("Please give consent before you proceed"),
+  duration: Duration(milliseconds: 800),
+);
   @override
   void initState() {
     super.initState();
@@ -383,6 +387,7 @@ class _OnboardingState extends State<Onboarding> {
                       SizedBox(height: 30.h),
                       InkWell(
                         onTap: () {
+                          consent = true;
                           _controller.next();
                         },
                         child: Card(
@@ -478,9 +483,17 @@ class _OnboardingState extends State<Onboarding> {
                       SizedBox(height: 30.h),
                       InkWell(
                         onTap: () {
-                          //_controller.next();
-                          Navigator.push(context,
+                          if(consent)
+                          {
+                            Navigator.push(context,
                               MaterialPageRoute(builder: (context) => Quiz()));
+                          }
+                          else
+                          {
+                            Scaffold.of(context).showSnackBar(snackBar);
+                            _controller.move(2);
+                          }
+                          
                         },
                         child: Card(
                           elevation: 8,

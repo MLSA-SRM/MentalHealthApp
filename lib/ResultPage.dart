@@ -151,7 +151,7 @@ class _ResultPageState extends State<ResultPage> {
                                 Padding(
                                   padding: EdgeInsets.only(
                                       top: MediaQuery.of(context).size.height /
-                                          15),
+                                          20),
                                   child: Container(
                                     padding: EdgeInsets.symmetric(
                                       horizontal:
@@ -287,22 +287,93 @@ class _ResultPageState extends State<ResultPage> {
                                         fontWeight: FontWeight.bold,
                                         decoration: TextDecoration.underline),
                                   ),
+                                  TextSpan(
+                                    text:
+                                        "\n\nDue to the ongoing pandemic across the nation, we are switching to telepsychiatry, while still maintaining the privacy that you need. Tap",
+                                    style: TextStyle(
+                                      fontSize:
+                                          MediaQuery.of(context).size.width /
+                                              24,
+                                      color: Color(0xff28324B),
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        " Reach Out ",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize:
+                                          MediaQuery.of(context).size.width /
+                                              24,
+                                      color: Color(0xff28324B),
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        "to talk to one of SRM’s renowned panel of Mental Health Professionals.",
+                                    style: TextStyle(
+                                      fontSize:
+                                          MediaQuery.of(context).size.width /
+                                              24,
+                                      color: Color(0xff28324B),
+                                    ),
+                                  ),
                                 ])),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  top: MediaQuery.of(context).size.height / 30),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.all(
+                                       MediaQuery.of(context).size.height / 30
+                                      
+                                      ),
+                                  child: ShowUp(
+                                    child: Container(
+                                      height:
+                                          MediaQuery.of(context).size.height / 20,
+                                      width: MediaQuery.of(context).size.width / 3.5,
+                                      child: RaisedButton(
+                                        //    elevation: 10,
+                                        onPressed: () async {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) => MyApp()));
+                                        },
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(20),
+                                          ),
+                                        ),
+                                        textColor: Colors.white,
+                                        color: Color(0xffD3515B),
+//                                    padding: const EdgeInsets.all(8.0),
+                                        child: new Text(
+                                          "Home",
+                                          style: TextStyle(
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  25),
+                                        ),
+                                      ),
+                                    ),
+                                    delay: 1100,
+                                  ),
+                                ),
+                                Padding(
+                              padding: EdgeInsets.all(
+                                   MediaQuery.of(context).size.height / 30),
                               child: ShowUp(
                                 child: Container(
                                   height:
-                                      MediaQuery.of(context).size.height / 15,
-                                  width: MediaQuery.of(context).size.width / 2,
+                                      MediaQuery.of(context).size.height / 20,
+                                  width: MediaQuery.of(context).size.width / 3.5,
                                   child: RaisedButton(
                                     //    elevation: 10,
                                     onPressed: () async {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => MyApp()));
+                                      launch("https://docs.google.com/forms/d/e/1FAIpQLScGbH_Ek7L2qw0ktOyW4IvSKGCWyBZ5OgZZLE5m7qQPmR9nww/viewform?usp=sf_link");
+
                                     },
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
@@ -313,7 +384,9 @@ class _ResultPageState extends State<ResultPage> {
                                     color: Color(0xffD3515B),
 //                                    padding: const EdgeInsets.all(8.0),
                                     child: new Text(
-                                      "Home",
+                                      
+                                      "Reach out",
+                                      textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontSize: MediaQuery.of(context)
                                                   .size
@@ -324,6 +397,8 @@ class _ResultPageState extends State<ResultPage> {
                                 ),
                                 delay: 1100,
                               ),
+                            ),
+                              ],
                             ),
                           ],
                         );

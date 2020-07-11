@@ -106,6 +106,7 @@ List<String> engdivision = [
   "Department of Physics",
   "Department of Software Engineering",
   "Department of Telecommunication",
+  "Others"
 ];
 List<String> meddivision = [
   "Accident and Emergency Medicine",
@@ -145,13 +146,15 @@ List<String> meddivision = [
   "Public Health",
   "Radio Diagnosis",
   "Respiratory Medicine",
-  "Urology"
+  "Urology",
+  "Others"
 ];
 List<String> mandivision = [
   "BBA",
   "MBA",
   "MMS In Banking and Financial Services",
-  "Ph.D"
+  "Ph.D",
+  "Others"
 ];
 List<String> scidivision = [
   "Department of Bharatanatyam",
@@ -172,7 +175,8 @@ List<String> scidivision = [
   "Department of Public Relations",
   "Department of Physical Education",
   "Department of Tamil",
-  "Department of Visual Communication"
+  "Department of Visual Communication",
+  "Others"
 ];
 List<String> dendivision = [
   "Conservative Dentistry and Endodontics",
@@ -183,7 +187,8 @@ List<String> dendivision = [
   "Pedodontics & Preventive Dentistry",
   "Periodontics",
   "Prosthodontics & Implantology",
-  "Public Health Dentistry"
+  "Public Health Dentistry",
+  "Others"
 ];
 List<String> alldivision = [
   "Audiology and Speech Language Pathology",
@@ -197,6 +202,7 @@ List<String> alldivision = [
   "Pharmacy",
   "Physiotherapy",
   "Public Health",
+  "Others"
 ];
 List<String> defdivision = ["-"];
 
