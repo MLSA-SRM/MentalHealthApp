@@ -239,8 +239,10 @@ class _ResultPageState extends State<ResultPage> {
                             ),
                             GestureDetector(
                               onTap: () async {
-                                launch(
-                                    "https://github.com/MSPC-Tech/MentalHealthApp/raw/master/static/Get%20Help%20Now.pdf");
+                               Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) => MyApp()));
                               },
                               child: Text(
                                 "Click here to Get Help Now!",
