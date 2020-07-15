@@ -2,6 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'Showup.dart';
+import 'main.dart';
+
 
 class ArticlePage extends StatefulWidget {
   @override
@@ -35,6 +38,15 @@ class _ArticlePageState extends State<ArticlePage> {
 
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) => MyApp()));
+      },
+      child: Icon(Icons.home),
+      backgroundColor: Colors.teal,
+      ),
       body: Container(
         color: Colors.white,
         child: ListView(
