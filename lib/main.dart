@@ -4,6 +4,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:mental_health_app/ArticlesPage.dart';
 import 'package:mental_health_app/DASS21_Page.dart';
@@ -18,6 +19,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'Showup.dart';
 import 'quiz.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
+import 'package:flutter/services.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -54,6 +58,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
+  String assetPDFPath4 = "";
   final int delayedAmount = 1000;
   SharedPreferences prefs;
   FirebaseMessaging firebaseMessaging = FirebaseMessaging();
@@ -111,6 +116,25 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
         setState(() {});
       },
     );
+    getFileFromAsset4("assets/Get Help Now.pdf").then((f4) {
+      setState(() {
+        assetPDFPath4 = f4.path;
+        
+      });
+    });
+  }
+  Future<File> getFileFromAsset4(String asset) async {
+    try {
+      var data = await rootBundle.load(asset);
+      var bytes = data.buffer.asUint8List();
+      var dir = await getApplicationDocumentsDirectory();
+      File file = File("${dir.path}/Get Help Now.pdf");
+
+      File assetFile = await file.writeAsBytes(bytes);
+      return assetFile;
+    } catch (e) {
+      throw Exception("Error opening asset file");
+    }
   }
 
   void checkId() async {
@@ -330,8 +354,13 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                           child: RaisedButton(
                             //elevation: 10,
                             onPressed: () async {
-                              launch(
-                                  "https://github.com/MSPC-Tech/MentalHealthApp/raw/master/static/Get%20Help%20Now.pdf");
+                             if (assetPDFPath4 != null) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      PdfViewPage(path: assetPDFPath4)));
+                        }
                             },
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.all(
@@ -355,6 +384,85 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                   ),
                 ]),
           )),
+    );
+  }
+}
+
+class PdfViewPage extends StatefulWidget {
+  final String path;
+
+  const PdfViewPage({Key key, this.path}) : super(key: key);
+  @override
+  _PdfViewPageState createState() => _PdfViewPageState();
+}
+
+class _PdfViewPageState extends State<PdfViewPage> {
+  int _totalPages = 0;
+  int _currentPage = 0;
+  bool pdfReady = false;
+  PDFViewController _pdfViewController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          PDFView(
+            filePath: widget.path,
+            autoSpacing: true,
+            enableSwipe: true,
+            pageSnap: true,
+            swipeHorizontal: true,
+            nightMode: false,
+            onError: (e) {
+              print(e);
+            },
+            onRender: (_pages) {
+              setState(() {
+                _totalPages = _pages;
+                pdfReady = true;
+              });
+            },
+            onViewCreated: (PDFViewController vc) {
+              _pdfViewController = vc;
+            },
+            onPageChanged: (int page, int total) {
+              setState(() {});
+            },
+            onPageError: (page, e) {},
+          ),
+          !pdfReady
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Offstage()
+        ],
+      ),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          _currentPage > 0
+              ? FloatingActionButton.extended(
+                  backgroundColor: Colors.red,
+                  label: Text("Go to ${_currentPage - 1}"),
+                  onPressed: () {
+                    _currentPage -= 1;
+                    _pdfViewController.setPage(_currentPage);
+                  },
+                )
+              : Offstage(),
+          _currentPage+1 < _totalPages
+              ? FloatingActionButton.extended(
+                  backgroundColor: Colors.green,
+                  label: Text("Go to ${_currentPage + 1}"),
+                  onPressed: () {
+                    _currentPage += 1;
+                    _pdfViewController.setPage(_currentPage);
+                  },
+                )
+              : Offstage(),
+        ],
+      ),
     );
   }
 }
