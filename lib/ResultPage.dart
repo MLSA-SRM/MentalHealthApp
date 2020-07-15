@@ -17,7 +17,7 @@ class ResultPage extends StatefulWidget {
 
 class _ResultPageState extends State<ResultPage> {
   String res, msg, title, endMsg, imgUrl;
-
+  String assetPDFPath2= "";
   Map<String, HighlightedWord> words;
   HighlightMap highlightMap;
 
@@ -239,8 +239,13 @@ class _ResultPageState extends State<ResultPage> {
                             ),
                             GestureDetector(
                               onTap: () async {
-                                launch(
-                                    "https://github.com/MSPC-Tech/MentalHealthApp/raw/master/static/Get%20Help%20Now.pdf");
+                              if (assetPDFPath2 != null) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      PdfViewPage(path: assetPDFPath2)));
+                        }
                               },
                               child: Text(
                                 "Click here to Get Help Now!",

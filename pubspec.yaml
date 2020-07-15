@@ -37,6 +37,9 @@ dependencies:
   device_preview: 0.4.5
   highlight_text:
   language_pickers:
+  flutter_pdfview: ^1.0.0+10
+  path_provider:
+  http:
 
 
 dev_dependencies:

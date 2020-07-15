@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mental_health_app/question.dart';
 import 'package:mental_health_app/quiz.dart';
@@ -7,6 +8,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:link/link.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'Showup.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:http/http.dart' as http;
+import 'dart:io';
 
 class Onboarding extends StatefulWidget {
   @override
@@ -14,6 +19,11 @@ class Onboarding extends StatefulWidget {
 }
 
 class _OnboardingState extends State<Onboarding> {
+  String assetPDFPath1 = "";
+  String assetPDFPath2= "";
+
+  String assetPDFPath3 = "";
+
   SwiperController _controller = SwiperController();
   List<Question> SDRS_Questions = [
     Question(),
@@ -45,11 +55,70 @@ class _OnboardingState extends State<Onboarding> {
   content: Text("Please give consent before you proceed"),
   duration: Duration(milliseconds: 800),
 );
+
   @override
   void initState() {
     super.initState();
-  }
+  getFileFromAsset1("assets/Know the Team.pdf").then((f1) {
+      setState(() {
+        assetPDFPath1 = f1.path;
+        
+      });
+    });
+    getFileFromAsset2("assets/Get Help Now.pdf").then((f2) {
+      setState(() {
+        assetPDFPath2 = f2.path;
+       
+      });
+    });
+    getFileFromAsset3("assets/Consent Form.pdf").then((f3) {
+      setState(() {
+        assetPDFPath3 = f3.path;
+       
+      });
+    });
+    
 
+  }
+ Future<File> getFileFromAsset1(String asset) async {
+    try {
+      var data = await rootBundle.load(asset);
+      var bytes = data.buffer.asUint8List();
+      var dir = await getApplicationDocumentsDirectory();
+      File file = File("${dir.path}/Know the Team.pdf");
+
+      File assetFile = await file.writeAsBytes(bytes);
+      return assetFile;
+    } catch (e) {
+      throw Exception("Error opening asset file");
+    }
+  }
+  Future<File> getFileFromAsset2(String asset) async {
+    try {
+      var data = await rootBundle.load(asset);
+      var bytes = data.buffer.asUint8List();
+      var dir = await getApplicationDocumentsDirectory();
+      File file = File("${dir.path}/Get Help Now.pdf");
+
+      File assetFile = await file.writeAsBytes(bytes);
+      return assetFile;
+    } catch (e) {
+      throw Exception("Error opening asset file");
+    }
+  }
+  Future<File> getFileFromAsset3(String asset) async {
+    try {
+      var data = await rootBundle.load(asset);
+      var bytes = data.buffer.asUint8List();
+      var dir = await getApplicationDocumentsDirectory();
+      File file = File("${dir.path}/Consent Form.pdf");
+
+      File assetFile = await file.writeAsBytes(bytes);
+      return assetFile;
+    } catch (e) {
+      throw Exception("Error opening asset file");
+    }
+  }
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, allowFontScaling: true);
@@ -121,7 +190,14 @@ class _OnboardingState extends State<Onboarding> {
                         elevation: 5,
                         child: GestureDetector(
                           onTap: () async {
-                            launch('https://github.com/MSPC-Tech/MentalHealthApp/raw/master/static/Know%20the%20Team.pdf');
+                           print("PDF poof");
+                           if (assetPDFPath1 != null) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      PdfViewPage(path: assetPDFPath1)));
+                        }
                           },
                           child: Text(
                             "Know the Team",
@@ -249,7 +325,13 @@ class _OnboardingState extends State<Onboarding> {
                         elevation: 5,
                         child: GestureDetector(
                           onTap: () async {
-                            launch("https://github.com/MSPC-Tech/MentalHealthApp/raw/master/static/Get%20Help%20Now.pdf");
+                            if (assetPDFPath2 != null) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      PdfViewPage(path: assetPDFPath2)));
+                        }
                           },
                           child: Text(
                             "I want help now!",
@@ -370,7 +452,13 @@ class _OnboardingState extends State<Onboarding> {
                         elevation: 5,
                         child: GestureDetector(
                           onTap: () async {
-                            launch("https://github.com/MSPC-Tech/MentalHealthApp/raw/master/static/Consent%20Form.pdf");
+                            if (assetPDFPath3 != null) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      PdfViewPage(path: assetPDFPath3)));
+                        }
                           },
                           child: Text(
                             "Consent Form!",
@@ -547,6 +635,85 @@ class _OnboardingState extends State<Onboarding> {
             return null;
           }
         },
+      ),
+    );
+  }
+}
+
+class PdfViewPage extends StatefulWidget {
+  final String path;
+
+  const PdfViewPage({Key key, this.path}) : super(key: key);
+  @override
+  _PdfViewPageState createState() => _PdfViewPageState();
+}
+
+class _PdfViewPageState extends State<PdfViewPage> {
+  int _totalPages = 0;
+  int _currentPage = 0;
+  bool pdfReady = false;
+  PDFViewController _pdfViewController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          PDFView(
+            filePath: widget.path,
+            autoSpacing: true,
+            enableSwipe: true,
+            pageSnap: true,
+            swipeHorizontal: true,
+            nightMode: false,
+            onError: (e) {
+              print(e);
+            },
+            onRender: (_pages) {
+              setState(() {
+                _totalPages = _pages;
+                pdfReady = true;
+              });
+            },
+            onViewCreated: (PDFViewController vc) {
+              _pdfViewController = vc;
+            },
+            onPageChanged: (int page, int total) {
+              setState(() {});
+            },
+            onPageError: (page, e) {},
+          ),
+          !pdfReady
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Offstage()
+        ],
+      ),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          _currentPage > 0
+              ? FloatingActionButton.extended(
+                  backgroundColor: Colors.red,
+                  label: Text("Go to ${_currentPage - 1}"),
+                  onPressed: () {
+                    _currentPage -= 1;
+                    _pdfViewController.setPage(_currentPage);
+                  },
+                )
+              : Offstage(),
+          _currentPage+1 < _totalPages
+              ? FloatingActionButton.extended(
+                  backgroundColor: Colors.green,
+                  label: Text("Go to ${_currentPage + 1}"),
+                  onPressed: () {
+                    _currentPage += 1;
+                    _pdfViewController.setPage(_currentPage);
+                  },
+                )
+              : Offstage(),
+        ],
       ),
     );
   }
