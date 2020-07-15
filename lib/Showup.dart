@@ -35,7 +35,8 @@ class _ShowUpState extends State<ShowUp> with TickerProviderStateMixin {
       });
     }
   }
-    @override
+
+  @override
   void dispose() {
     super.dispose();
     _animController.dispose();
