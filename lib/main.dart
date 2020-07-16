@@ -265,6 +265,9 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                           ),
                           GestureDetector(
                             onTap: () async {
+                              launch("https://envision.aaruush.org/Here-For-You-App-Team-Page/");
+                            },
+                            onLongPress: () async {
                               launch("https://envision.aaruush.org/");
                             },
                             child: Image(
