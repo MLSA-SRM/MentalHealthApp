@@ -4,7 +4,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:mental_health_app/ArticlesPage.dart';
 import 'package:mental_health_app/DASS21_Page.dart';
@@ -116,12 +115,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
         setState(() {});
       },
     );
-    getFileFromAsset4("assets/Get Help Now.pdf").then((f4) {
-      setState(() {
-        assetPDFPath4 = f4.path;
-        
-      });
-    });
+  assetPDFPath4 = 'assets/Get Help Now.pdf';
   }
   Future<File> getFileFromAsset4(String asset) async {
     try {
@@ -362,7 +356,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      PdfViewPage(path: assetPDFPath4)));
+                                      PdfViewer(assetPDFPath4)));
                         }
                             },
                             shape: RoundedRectangleBorder(
@@ -391,81 +385,3 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   }
 }
 
-class PdfViewPage extends StatefulWidget {
-  final String path;
-
-  const PdfViewPage({Key key, this.path}) : super(key: key);
-  @override
-  _PdfViewPageState createState() => _PdfViewPageState();
-}
-
-class _PdfViewPageState extends State<PdfViewPage> {
-  int _totalPages = 0;
-  int _currentPage = 0;
-  bool pdfReady = false;
-  PDFViewController _pdfViewController;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          PDFView(
-            filePath: widget.path,
-            autoSpacing: true,
-            enableSwipe: true,
-            pageSnap: true,
-            swipeHorizontal: true,
-            nightMode: false,
-            onError: (e) {
-              print(e);
-            },
-            onRender: (_pages) {
-              setState(() {
-                _totalPages = _pages;
-                pdfReady = true;
-              });
-            },
-            onViewCreated: (PDFViewController vc) {
-              _pdfViewController = vc;
-            },
-            onPageChanged: (int page, int total) {
-              setState(() {});
-            },
-            onPageError: (page, e) {},
-          ),
-          !pdfReady
-              ? Center(
-                  child: CircularProgressIndicator(),
-                )
-              : Offstage()
-        ],
-      ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          _currentPage > 0
-              ? FloatingActionButton.extended(
-                  backgroundColor: Colors.red,
-                  label: Text("Go to ${_currentPage - 1}"),
-                  onPressed: () {
-                    _currentPage -= 1;
-                    _pdfViewController.setPage(_currentPage);
-                  },
-                )
-              : Offstage(),
-          _currentPage+1 < _totalPages
-              ? FloatingActionButton.extended(
-                  backgroundColor: Colors.green,
-                  label: Text("Go to ${_currentPage + 1}"),
-                  onPressed: () {
-                    _currentPage += 1;
-                    _pdfViewController.setPage(_currentPage);
-                  },
-                )
-              : Offstage(),
-        ],
-      ),
-    );
-  }
-}
