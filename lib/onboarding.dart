@@ -190,14 +190,9 @@ class _OnboardingState extends State<Onboarding> {
                         elevation: 5,
                         child: GestureDetector(
                           onTap: () async {
-                           print("PDF poof");
-                           if (assetPDFPath1 != null) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      PdfViewPage(path: assetPDFPath1)));
-                        }
+                           launch("https://drive.google.com/file/d/1Gmx_Ran7IEMd3O8uTfls82n5HGD_8gdg/view");
+                          
+                        
                           },
                           child: Text(
                             "Know the Team",
@@ -325,13 +320,7 @@ class _OnboardingState extends State<Onboarding> {
                         elevation: 5,
                         child: GestureDetector(
                           onTap: () async {
-                            if (assetPDFPath2 != null) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      PdfViewPage(path: assetPDFPath2)));
-                        }
+                            launch("https://drive.google.com/file/d/1Gmx_Ran7IEMd3O8uTfls82n5HGD_8gdg/view");
                           },
                           child: Text(
                             "I want help now!",
@@ -452,13 +441,7 @@ class _OnboardingState extends State<Onboarding> {
                         elevation: 5,
                         child: GestureDetector(
                           onTap: () async {
-                            if (assetPDFPath3 != null) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      PdfViewPage(path: assetPDFPath3)));
-                        }
+                            launch("https://drive.google.com/file/d/1Gmx_Ran7IEMd3O8uTfls82n5HGD_8gdg/view");
                           },
                           child: Text(
                             "Consent Form!",
@@ -635,85 +618,6 @@ class _OnboardingState extends State<Onboarding> {
             return null;
           }
         },
-      ),
-    );
-  }
-}
-
-class PdfViewPage extends StatefulWidget {
-  final String path;
-
-  const PdfViewPage({Key key, this.path}) : super(key: key);
-  @override
-  _PdfViewPageState createState() => _PdfViewPageState();
-}
-
-class _PdfViewPageState extends State<PdfViewPage> {
-  int _totalPages = 0;
-  int _currentPage = 0;
-  bool pdfReady = false;
-  PDFViewController _pdfViewController;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          PDFView(
-            filePath: widget.path,
-            autoSpacing: true,
-            enableSwipe: true,
-            pageSnap: true,
-            swipeHorizontal: true,
-            nightMode: false,
-            onError: (e) {
-              print(e);
-            },
-            onRender: (_pages) {
-              setState(() {
-                _totalPages = _pages;
-                pdfReady = true;
-              });
-            },
-            onViewCreated: (PDFViewController vc) {
-              _pdfViewController = vc;
-            },
-            onPageChanged: (int page, int total) {
-              setState(() {});
-            },
-            onPageError: (page, e) {},
-          ),
-          !pdfReady
-              ? Center(
-                  child: CircularProgressIndicator(),
-                )
-              : Offstage()
-        ],
-      ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          _currentPage > 0
-              ? FloatingActionButton.extended(
-                  backgroundColor: Colors.red,
-                  label: Text("Go to ${_currentPage - 1}"),
-                  onPressed: () {
-                    _currentPage -= 1;
-                    _pdfViewController.setPage(_currentPage);
-                  },
-                )
-              : Offstage(),
-          _currentPage+1 < _totalPages
-              ? FloatingActionButton.extended(
-                  backgroundColor: Colors.green,
-                  label: Text("Go to ${_currentPage + 1}"),
-                  onPressed: () {
-                    _currentPage += 1;
-                    _pdfViewController.setPage(_currentPage);
-                  },
-                )
-              : Offstage(),
-        ],
       ),
     );
   }
