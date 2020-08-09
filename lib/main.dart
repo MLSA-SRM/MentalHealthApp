@@ -351,17 +351,9 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                           child: RaisedButton(
                             //elevation: 10,
                             onPressed: () async {
-<<<<<<< HEAD
+
                              launch("https://drive.google.com/file/d/1Gmx_Ran7IEMd3O8uTfls82n5HGD_8gdg/view");
-=======
-                             if (assetPDFPath4 != null) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      PdfViewer(assetPDFPath4)));
-                        }
->>>>>>> af512e9dd1f87a4ba62def1d6dbd06270a676cb8
+
                             },
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.all(
@@ -389,7 +381,3 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   }
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> af512e9dd1f87a4ba62def1d6dbd06270a676cb8

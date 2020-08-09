@@ -1,4 +1,4 @@
-import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -174,20 +174,9 @@ class _OnboardingState extends State<Onboarding> {
                         elevation: 5,
                         child: GestureDetector(
                           onTap: () async {
-<<<<<<< HEAD
                            launch("https://drive.google.com/file/d/1Gmx_Ran7IEMd3O8uTfls82n5HGD_8gdg/view");
                           
                         
-=======
-                            print("PDF poof");
-                            if (assetPDFPath1 != null) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          PdfViewer(assetPDFPath1)));
-                            }
->>>>>>> af512e9dd1f87a4ba62def1d6dbd06270a676cb8
                           },
                           child: Text(
                             "Know the Team",
@@ -319,17 +308,7 @@ class _OnboardingState extends State<Onboarding> {
                         elevation: 5,
                         child: GestureDetector(
                           onTap: () async {
-<<<<<<< HEAD
                             launch("https://drive.google.com/file/d/1Gmx_Ran7IEMd3O8uTfls82n5HGD_8gdg/view");
-=======
-                            if (assetPDFPath2 != null) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          PdfViewer(assetPDFPath2)));
-                            }
->>>>>>> af512e9dd1f87a4ba62def1d6dbd06270a676cb8
                           },
                           child: Text(
                             "I want help now!",
@@ -456,17 +435,7 @@ class _OnboardingState extends State<Onboarding> {
                         elevation: 5,
                         child: GestureDetector(
                           onTap: () async {
-<<<<<<< HEAD
                             launch("https://drive.google.com/file/d/1Gmx_Ran7IEMd3O8uTfls82n5HGD_8gdg/view");
-=======
-                            if (assetPDFPath3 != null) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          PdfViewer(assetPDFPath3)));
-                            }
->>>>>>> af512e9dd1f87a4ba62def1d6dbd06270a676cb8
                           },
                           child: Text(
                             "Consent Form!",
@@ -652,53 +621,3 @@ class _OnboardingState extends State<Onboarding> {
     );
   }
 }
-<<<<<<< HEAD
-=======
-
-class PdfViewer extends StatefulWidget {
-  String url;
-  PdfViewer(this.url);
-  @override
-  _PdfViewerState createState() => _PdfViewerState(url);
-}
-
-class _PdfViewerState extends State<PdfViewer> {
-  bool _isLoading = true;
-  PDFDocument document;
-  String url;
-  _PdfViewerState(this.url);
-  @override
-  void initState() {
-    super.initState();
-    getPdf();
-  }
-
-  getPdf() async {
-    document = await PDFDocument.fromAsset(url);
-    setState(() => _isLoading = false);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('PDF'),
-      ),
-      body: Container(
-        child: _isLoading
-            ? Center(
-                child: CircularProgressIndicator(
-                backgroundColor: Colors.deepPurple,
-              ))
-            : PDFViewer(
-                document: document,
-                zoomSteps: 1,
-                showNavigation: false,
-                indicatorBackground: Colors.deepPurple,
-                showIndicator: true,
-              ),
-      ),
-    );
-  }
-}
->>>>>>> af512e9dd1f87a4ba62def1d6dbd06270a676cb8
