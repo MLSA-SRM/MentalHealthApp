@@ -4,7 +4,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:mental_health_app/ArticlesPage.dart';
 import 'package:mental_health_app/DASS21_Page.dart';
@@ -116,12 +115,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
         setState(() {});
       },
     );
-    getFileFromAsset4("assets/Get Help Now.pdf").then((f4) {
-      setState(() {
-        assetPDFPath4 = f4.path;
-        
-      });
-    });
+  assetPDFPath4 = 'assets/Get Help Now.pdf';
   }
   Future<File> getFileFromAsset4(String asset) async {
     try {
@@ -265,6 +259,9 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                           ),
                           GestureDetector(
                             onTap: () async {
+                              launch("https://envision.aaruush.org/Here-For-You-App-Team-Page/");
+                            },
+                            onLongPress: () async {
                               launch("https://envision.aaruush.org/");
                             },
                             child: Image(
@@ -354,7 +351,17 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                           child: RaisedButton(
                             //elevation: 10,
                             onPressed: () async {
+<<<<<<< HEAD
                              launch("https://drive.google.com/file/d/1Gmx_Ran7IEMd3O8uTfls82n5HGD_8gdg/view");
+=======
+                             if (assetPDFPath4 != null) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      PdfViewer(assetPDFPath4)));
+                        }
+>>>>>>> af512e9dd1f87a4ba62def1d6dbd06270a676cb8
                             },
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.all(
@@ -382,4 +389,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   }
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> af512e9dd1f87a4ba62def1d6dbd06270a676cb8
