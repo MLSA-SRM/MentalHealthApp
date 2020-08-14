@@ -352,7 +352,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                             //elevation: 10,
                             onPressed: () async {
 
-                             launch("https://drive.google.com/file/d/1Gmx_Ran7IEMd3O8uTfls82n5HGD_8gdg/view");
+                             launch("https://drive.google.com/viewerng/viewer?embedded=true&url=https://github.com/MLSA-SRM/MentalHealthApp/raw/master/static/Get%20Help%20Now.pdf");
 
                             },
                             shape: RoundedRectangleBorder(
