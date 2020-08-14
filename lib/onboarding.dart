@@ -174,7 +174,7 @@ class _OnboardingState extends State<Onboarding> {
                         elevation: 5,
                         child: GestureDetector(
                           onTap: () async {
-                           launch("https://drive.google.com/file/d/1Gmx_Ran7IEMd3O8uTfls82n5HGD_8gdg/view");
+                           launch("https://drive.google.com/viewerng/viewer?embedded=true&url=https://github.com/MLSA-SRM/MentalHealthApp/raw/master/static/Know%20the%20Team.pdf");
                           
                         
                           },
@@ -308,7 +308,7 @@ class _OnboardingState extends State<Onboarding> {
                         elevation: 5,
                         child: GestureDetector(
                           onTap: () async {
-                            launch("https://drive.google.com/file/d/1Gmx_Ran7IEMd3O8uTfls82n5HGD_8gdg/view");
+                            launch("https://drive.google.com/viewerng/viewer?embedded=true&url=https://github.com/MLSA-SRM/MentalHealthApp/raw/master/static/Get%20Help%20Now.pdf");
                           },
                           child: Text(
                             "I want help now!",
@@ -435,10 +435,10 @@ class _OnboardingState extends State<Onboarding> {
                         elevation: 5,
                         child: GestureDetector(
                           onTap: () async {
-                            launch("https://drive.google.com/file/d/1Gmx_Ran7IEMd3O8uTfls82n5HGD_8gdg/view");
+                            launch("https://drive.google.com/viewerng/viewer?embedded=true&url=https://github.com/MLSA-SRM/MentalHealthApp/raw/master/static/Consent%20Form.pdf");
                           },
                           child: Text(
-                            "Consent Form!",
+                            "Consent Form",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: ScreenUtil()
