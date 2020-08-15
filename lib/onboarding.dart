@@ -109,7 +109,7 @@ class _OnboardingState extends State<Onboarding> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Swiper(
-        itemCount: 4,
+        itemCount: consent?4:3,
         curve: Curves.easeInOutCubic,
         scrollDirection: Axis.horizontal,
         loop: false,
@@ -450,20 +450,32 @@ class _OnboardingState extends State<Onboarding> {
                         ),
                         onPressed: () {},
                       ),
-                      SizedBox(height: 30.h),
-                      InkWell(
-                        onTap: () {
-                          consent = true;
-                          _controller.next();
+                       SizedBox(height: 10.h),
+                      CheckboxListTile(
+                        onChanged: (bool value) {
+                          setState(() {
+                            consent = !consent;
+                          });
                         },
+                        value: consent,
+                        title: Text("I have read the form and I give Consent"),
+                        controlAffinity: ListTileControlAffinity.leading,
+                      ),
+                      SizedBox(height: 10.h),
+                      InkWell(
+                        onTap:consent? () {
+                          // consent = true;
+                          _controller.next();
+                        }:null,
                         child: Card(
                           elevation: 8,
-                          color: randomizecolor[index % 6],
+                          color: consent ?randomizecolor[index % 6]:Colors.grey,
                           child: ListTile(
-                            trailing: Icon(Icons.done, color: Colors.white),
+                            trailing: Icon(Icons.done, color: Colors.transparent),
+                            leading:Icon(Icons.navigate_next, color: Colors.white),
                             title: Text(
-                              "I have read the form and I give Consent",
-                              textAlign: TextAlign.center,
+                              "Next",
+                              // textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: ScreenUtil()
                                       .setSp(50, allowFontScalingSelf: true),

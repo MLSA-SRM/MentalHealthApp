@@ -101,7 +101,8 @@ class _SocioDemoState extends State<SocioDemo> {
     "Day Scholar with Family",
     "Hostel",
     "Paying Guest",
-    "Rented accommodation with friends"
+    "Rented accommodation with friends",
+    "Other"
   ];
   String livingChosen = "Hostel";
 
