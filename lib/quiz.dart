@@ -70,7 +70,8 @@ List<String> year = [
   "Third Year",
   "Fourth Year",
   "Intern",
-  "Faculty"
+  "Faculty",
+  "Others"
 ];
 List<String> course = [
   "Engineering & Technology",
@@ -457,6 +458,11 @@ class QuizState extends State<Quiz> {
                                   setState(() {
                                     currentyear = newValueSelected;
                                     print(currentyear);
+                                    if(currentyear == "Faculty" ||
+                                  currentyear == "Intern" || currentyear == "Others")
+                                  {
+                                    _controller.next();
+                                  }
                                   });
                                 }),
                           ),
@@ -500,7 +506,7 @@ class QuizState extends State<Quiz> {
                             ),
                           ),
                           visible: currentyear == "Faculty" ||
-                                  currentyear == "Intern"
+                                  currentyear == "Intern" || currentyear == "Others"
                               ? false
                               : true,
                         ),
@@ -727,7 +733,7 @@ class QuizState extends State<Quiz> {
                             ),
                           ),
                           visible: currentyear == "Faculty" ||
-                                  currentyear == "Intern"
+                                  currentyear == "Intern" || currentyear == "Others"
                               ? false
                               : true,
                         )
