@@ -1,5 +1,5 @@
 # Here For You
-This app has been developed by [MSPCSRM](https://msclubsrm.in) and [Team Envision](https://team-envision.github.io/) for internal use at SRM Institute of Science and Technology, Kattankulathur, India. We permit you to use this app for your personal, non-commercial use only. Please refers [Terms of Use](https://github.com/MSPC-Tech/MentalHealthApp/blob/master/static/Terms%20of%20Use.pdf) for further claritification or write to us on our [Email](mailto:mysafespaceindia@gmail.com).
+This app has been developed by [Microsoft Learn Student Ambassadors SRM](https://msclubsrm.in) and [Team Envision](https://team-envision.github.io/) for internal use at SRM Institute of Science and Technology, Kattankulathur, India. We permit you to use this app for your personal, non-commercial use only. Please refers [Terms of Use](https://github.com/MSPC-Tech/MentalHealthApp/blob/master/static/Terms%20of%20Use.pdf) for further claritification or write to us on our [Email](mailto:mysafespaceindia@gmail.com).
 
 You can also use this email to report any security vulnerabilities to us. 
 
