@@ -29,26 +29,25 @@ dependencies:
   step_progress_indicator: ^0.1.0+1
   link: ^1.1.0
   flutter_screenutil: ^1.1.0
-  avatar_glow:
-  shared_preferences:
-  firebase_messaging:
-  url_launcher:
+  avatar_glow: null
+  shared_preferences: null
+  firebase_messaging: null
+  url_launcher: null
   flutter_webview_plugin: 0.3.11
   device_preview: 0.4.5
-  highlight_text:
-  language_pickers:
-  flutter_pdfview:
-  path_provider:
-  http:
+  highlight_text: null
+  language_pickers: null
+  flutter_pdfview: null
+  path_provider: null
+  http: null
+  google_fonts: ^1.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
 # The following section is specific to Flutter.
 flutter:
   assets:
@@ -58,18 +57,14 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
   # To add assets to your application, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
-
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
-
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
@@ -89,3 +84,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+

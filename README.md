@@ -5,7 +5,15 @@ You can also use this email to report any security vulnerabilities to us.
 
 If you are looking to download the production(stable) version of the app, you can do so here: 
 - [Android](https://play.google.com/store/apps/details?id=com.envisionmspc.mentalHealthApp) 
-- iOS (coming soon)
+- [IOS](https://apps.apple.com/in/app/here-for-you/id1523215331)
+
+
+## Quick Look 
+
+|                                                              |               |
+| ----------------------------------------------- | -------------------------- | 
+|<img src="https://github.com/ankithans/MentalHealthApp/blob/master/mockups/Screen1_iphonexspacegrey_portrait.png" width="1000" style="float:right">| <img src="https://github.com/ankithans/MentalHealthApp/blob/master/mockups/Screen2_iphonexspacegrey_portrait.png" width="1000" style="float:right">| 
+|<img src="https://github.com/ankithans/MentalHealthApp/blob/master/mockups/Screen3_iphonexspacegrey_portrait.png" width="1000" style="float:right">| <img src="https://github.com/ankithans/MentalHealthApp/blob/master/mockups/Screen4_iphonexspacegrey_portrait.png" width="1000" style="float:right">| 
 
 ## Getting Started
 

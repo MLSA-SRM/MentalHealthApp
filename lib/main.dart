@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mental_health_app/ArticlesPage.dart';
 import 'package:mental_health_app/DASS21_Page.dart';
 import 'package:mental_health_app/GAD7_Page.dart';
@@ -119,10 +120,10 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
     getFileFromAsset4("assets/Get Help Now.pdf").then((f4) {
       setState(() {
         assetPDFPath4 = f4.path;
-        
       });
     });
   }
+
   Future<File> getFileFromAsset4(String asset) async {
     try {
       var data = await rootBundle.load(asset);
@@ -185,7 +186,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                     ShowUp(
                       child: AvatarGlow(
                         //curve: Curves.easeOut,
-                        endRadius: _width / 3.5,
+                        endRadius: _width / 4,
                         duration: Duration(seconds: 3),
                         glowColor: Colors.blueAccent,
                         repeat: true,
@@ -200,31 +201,34 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                                 backgroundColor: Colors.grey[100],
                                 child: Image(
                                     image: AssetImage('assets/mainlogo.png')),
-                                radius: _width / 5,
+                                radius: _width / 6,
                               )),
                         ),
                       ),
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height / 50,
+                      height: MediaQuery.of(context).size.height / 90,
                     ),
                     ShowUp(
                       child: Text(
                         "Here For You",
-                        style: TextStyle(
-                            fontSize: _width / 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black),
+                        style: GoogleFonts.nunito(
+                          fontSize: _width / 14,
+                          fontWeight: FontWeight.w800,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                     SizedBox(
-                      height: _height / 70,
+                      height: _height / 100,
                     ),
                     ShowUp(
                       child: Text(
                         "&",
-                        style: TextStyle(
-                            fontSize: _width / 15, color: Colors.black),
+                        style: GoogleFonts.nunito(
+                          fontSize: _width / 17,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -232,22 +236,34 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                     ),
                     ShowUp(
                       child: Text(
-                        "\'The thoughts in your head\'",
-                        style: TextStyle(
-                            fontSize: _width / 18, color: Colors.black),
+                        "\" The thoughts in your head \"",
+                        style: GoogleFonts.nunito(
+                          fontSize: _width / 16,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey[700],
+                        ),
                       ),
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height / 40,
+                      height: MediaQuery.of(context).size.height / 30,
                     ),
                     ShowUp(
                       child: Text(
                         "Developed By",
-                        style: TextStyle(fontSize: _width / 25),
+                        style: GoogleFonts.nunito(
+                          fontSize: _width / 27,
+                          color: Colors.grey[600],
+                        ),
                       ),
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height / 40,
+                      height: MediaQuery.of(context).size.height / 70,
+                    ),
+                    Divider(
+                      height: 3,
+                    ),
+                    SizedBox(
+                      height: _height / 90,
                     ),
                     ShowUp(
                       child: Row(
@@ -265,7 +281,8 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                           ),
                           GestureDetector(
                             onTap: () async {
-                              launch("https://envision.aaruush.org/Here-For-You-App-Team-Page/");
+                              launch(
+                                  "https://envision.aaruush.org/Here-For-You-App-Team-Page/");
                             },
                             onLongPress: () async {
                               launch("https://envision.aaruush.org/");
@@ -279,11 +296,17 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                       ),
                     ),
                   ]),
+                  SizedBox(
+                    height: _height / 90,
+                  ),
+                  Divider(
+                    height: 3,
+                  ),
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       SizedBox(
-                        height: MediaQuery.of(context).size.height / 40,
+                        height: MediaQuery.of(context).size.height / 20,
                       ),
                       ShowUp(
                         child: Container(
@@ -312,7 +335,10 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                             padding: const EdgeInsets.all(8.0),
                             child: new Text(
                               !buttontoshow ? "Get Started" : "Retake Quiz",
-                              style: TextStyle(fontSize: _width / 23),
+                              style: GoogleFonts.nunito(
+                                fontSize: _width / 23,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ),
                         ),
@@ -342,7 +368,10 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                             padding: const EdgeInsets.all(8.0),
                             child: new Text(
                               "Articles",
-                              style: TextStyle(fontSize: _width / 23),
+                              style: GoogleFonts.nunito(
+                                fontSize: _width / 23,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ),
                         ),
@@ -357,13 +386,13 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                           child: RaisedButton(
                             //elevation: 10,
                             onPressed: () async {
-                             if (assetPDFPath4 != null) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      PdfViewPage(path: assetPDFPath4)));
-                        }
+                              if (assetPDFPath4 != null) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            PdfViewPage(path: assetPDFPath4)));
+                              }
                             },
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.all(
@@ -375,7 +404,10 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                             padding: const EdgeInsets.all(8.0),
                             child: new Text(
                               "Get Help Now!",
-                              style: TextStyle(fontSize: _width / 23),
+                              style: GoogleFonts.nunito(
+                                fontSize: _width / 23,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ),
                         ),
@@ -454,7 +486,7 @@ class _PdfViewPageState extends State<PdfViewPage> {
                   },
                 )
               : Offstage(),
-          _currentPage+1 < _totalPages
+          _currentPage + 1 < _totalPages
               ? FloatingActionButton.extended(
                   backgroundColor: Colors.green,
                   label: Text("Go to ${_currentPage + 1}"),
