@@ -12,7 +12,7 @@ If you are looking to download the production(stable) version of the app, you ca
 
 |                                                              |               |
 | ----------------------------------------------- | -------------------------- | 
-|<img src="https://github.com/ankithans/MentalHealthApp/blob/master/mockups/Screen1_iphonexspacegrey_portrait.png" width="1000" style="float:right">| <img src="https://github.com/ankithans/MentalHealthApp/blob/master/mockups/Screen2_iphonexspacegrey_portrait.png" width="1000" style="float:right">| 
+|<img src="https://github.com/ankithans/MentalHealthApp/blob/master/mockups/Screen1_iphonexspacegrey_portrait.png" width="900" style="float:right">| <img src="https://github.com/ankithans/MentalHealthApp/blob/master/mockups/Screen2_iphonexspacegrey_portrait.png" width="1000" style="float:right">| 
 |<img src="https://github.com/ankithans/MentalHealthApp/blob/master/mockups/Screen3_iphonexspacegrey_portrait.png" width="1000" style="float:right">| <img src="https://github.com/ankithans/MentalHealthApp/blob/master/mockups/Screen4_iphonexspacegrey_portrait.png" width="1000" style="float:right">| 
 
 ## Getting Started
